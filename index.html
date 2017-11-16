@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GEO WMTS</title>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script type="text/javascript" src="dist/kmap-debug.js"></script>
+    <style>
+        .custom-mouse-position {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: #008;
+            color: #F00;
+            opacity: 0.50;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div id="map" />
+        <script type="text/javascript">
+
+            var map_options = {
+                projection: 'EPSG:4326', //'EPSG:900913',
+                center: [114.168945, 22.636695], //[12697872, 2580437],  
+                extent: undefined,
+                resolutions: undefined,
+                minResolution: undefined,
+                maxResolution: undefined,
+                resolution: undefined,
+                minZoom: 9,
+                maxZoom: 18,
+                zoom: 14
+            };
+            var map = new KMap.Map('map', map_options);
+
+            /*var wmts_options = {
+                type: 'tile',
+                source: 'wmts',
+                format: 'image/jpg',
+                layer: 'World_Street_Map',
+                matrixSet: 'default028mm',
+                requestEncoding: 'KVP',
+                url: 'http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/WMTS/1.0.0/WMTSCapabilities.xml'
+            };
+            var wmts_layer = new KMap.WMTSLayer('World_Street_Map', wmts_options);
+            map.addBaseLayer(wmts_layer);*/
+
+            /*var arcgis_rest = {
+                projection: "EPSG:4326",
+                url: 'http://192.168.10.14:8399/arcgis/rest/services/Demo/Demo/MapServer'
+            };
+            var arcgis_rest_layer = new KMap.ArcGISRestLayer("arcgis_rest", arcgis_rest);
+            map.addBaseLayer(arcgis_rest_layer);*/
+
+            /*var wmts_options = {
+                type: 'tile',
+                source: 'wmts',
+                url: 'http://192.168.10.14:8080/geoserver/gwc/service/wmts?request=GetCapabilities',
+                requestEncoding: 'KVP',
+                layer: 'shenzhen_basemap:shenzhen_basemap',
+                format: 'image/png',
+                matrixSet: 'EPSG:4326'
+            };
+            var wmts_layer = new KMap.WMTSLayer('shenzhen_basemap:shenzhen_basemap', wmts_options);
+            map.addBaseLayer(wmts_layer);*/
+
+            var baidu_layer = new KMap.BaiduLayer('baidu_layer', { url: 'http://online{0-3}.map.bdimg.com/onlinelabel/?qt=tile&x={x}&y={Y}&z={z}&styles=pl&udt=20170401&scaler=1&p=1' });
+            map.addBaseLayer(baidu_layer);
+
+            /*var wms_options = {
+                type: 'tile',
+                source: 'wms',
+                url: 'http://192.168.10.14:8080/geoserver/gwc/service/wms',
+                layer: 'shenzhen_basemap:shenzhen_basemap',
+                format: 'image/png',
+                srs: 'EPSG:4326',
+                projection: 'EPSG:4326'
+            };
+            var wms_layer = new KMap.TileWMSLayer('shenzhen_basemap:shenzhen_basemap', wms_options);
+            map.addBaseLayer(wms_layer);*/
+
+            var wfs_options = {
+                url: function (extent) {
+                    var url = 'http://192.168.10.14:8080/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature'
+                        + '&typename=shenzhen_compmap:上水井盖0101' + '&propertyName=the_geom'
+                        + '&srsname=EPSG:4326&' + 'bbox=' + extent.join(',') + ',EPSG:4326'
+                        + '&outputFormat=application/json';
+                    return encodeURI(url);
+                },
+                format: 'geojson',
+                style: new KMap.MarkerSymbol({
+                    anchor: undefined,
+                    opacity: undefined,
+                    radius: 5,
+                    offset: undefined,
+                    fill: '#00f',
+                    stroke: '#f00'
+                })
+            };
+            var wfs_layer = new KMap.FeatureLayer('shenzhen_compmap:上水井盖0101', wfs_options);
+            wfs_layer.setMaxResolution(0.0000214576721191 * 2);
+            map.addDynamicLayer(wfs_layer);
+
+            var graphics_layer = new KMap.GraphicsLayer('graphics_layer', {});
+            map.addGraphicsLayer(graphics_layer);
+        </script>
+    </form>
+</body>
+
+</html>

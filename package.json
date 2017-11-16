@@ -1,0 +1,27 @@
+{
+  "name": "kmap",
+  "version": "1.0.0",
+  "description": "kmap",
+  "main": "dist/kmap.js",
+  "scripts": {
+    "build": "node tasks/build.js config/kmap.json dist/kmap.js",
+    "build-debug": "node tasks/build.js config/kmap-debug.json dist/kmap-debug.js",
+    "test": "test"
+  },
+  "keywords": [
+    "map",
+    "ol"
+  ],
+  "author": "alex.wang",
+  "license": "ISC",
+  "dependencies": {
+    "async": "2.3.0",
+    "closure-util": "1.18.0",
+    "fs-extra": "2.1.2",
+    "jsdoc": "3.4.3",
+    "nomnom": "1.8.1",
+    "openlayers": "^4.1.0",
+    "temp": "0.8.3",
+    "walk": "2.3.9"
+  }
+}

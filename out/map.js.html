@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: map.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: map.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>goog.provide('KMap.Map');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('KMap.GroupLayer');
+goog.require('KMap.Interaction.Location');
+
+goog.require('ol.Map');
+goog.require('ol.layer.Group');
+goog.require('ol.Collection');
+goog.require('ol.CollectionEventType');
+
+/**
+ * 
+ * @constructor
+ * @api
+ */
+KMap.Map = function (target, options) {
+    /**
+    * 内部地图对象
+    */
+    this.map_ = new ol.Map({
+        target: target,
+        controls: ol.control.defaults(),
+        logo: false,
+        loadTilesWhileAnimating: true,
+        loadTilesWhileInteracting: true
+    });
+
+    /**
+    * 地图底图
+    */
+    this.baseLayers_ = new KMap.GroupLayer('baseLayer', null);
+    this.map_.addLayer(this.baseLayers_.getLayer());
+
+    /**
+    * 动态图层
+    */
+    this.dynamicLayers_ = new KMap.GroupLayer('dynamicLayers', null);
+    this.map_.addLayer(this.dynamicLayers_.getLayer());
+
+    /**
+    * 绘画图层
+    */
+    this.graphicsLayers_ = new KMap.GroupLayer('graphicsLayers', null);
+    this.map_.addLayer(this.graphicsLayers_.getLayer());
+
+    /**
+    * 视图
+    */
+    var center = [0, 0];
+    if (options.center) {
+        center[0] = options.center[0] || center[0];
+        center[1] = options.center[1] || center[1];
+    }
+    this.view_ = new ol.View({
+        projection: options.projection,
+        center: center,
+        extent: options.extent,
+        resolutions: options.resolutions,
+        minResolution: options.minResolution,
+        maxResolution: options.maxResolution,
+        resolution: options.zoom ? undefined : options.resolution,
+        minZoom: options.minZoom,
+        maxZoom: options.maxZoom,
+        zoom: options.zoom || 0,
+        zoomFactor: options.zoomFactor
+    });
+    this.map_.setView(this.view_);
+
+    /**
+    * 坐标拾取
+    */
+    this.locationAction_ = new KMap.Interaction.Location();
+    this.map_.addInteraction(this.locationAction_);
+
+    /**
+    * 鼠标坐标
+    */
+    var mousePositionControl = new ol.control.MousePosition({
+        coordinateFormat: function (coordinate) {
+            return ol.coordinate.format(coordinate, '{x}, {y}', 6);
+        },
+        className: 'custom-mouse-position',
+        undefinedHTML: '超出范围'
+    });
+    this.map_.addControl(mousePositionControl);
+
+    /**
+    * 比例尺
+    */
+    var scaleLineControl = new ol.control.ScaleLine({ minWidth: 38 });
+    this.map_.addControl(scaleLineControl);
+};
+
+/**
+ * 返回内部地图对象
+ * @api
+ */
+KMap.Map.prototype.getMap = function () {
+    return this.map_;
+};
+
+/**
+ * 返回地图视图大小
+ * @api
+ */
+KMap.Map.prototype.getSize = function () {
+    return this.map_.getSize();
+};
+
+/**
+ * 设置地图视图大小
+ * @api
+ */
+KMap.Map.prototype.setSize = function (size) {
+    var target = this.map_.getTargetElement();
+    target.style.width = size[0] + "px";
+    target.style.height = size[1] + "px";
+    this.map_.updateSize();
+};
+
+/**
+ * 获取地图中心点
+ * @api
+ */
+KMap.Map.prototype.getCenter = function () {
+    return this.map_.getView().getCenter();
+};
+
+/**
+ * 设置地图中心点
+ * @api
+ */
+KMap.Map.prototype.setCenter = function (coordinate) {
+    var view = this.map_.getView();
+    var center = view.constrainCenter(coordinate);
+    this.map_.getView().setCenter(center);
+};
+
+/**
+ * 移动地图中心到指定的位置
+ * @api
+ */
+KMap.Map.prototype.panTo = function (coordinate) {
+    var view = this.map_.getView();
+    var center = view.constrainCenter(coordinate);
+    view.animate({
+        center: center,
+        duration: 250,
+        easing: ol.easing.easeOut
+    });
+};
+
+/**
+ * 按范围缩放
+ * @api
+ */
+KMap.Map.prototype.zoomByExtent = function (extent) {
+    var view = this.map_.getView();
+    if (view.getAnimating()) {
+        view.cancelAnimations();
+    }
+    if (!ol.extent.isEmpty(extent) &amp;&amp; !isNaN(extent[0]) &amp;&amp; !isNaN(extent[1]) &amp;&amp; !isNaN(extent[2]) &amp;&amp; !isNaN(extent[3])) {
+        view.fit(extent, { duration: 500 });
+    }
+};
+
+/**
+ * 缩放地图
+ * @api
+ */
+KMap.Map.prototype.zoomByDelta = function (delta, duration) {
+    var view = this.map_.getView();
+    if (!view) {
+        return;
+    }
+    var currentResolution = view.getResolution();
+    if (currentResolution) {
+        var newResolution = view.constrainResolution(currentResolution, delta);
+        if (duration > 0) {
+            if (view.getAnimating()) {
+                view.cancelAnimations();
+            }
+            view.animate({
+                resolution: newResolution,
+                duration: duration,
+                easing: ol.easing.easeOut
+            });
+        } else {
+            view.setResolution(newResolution);
+        }
+    }
+};
+
+/**
+ * 地图放大一级
+ * @api
+ */
+KMap.Map.prototype.zoomIn = function () {
+    this.zoomByDelta(1, 500);
+};
+
+/**
+ * 地图缩小一级
+ * @api
+ */
+KMap.Map.prototype.zoomOut = function () {
+    this.zoomByDelta(-1, 500);
+};
+
+/**
+ * 当前地图的范围
+ * @api
+ */
+KMap.Map.prototype.getExtent = function () {
+    var view = this.map_.getView();
+    var extent = !this.extent_ ? view.getProjection().getExtent() : this.extent_;
+    return extent;
+};
+
+/**
+ * 设置地图的范围
+ * @api
+ */
+KMap.Map.prototype.setExtent = function (extent) {
+    this.extent_ = extent;
+};
+
+/**
+ * 设置地图的范围
+ * @api
+ */
+KMap.Map.prototype.zoomToFullExtent = function () {
+    var extent = this.getExtent();
+    this.zoomByExtent(extent);
+};
+
+/**
+ * 缩放到上一视图
+ * @api
+ */
+KMap.Map.prototype.zoomToPreviousExtent = function () {
+
+};
+
+/**
+ * 缩放到下一视图
+ * @api
+ */
+KMap.Map.prototype.zoomToNextExtent = function () {
+
+};
+
+/**
+ * 测量面积
+ * @api
+ */
+KMap.Map.prototype.measureArea = function () {
+
+};
+
+/**
+ * 测量长度
+ * @api
+ */
+KMap.Map.prototype.measureLength = function () {
+
+};
+
+/**
+ * 地图打印
+ * @api
+ */
+KMap.Map.prototype.print = function () {
+
+};
+
+/**
+ * 返回底图图层
+ * @api
+ */
+KMap.Map.prototype.getBaseLayers = function () {
+    return this.baseLayers_;
+};
+
+/**
+ * 添加底图
+ * @api
+ */
+KMap.Map.prototype.addBaseLayer = function (layer) {
+    this.baseLayers_.push(layer);
+};
+
+/**
+ * 移除底图
+ * @api
+ */
+KMap.Map.prototype.removeBaseLayer = function (layer) {
+    this.baseLayers_.remove(layer);
+};
+
+/**
+ * 清空底图
+ * @api
+ */
+KMap.Map.prototype.clearBaseLayer = function () {
+    this.baseLayers_.clear();
+};
+
+/**
+ * 返回动态图层
+ * @api
+ */
+KMap.Map.prototype.getDynamicLayers = function () {
+    return this.dynamicLayers_;
+};
+
+/**
+ * 添加动态图层
+ * @api
+ */
+KMap.Map.prototype.addDynamicLayer = function (layer) {
+    this.dynamicLayers_.push(layer);
+};
+
+/**
+ * 移除动态图层
+ * @api
+ */
+KMap.Map.prototype.removeDynamicLayer = function (layer) {
+    this.dynamicLayers_.remove(layer);
+};
+
+/**
+ * 清空动态图层
+ * @api
+ */
+KMap.Map.prototype.clearDynamicLayers = function () {
+    this.dynamicLayers_.clear();
+};
+
+/**
+ * 返回动态图层
+ * @api
+ */
+KMap.Map.prototype.getGraphicsLayers = function () {
+    return this.graphicsLayers_;
+};
+
+/**
+ * 添加绘制图层
+ * @api
+ */
+KMap.Map.prototype.addGraphicsLayer = function (layer) {
+    this.graphicsLayers_.push(layer);
+};
+
+/**
+ * 移除绘制图层
+ * @api
+ */
+KMap.Map.prototype.removeGraphicsLayer = function (layer) {
+    this.graphicsLayers_.remove(layer);
+};
+
+/**
+ * 清空绘制图层
+ * @api
+ */
+KMap.Map.prototype.clearGraphicsLayers = function () {
+    this.graphicsLayers_.clear();
+};
+
+/**
+ * 刷新地图
+ * @api
+ */
+KMap.Map.prototype.refresh = function () {
+    this.map_.render();
+};
+
+/**
+ * 监听事件只触发一次
+ * @api
+ */
+KMap.Map.prototype.once = function (type, listener) {
+    this.map_.once(type, listener);
+};
+
+/**
+ * 监听事件
+ * @api
+ */
+KMap.Map.prototype.on = function (type, listener) {
+    this.map_.on(type, listener);
+};
+
+/**
+ * 取消监听事件
+ * @api
+ */
+KMap.Map.prototype.un = function (type, listener) {
+    this.map_.un(type, listener);
+};
+
+/**
+ * 鼠标单击地图的位置
+ * @api
+ */
+KMap.Map.prototype.getLocation = function (callback) {
+    this.locationAction_.once('location', function (evt) {
+        callback(evt.coordinate);
+    });
+};
+
+/**
+ * 测试代码
+ * @api
+ */
+KMap.Map.prototype.testMarker = function (position) {
+    var graphicsLayers = this.getGraphicsLayers();
+    var layer = graphicsLayers.getSubLayer('graphics_layer');
+    if (layer) {
+        layer.clearGraphic();
+        var markerOption = {
+            position: position,
+            attrs: { "a": 'this is a marker' },
+            style: {
+                anchor: undefined,
+                opacity: undefined,
+                radius: 5,
+                offset: undefined,
+                fill: '#00f',
+                stroke: '#f00'
+            }
+        };
+        var marker = new KMap.Marker('marker_id', markerOption);
+        layer.addGraphic(marker);
+        this.zoomByExtent(layer.getExtent());
+    }
+};
+
+/**
+ * @api
+ */
+KMap.Map.prototype.testLine = function () {
+    var graphicsLayers = this.getGraphicsLayers();
+    var layer = graphicsLayers.getSubLayer('graphics_layer');
+    if (layer) {
+        layer.clearGraphic();
+
+        var outer = [
+            [117.104554, 30.504444],
+            [117.118974, 30.506219],
+            [117.12893, 30.508586],
+            [117.13305, 30.511248],
+            [117.139917, 30.514501],
+            [117.147126, 30.518642],
+            [117.153993, 30.5216],
+            [117.161546, 30.526036],
+            [117.171502, 30.529289],
+            [117.177339, 30.531655],
+            [117.184892, 30.531063],
+            [117.197595, 30.533133],
+            [117.212014, 30.535499],
+            [117.223001, 30.536682],
+            [117.233987, 30.536977],
+            [117.23845, 30.538456],
+            [117.240854, 30.545848],
+            [117.251153, 30.543778],
+            [117.251497, 30.53816],
+            [117.24875, 30.530767],
+            [117.246347, 30.523965],
+            [117.243943, 30.515684],
+            [117.241197, 30.504149],
+            [117.238107, 30.493795],
+            [117.229524, 30.481073],
+            [117.221971, 30.474268],
+            [117.215104, 30.469533],
+            [117.204461, 30.466574],
+            [117.190728, 30.462727],
+            [117.183862, 30.464207],
+            [117.156739, 30.47456],
+            [117.14644, 30.47841],
+            [117.140603, 30.482257],
+            [117.127214, 30.485215],
+            [117.107988, 30.487878]
+        ];
+
+        var polylineOption = {
+            path: outer,
+            attrs: { "a": 'this is a polygon' },
+            style: {
+                stroke: '#f00',
+                lineDash: [20, 5],
+                width: 2.0
+            }
+        };
+        var polyline = new KMap.Polyline('polyline_id', polylineOption);
+        layer.addGraphic(polyline);
+        this.zoomByExtent(layer.getExtent());
+    }
+};
+
+/**
+ * @api
+ */
+KMap.Map.prototype.testFill = function () {
+    var graphicsLayers = this.getGraphicsLayers();
+    var layer = graphicsLayers.getSubLayer('graphics_layer');
+    if (layer) {
+        layer.clearGraphic();
+
+        var outer = [
+            [117.104554, 30.504444],
+            [117.118974, 30.506219],
+            [117.12893, 30.508586],
+            [117.13305, 30.511248],
+            [117.139917, 30.514501],
+            [117.147126, 30.518642],
+            [117.153993, 30.5216],
+            [117.161546, 30.526036],
+            [117.171502, 30.529289],
+            [117.177339, 30.531655],
+            [117.184892, 30.531063],
+            [117.197595, 30.533133],
+            [117.212014, 30.535499],
+            [117.223001, 30.536682],
+            [117.233987, 30.536977],
+            [117.23845, 30.538456],
+            [117.240854, 30.545848],
+            [117.251153, 30.543778],
+            [117.251497, 30.53816],
+            [117.24875, 30.530767],
+            [117.246347, 30.523965],
+            [117.243943, 30.515684],
+            [117.241197, 30.504149],
+            [117.238107, 30.493795],
+            [117.229524, 30.481073],
+            [117.221971, 30.474268],
+            [117.215104, 30.469533],
+            [117.204461, 30.466574],
+            [117.190728, 30.462727],
+            [117.183862, 30.464207],
+            [117.156739, 30.47456],
+            [117.14644, 30.47841],
+            [117.140603, 30.482257],
+            [117.127214, 30.485215],
+            [117.107988, 30.487878]
+        ];
+
+        var inner = [
+            [117.162061, 30.49361],
+            [117.167211, 30.49716],
+            [117.172361, 30.50071],
+            [117.177167, 30.505739],
+            [117.184034, 30.512542],
+            [117.18987, 30.522894],
+            [117.2012, 30.525851],
+            [117.210126, 30.527034],
+            [117.219396, 30.526443],
+            [117.225919, 30.527034],
+            [117.234159, 30.529104],
+            [117.237935, 30.528808],
+            [117.235532, 30.522894],
+            [117.234502, 30.516683],
+            [117.232785, 30.507514],
+            [117.226262, 30.491835],
+            [117.217336, 30.480297],
+            [117.202916, 30.4729],
+            [117.194677, 30.470828],
+            [117.184034, 30.473491],
+            [117.177511, 30.47793],
+            [117.170644, 30.484439],
+            [117.167897, 30.489173]
+        ];
+
+        var polygonOption = {
+            path: [outer, inner],
+            attrs: { "a": 'this is a test' },
+            style: {
+                stroke: '#f00',
+                width: 2.0,
+                fill: '#00f'
+            }
+        };
+
+        var polygon = new KMap.Polygon('polygon_id', polygonOption);
+        layer.addGraphic(polygon);
+        this.zoomByExtent(layer.getExtent());
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="KMap.ArcGISRestLayer.html">ArcGISRestLayer</a></li><li><a href="KMap.BaiduLayer.html">BaiduLayer</a></li><li><a href="KMap.FeatureLayer.html">FeatureLayer</a></li><li><a href="KMap.FillSymbol.html">FillSymbol</a></li><li><a href="KMap.Graphic.html">Graphic</a></li><li><a href="KMap.GraphicsLayer.html">GraphicsLayer</a></li><li><a href="KMap.GroupLayer.html">GroupLayer</a></li><li><a href="KMap.Interaction.Location.html">Location</a></li><li><a href="KMap.Interaction.Location.Event.html">Event</a></li><li><a href="KMap.Layer.html">Layer</a></li><li><a href="KMap.LineSymbol.html">LineSymbol</a></li><li><a href="KMap.Map.html">Map</a></li><li><a href="KMap.Marker.html">Marker</a></li><li><a href="KMap.MarkerSymbol.html">MarkerSymbol</a></li><li><a href="KMap.Polygon.html">Polygon</a></li><li><a href="KMap.Polyline.html">Polyline</a></li><li><a href="KMap.Symbol.html">Symbol</a></li><li><a href="KMap.TextSymbol.html">TextSymbol</a></li><li><a href="KMap.TileWMSLayer.html">TileWMSLayer</a></li><li><a href="KMap.Transform.html">Transform</a></li><li><a href="KMap.WMSLayer.html">WMSLayer</a></li><li><a href="KMap.WMTSLayer.html">WMTSLayer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed May 17 2017 17:50:57 GMT+0800 (中国标准时间)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
