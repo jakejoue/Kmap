@@ -401,6 +401,9 @@ KMap.Map.prototype.centerAt = function (coordinate, callback) {
  * @api
  */
 KMap.Map.prototype.panTo = function (coordinate) {
+    if(isNaN(coordinate[0]) || isNaN(coordinate[1])) {
+        return;
+    }
     var view = this.map_.getView();
     if (view.getAnimating()) {
         view.cancelAnimations();
