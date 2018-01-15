@@ -10,22 +10,22 @@ goog.require('KMap');
  * @param {Object|ol.layer.Base} options
  */
 KMap.Layer = function (id, options) {
-    
-    var layer = null;
-    if (options instanceof ol.layer.Base) {
-        layer = /** @type {ol.layer.Base} */ (options);
-    } else {
-        layer = this.createLayer(options);
-        layer.set(KMap.Layer.Property.TYPE, this.getType());
-    }
 
-    /**
-     * @protected
-     * @type {ol.layer.Base}
-     */
-    this.layer_ = layer;
+  var layer = null;
+  if (options instanceof ol.layer.Base) {
+    layer = /** @type {ol.layer.Base} */ (options);
+  } else {
+    layer = this.createLayer(options);
+    layer.set(KMap.Layer.Property.TYPE, this.getType());
+  }
 
-    this.setId(id);
+  /**
+   * @protected
+   * @type {ol.layer.Base}
+   */
+  this.layer_ = layer;
+
+  this.setId(id);
 };
 
 /**
@@ -34,7 +34,7 @@ KMap.Layer = function (id, options) {
  * @return {string}
  */
 KMap.Layer.prototype.getId = function () {
-    return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
+  return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
 };
 
 /**
@@ -43,7 +43,7 @@ KMap.Layer.prototype.getId = function () {
  * @param {string} id
  */
 KMap.Layer.prototype.setId = function (id) {
-    this.layer_.set(KMap.Layer.Property.ID, id);
+  this.layer_.set(KMap.Layer.Property.ID, id);
 };
 
 /**
@@ -52,7 +52,7 @@ KMap.Layer.prototype.setId = function (id) {
  * @return {ol.layer.Base}
  */
 KMap.Layer.prototype.getLayer = function () {
-    return this.layer_;
+  return this.layer_;
 };
 
 /** 设置图层的内部对象
@@ -60,7 +60,7 @@ KMap.Layer.prototype.getLayer = function () {
  * @param {ol.layer.Base} layer
  */
 KMap.Layer.prototype.setLayer = function (layer) {
-    this.layer_ = layer;
+  this.layer_ = layer;
 };
 
 /**
@@ -69,8 +69,8 @@ KMap.Layer.prototype.setLayer = function (layer) {
  * @return {boolean}
  */
 KMap.Layer.prototype.getVisible = function () {
-    var layer = this.getLayer();
-    return layer.getVisible();
+  var layer = this.getLayer();
+  return layer.getVisible();
 };
 
 /**
@@ -79,8 +79,8 @@ KMap.Layer.prototype.getVisible = function () {
  * @param {boolean} visible
  */
 KMap.Layer.prototype.setVisible = function (visible) {
-    var layer = this.getLayer();
-    layer.setVisible(visible);
+  var layer = this.getLayer();
+  layer.setVisible(visible);
 };
 
 /**
@@ -89,8 +89,8 @@ KMap.Layer.prototype.setVisible = function (visible) {
  * @return {ol.Extent|null|undefined}
  */
 KMap.Layer.prototype.getExtent = function () {
-    var layer = this.getLayer();
-    return layer.getExtent();
+  var layer = this.getLayer();
+  return layer.getExtent();
 };
 
 /**
@@ -99,8 +99,8 @@ KMap.Layer.prototype.getExtent = function () {
  * @param {ol.Extent} extent
  */
 KMap.Layer.prototype.setExtent = function (extent) {
-    var layer = this.getLayer();
-    layer.setExtent(extent);
+  var layer = this.getLayer();
+  layer.setExtent(extent);
 };
 
 /**
@@ -109,8 +109,8 @@ KMap.Layer.prototype.setExtent = function (extent) {
  * @return {number}
  */
 KMap.Layer.prototype.getMaxResolution = function () {
-    var layer = this.getLayer();
-    return layer.getMaxResolution();
+  var layer = this.getLayer();
+  return layer.getMaxResolution();
 };
 
 /**
@@ -120,9 +120,9 @@ KMap.Layer.prototype.getMaxResolution = function () {
  * @api
  */
 KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
-    var layer = this.getLayer();
-    layer.setMaxResolution(maxResolution);
-    return this;
+  var layer = this.getLayer();
+  layer.setMaxResolution(maxResolution);
+  return this;
 };
 
 /**
@@ -130,8 +130,8 @@ KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
  * @api
  */
 KMap.Layer.prototype.getMinResolution = function () {
-    var layer = this.getLayer();
-    return layer.getMinResolution();
+  var layer = this.getLayer();
+  return layer.getMinResolution();
 };
 
 /**
@@ -141,9 +141,9 @@ KMap.Layer.prototype.getMinResolution = function () {
  * @api
  */
 KMap.Layer.prototype.setMinResolution = function (minResolution) {
-    var layer = this.getLayer();
-    layer.setMinResolution(minResolution);
-    return this;
+  var layer = this.getLayer();
+  layer.setMinResolution(minResolution);
+  return this;
 };
 
 /**
@@ -151,7 +151,7 @@ KMap.Layer.prototype.setMinResolution = function (minResolution) {
  * @returns {ol.layer.Base}
  */
 KMap.Layer.prototype.createLayer = function (options) {
-    throw 'layer create error';
+  throw 'layer create error';
 };
 
 /**
@@ -160,28 +160,30 @@ KMap.Layer.prototype.createLayer = function (options) {
  * @returns {KMap.Layer}
  */
 KMap.Layer.fromLayer = function (layer) {
-    var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
-    switch (layerType) {
-        case KMap.Layer.Type.ArcGISRestLayer:
-            return KMap.ArcGISRestLayer.fromLayer(layer);
-        case KMap.Layer.Type.ArcGISTileLayer:
-            return KMap.ArcGISTileLayer.fromLayer(layer);
-        case KMap.Layer.Type.BaiduLayer:
-            return KMap.BaiduLayer.fromLayer(layer);
-        case KMap.Layer.Type.FeatureLayer:
-            return KMap.FeatureLayer.fromLayer(layer);
-        case KMap.Layer.Type.GraphicsLayer:
-            return KMap.GraphicsLayer.fromLayer(layer);
-        case KMap.Layer.Type.GroupLayer:
-            return KMap.GroupLayer.fromLayer(layer);
-        case KMap.Layer.Type.TileWMSLayer:
-            return KMap.TileWMSLayer.fromLayer(layer);
-        case KMap.Layer.Type.WMSLayer:
-            return KMap.WMSLayer.fromLayer(layer);
-        case KMap.Layer.Type.WMTSLayer:
-            return KMap.WMTSLayer.fromLayer(layer);
-    };
-    throw 'invalid layer type';
+  var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
+  switch (layerType) {
+    case KMap.Layer.Type.ArcGISRestLayer:
+      return KMap.ArcGISRestLayer.fromLayer(layer);
+    case KMap.Layer.Type.ArcGISTileLayer:
+      return KMap.ArcGISTileLayer.fromLayer(layer);
+    case KMap.Layer.Type.BaiduLayer:
+      return KMap.BaiduLayer.fromLayer(layer);
+    case KMap.Layer.Type.FeatureLayer:
+      return KMap.FeatureLayer.fromLayer(layer);
+    case KMap.Layer.Type.GraphicsLayer:
+      return KMap.GraphicsLayer.fromLayer(layer);
+    case KMap.Layer.Type.GroupLayer:
+      return KMap.GroupLayer.fromLayer(layer);
+    case KMap.Layer.Type.TileWMSLayer:
+      return KMap.TileWMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMSLayer:
+      return KMap.WMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMTSLayer:
+      return KMap.WMTSLayer.fromLayer(layer);
+    case KMap.Layer.Type.AMapLayer:
+      return KMap.AMapLayer.fromLayer(layer);
+  };
+  throw 'invalid layer type';
 };
 
 /**
@@ -190,7 +192,7 @@ KMap.Layer.fromLayer = function (layer) {
  * @api
  */
 KMap.Layer.prototype.getType = function () {
-    throw 'invalid layer type';
+  throw 'invalid layer type';
 };
 
 /**
@@ -198,15 +200,16 @@ KMap.Layer.prototype.getType = function () {
  * @api
  */
 KMap.Layer.Type = {
-    ArcGISRestLayer: 'ArcGISRestLayer',
-    ArcGISTileLayer: 'ArcGISTileLayer',
-    BaiduLayer: 'BaiduLayer',
-    FeatureLayer: 'FeatureLayer',
-    GraphicsLayer: 'GraphicsLayer',
-    GroupLayer: 'GroupLayer',
-    TileWMSLayer: 'TileWMSLayer',
-    WMSLayer: 'WMSLayer',
-    WMTSLayer: 'WMTSLayer'
+  ArcGISRestLayer: 'ArcGISRestLayer',
+  ArcGISTileLayer: 'ArcGISTileLayer',
+  BaiduLayer: 'BaiduLayer',
+  FeatureLayer: 'FeatureLayer',
+  GraphicsLayer: 'GraphicsLayer',
+  GroupLayer: 'GroupLayer',
+  TileWMSLayer: 'TileWMSLayer',
+  WMSLayer: 'WMSLayer',
+  WMTSLayer: 'WMTSLayer',
+  AMapLayer: 'AMapLayer'
 };
 
 /**
@@ -214,6 +217,6 @@ KMap.Layer.Type = {
  * @api
  */
 KMap.Layer.Property = {
-    ID: 'LAYER_ID',
-    TYPE: 'LAYER_TYPE'
+  ID: 'LAYER_ID',
+  TYPE: 'LAYER_TYPE'
 };

@@ -5,7 +5,7 @@
       "kind": "class",
       "description": "框选动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\clearGraphics.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\clearGraphics.js",
       "extends": "KMap.Action.MapAction",
       "params": [
         {
@@ -24,7 +24,7 @@
       "kind": "class",
       "description": "地图动作基类",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "extends": "ol.Object",
       "virtual": true,
       "params": [
@@ -44,7 +44,7 @@
       "name": "KMap.Action.MapAction#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -58,7 +58,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -69,7 +69,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -80,7 +80,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -99,7 +99,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -114,7 +114,7 @@
       "name": "KMap.Action.MapAction#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -124,7 +124,7 @@
       "name": "KMap.Action.MapAction#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -135,7 +135,7 @@
       "kind": "class",
       "description": "框选动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\maplocation.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\maplocation.js",
       "extends": "KMap.Action.MapAction",
       "params": [
         {
@@ -153,7 +153,7 @@
       "name": "KMap.Action.MeasureArea",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\measurearea.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\measurearea.js",
       "extends": "KMap.Action.MapAction",
       "params": [
         {
@@ -171,7 +171,7 @@
       "name": "KMap.Action.MeasureLength",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\measurelength.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\measurelength.js",
       "extends": "KMap.Action.MapAction",
       "params": [
         {
@@ -190,7 +190,7 @@
       "kind": "class",
       "description": "框选动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\selectbybox.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbybox.js",
       "extends": "KMap.Action.MapAction",
       "params": [
         {
@@ -208,7 +208,7 @@
       "name": "KMap.Action.SelectByBox.Event",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\selectbybox.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbybox.js",
       "extends": "ol.events.Event",
       "params": [
         {
@@ -233,7 +233,7 @@
       "name": "KMap.Action.SelectByBox.Event#extent",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\selectbybox.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbybox.js",
       "types": [
         "ol.Extent",
         "undefined",
@@ -247,7 +247,7 @@
       "name": "KMap.Collection",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\collection.js",
+      "path": "E:\\VScode\\kmap\\src\\collection.js",
       "extends": "ol.Collection",
       "params": [
         {
@@ -275,7 +275,7 @@
       "name": "KMap.Extent.expand",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\extent.js",
+      "path": "E:\\VScode\\kmap\\src\\extent.js",
       "params": [
         {
           "name": "extent",
@@ -303,7 +303,7 @@
       "name": "KMap.Extent.contains",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\extent.js",
+      "path": "E:\\VScode\\kmap\\src\\extent.js",
       "params": [
         {
           "name": "extent",
@@ -331,7 +331,7 @@
       "name": "KMap.Circle",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\circle.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\circle.js",
       "extends": "KMap.Geometry",
       "params": [
         {
@@ -357,7 +357,7 @@
       "name": "KMap.Circle#contains",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\circle.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\circle.js",
       "params": [
         {
           "name": "point",
@@ -380,7 +380,7 @@
       "name": "KMap.Geometry",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -398,7 +398,7 @@
       "name": "KMap.Geometry#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.geom.Geometry"
@@ -412,7 +412,7 @@
       "name": "KMap.Geometry#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -429,7 +429,7 @@
       "name": "KMap.Geometry#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -443,7 +443,7 @@
       "name": "KMap.Geometry#getType",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "string"
@@ -457,7 +457,7 @@
       "name": "KMap.Geometry.fromExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "extent",
@@ -479,7 +479,7 @@
       "name": "KMap.Geometry.fromGeoJson",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "json",
@@ -501,7 +501,7 @@
       "name": "KMap.Geometry.toGeoJson",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -523,7 +523,7 @@
       "name": "KMap.Geometry.fromEsriJson",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "json",
@@ -545,7 +545,7 @@
       "name": "KMap.Geometry.toEsriJson",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -567,7 +567,7 @@
       "name": "KMap.Geometry.fromWKT",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "wkt",
@@ -589,7 +589,7 @@
       "name": "KMap.Geometry.toWKT",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -611,7 +611,7 @@
       "name": "KMap.Geometry.fromGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -633,7 +633,7 @@
       "name": "KMap.Geometry#getCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Coordinate",
@@ -649,7 +649,7 @@
       "name": "KMap.Point",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\point.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\point.js",
       "extends": "KMap.Geometry",
       "params": [
         {
@@ -668,7 +668,7 @@
       "name": "KMap.Point#setCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\point.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\point.js",
       "params": [
         {
           "name": "coord",
@@ -685,7 +685,7 @@
       "name": "KMap.Polygon",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polygon.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polygon.js",
       "extends": "KMap.Geometry",
       "params": [
         {
@@ -704,7 +704,7 @@
       "name": "KMap.Polygon#getInteriorCoord",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polygon.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polygon.js",
       "returns": {
         "types": [
           "ol.Coordinate"
@@ -718,7 +718,7 @@
       "name": "KMap.Polyline",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "extends": "KMap.Geometry",
       "params": [
         {
@@ -737,7 +737,7 @@
       "name": "KMap.Polyline#setCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "paths",
@@ -754,7 +754,7 @@
       "name": "KMap.Polyline#addPath",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "path",
@@ -772,7 +772,7 @@
       "name": "KMap.Polyline#removePath",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "pathIndex",
@@ -789,7 +789,7 @@
       "name": "KMap.Polyline#getPath",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "pathIndex",
@@ -811,7 +811,7 @@
       "name": "KMap.Polyline#insertPoint",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "pathIndex",
@@ -841,7 +841,7 @@
       "name": "KMap.Polyline#setPoint",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "pathIndex",
@@ -871,7 +871,7 @@
       "name": "KMap.Polyline#removePoint",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "pathIndex",
@@ -894,7 +894,7 @@
       "name": "KMap.Polyline#getPathCount",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "returns": {
         "types": [
           "number"
@@ -909,7 +909,7 @@
       "kind": "function",
       "description": "获取每段path的长度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "provides": [
         "KMap.Polyline"
       ]
@@ -919,7 +919,7 @@
       "kind": "function",
       "description": "获取总长度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "provides": [
         "KMap.Polyline"
       ]
@@ -929,7 +929,7 @@
       "kind": "function",
       "description": "获取投影类别",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "provides": [
         "KMap.Polyline"
       ]
@@ -939,7 +939,7 @@
       "kind": "function",
       "description": "设置投影类别",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "provides": [
         "KMap.Polyline"
       ]
@@ -948,7 +948,7 @@
       "name": "KMap.Polyline#calcAble",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\polyline.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\polyline.js",
       "params": [
         {
           "name": "type",
@@ -965,7 +965,7 @@
       "name": "KMap.Contrail",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "params": [
         {
           "name": "id",
@@ -988,7 +988,7 @@
       "name": "KMap.Contrail#isFinished",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "boolean"
@@ -1002,7 +1002,7 @@
       "name": "KMap.Contrail#getState",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "number"
@@ -1016,7 +1016,7 @@
       "name": "KMap.Contrail#getPosition",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "ol.Coordinate"
@@ -1030,7 +1030,7 @@
       "name": "KMap.Contrail#getDirection",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "number"
@@ -1044,7 +1044,7 @@
       "name": "KMap.Contrail#getIndex",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "number"
@@ -1058,7 +1058,7 @@
       "name": "KMap.Contrail#getPathIndex",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "number"
@@ -1073,7 +1073,7 @@
       "kind": "function",
       "description": "获取走过的路径",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "Array.<Array.<ol.Coordinate>>"
@@ -1087,7 +1087,7 @@
       "name": "KMap.Contrail#getBackword",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "returns": {
         "types": [
           "boolean"
@@ -1101,7 +1101,7 @@
       "name": "KMap.Contrail#setBackword",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "params": [
         {
           "name": "type",
@@ -1118,7 +1118,7 @@
       "name": "KMap.Contrail#setSpeed",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "params": [
         {
           "name": "speed",
@@ -1135,7 +1135,7 @@
       "name": "KMap.Contrail#start",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1144,7 +1144,7 @@
       "name": "KMap.Contrail#pause",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1153,7 +1153,7 @@
       "name": "KMap.Contrail#resume",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1162,7 +1162,7 @@
       "name": "KMap.Contrail#stop",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1171,7 +1171,7 @@
       "name": "KMap.Contrail#update",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1181,7 +1181,7 @@
       "kind": "function",
       "description": "设置百分比（向下取整）",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "params": [
         {
           "name": "percent",
@@ -1199,7 +1199,7 @@
       "kind": "function",
       "description": "获取当前的百分百（四舍五入）",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\contrail.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\contrail.js",
       "provides": [
         "KMap.Contrail"
       ]
@@ -1209,7 +1209,7 @@
       "kind": "class",
       "description": "Graphic对象，是对ol.Feature的包装",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "feature",
@@ -1228,7 +1228,7 @@
       "name": "KMap.Graphic#getId",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "number",
@@ -1244,7 +1244,7 @@
       "name": "KMap.Graphic#setId",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "id",
@@ -1263,7 +1263,7 @@
       "name": "KMap.Graphic#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "KMap.Geometry"
@@ -1277,7 +1277,7 @@
       "name": "KMap.Graphic#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "geometry",
@@ -1294,7 +1294,7 @@
       "name": "KMap.Graphic#getGeometryName",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "string"
@@ -1308,7 +1308,7 @@
       "name": "KMap.Graphic#setGeometryName",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "geometryName",
@@ -1325,7 +1325,7 @@
       "name": "KMap.Graphic#getSymbol",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "KMap.Symbol",
@@ -1340,7 +1340,7 @@
       "name": "KMap.Graphic#setSymbol",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "symbol",
@@ -1357,7 +1357,7 @@
       "name": "KMap.Graphic#getAttributes",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "provides": [
         "KMap.Graphic"
       ]
@@ -1366,7 +1366,7 @@
       "name": "KMap.Graphic#setAttributes",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "provides": [
         "KMap.Graphic"
       ]
@@ -1375,7 +1375,7 @@
       "name": "KMap.Graphic#getAttribute",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "name",
@@ -1397,7 +1397,7 @@
       "name": "KMap.Graphic#setAttribute",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "name",
@@ -1420,7 +1420,7 @@
       "name": "KMap.Graphic#getFeature",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "ol.Feature"
@@ -1434,7 +1434,7 @@
       "name": "KMap.Graphic#setFeature",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "feature",
@@ -1451,7 +1451,7 @@
       "name": "KMap.Graphic#getVisible",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "boolean"
@@ -1465,7 +1465,7 @@
       "name": "KMap.Graphic#setVisible",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "visible",
@@ -1482,7 +1482,7 @@
       "name": "KMap.Graphic#setInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "infoTemplate",
@@ -1499,7 +1499,7 @@
       "name": "KMap.Graphic#getInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "KMap.InfoTemplate"
@@ -1513,7 +1513,7 @@
       "name": "KMap.Graphic#getLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "KMap.GraphicsLayer"
@@ -1527,7 +1527,7 @@
       "name": "KMap.Graphic#setLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "params": [
         {
           "name": "layer",
@@ -1544,7 +1544,7 @@
       "name": "KMap.Graphic#getContent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "string",
@@ -1560,7 +1560,7 @@
       "name": "KMap.Graphic#getTitle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
       "returns": {
         "types": [
           "string",
@@ -1576,7 +1576,7 @@
       "name": "KMap.Graphics.fromGeoJSON",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphics.js",
+      "path": "E:\\VScode\\kmap\\src\\graphics.js",
       "params": [
         {
           "name": "json",
@@ -1598,7 +1598,7 @@
       "name": "KMap.Graphics.fromEsriJSON",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphics.js",
+      "path": "E:\\VScode\\kmap\\src\\graphics.js",
       "params": [
         {
           "name": "json",
@@ -1620,7 +1620,7 @@
       "name": "KMap.Graphics.fromGML",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphics.js",
+      "path": "E:\\VScode\\kmap\\src\\graphics.js",
       "params": [
         {
           "name": "gml",
@@ -1642,7 +1642,7 @@
       "name": "KMap.Graphics.fromGML2",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\graphics.js",
+      "path": "E:\\VScode\\kmap\\src\\graphics.js",
       "params": [
         {
           "name": "gml2",
@@ -1664,7 +1664,7 @@
       "name": "KMap.version",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\index.js",
+      "path": "E:\\VScode\\kmap\\src\\index.js",
       "provides": [
         "KMap"
       ]
@@ -1674,7 +1674,7 @@
       "kind": "function",
       "description": "Inherit the prototype methods from one constructor into another.\r\rUsage:\r\r    function ParentClass(a, b) { }\r    ParentClass.prototype.foo = function(a) { }\r\r    function ChildClass(a, b, c) {\r      // Call parent constructor\r      ParentClass.call(this, a, b);\r    }\r    ol.inherits(ChildClass, ParentClass);\r\r    var child = new ChildClass('a', 'b', 'see');\r    child.foo(); // This works.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\index.js",
+      "path": "E:\\VScode\\kmap\\src\\index.js",
       "params": [
         {
           "name": "childCtor",
@@ -1699,7 +1699,7 @@
       "name": "KMap.InfoTemplate",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "params": [
         {
           "name": "opt_tile",
@@ -1726,7 +1726,7 @@
       "name": "KMap.InfoTemplate#tile",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "types": [
         "string",
         "undefined",
@@ -1740,7 +1740,7 @@
       "name": "KMap.InfoTemplate#content",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "types": [
         "string",
         "undefined",
@@ -1755,7 +1755,7 @@
       "kind": "function",
       "description": "InfoTemplate Sets the content template.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "params": [
         {
           "name": "content",
@@ -1773,7 +1773,7 @@
       "kind": "function",
       "description": "InfoTemplate Sets the content template.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "returns": {
         "types": [
           "string",
@@ -1790,7 +1790,7 @@
       "kind": "function",
       "description": "InfoTemplate Sets the title template.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "params": [
         {
           "name": "title",
@@ -1808,7 +1808,7 @@
       "kind": "function",
       "description": "InfoTemplate Sets the title template.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\infotemplate.js",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
       "returns": {
         "types": [
           "string",
@@ -1825,7 +1825,7 @@
       "kind": "class",
       "description": "绘图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\draw.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\draw.js",
       "extends": "ol.interaction.Draw",
       "params": [
         {
@@ -1843,7 +1843,7 @@
       "name": "KMap.Interaction.Draw#setActive",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\draw.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\draw.js",
       "provides": [
         "KMap.Interaction.Draw"
       ]
@@ -1852,7 +1852,7 @@
       "name": "KMap.Interaction.Draw#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\draw.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\draw.js",
       "provides": [
         "KMap.Interaction.Draw"
       ]
@@ -1861,7 +1861,7 @@
       "name": "KMap.Interaction.Draw#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\draw.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\draw.js",
       "provides": [
         "KMap.Interaction.Draw"
       ]
@@ -1871,7 +1871,7 @@
       "kind": "class",
       "description": "地图坐标择取",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\location.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\location.js",
       "extends": "ol.interaction.Interaction",
       "provides": [
         "KMap.Interaction.Location",
@@ -1882,7 +1882,7 @@
       "name": "KMap.Interaction.Location.Event",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\location.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\location.js",
       "extends": "ol.events.Event",
       "provides": [
         "KMap.Interaction.Location",
@@ -1893,7 +1893,7 @@
       "name": "KMap.Interaction.Location.Event#coordinate",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\location.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\location.js",
       "provides": [
         "KMap.Interaction.Location",
         "KMap.Interaction.Location.Event"
@@ -1904,7 +1904,7 @@
       "kind": "class",
       "description": "编辑",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "extends": "ol.interaction.Modify",
       "params": [
         {
@@ -1922,7 +1922,7 @@
       "name": "KMap.Interaction.Modify#addGraphics",
       "kind": "function",
       "stability": "添加可编辑图形",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "params": [
         {
           "name": "graphics",
@@ -1939,7 +1939,7 @@
       "name": "KMap.Interaction.Modify#removeGraphics",
       "kind": "function",
       "stability": "移除可编辑图形",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "params": [
         {
           "name": "graphics",
@@ -1956,7 +1956,7 @@
       "name": "KMap.Interaction.Modify#getGraphics",
       "kind": "function",
       "stability": "获取所有可编辑的图形",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "returns": {
         "types": [
           "Array.<KMap.Graphic>"
@@ -1970,7 +1970,7 @@
       "name": "KMap.Interaction.Modify#clear",
       "kind": "function",
       "stability": "清空编辑项",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "provides": [
         "KMap.Interaction.Modify"
       ]
@@ -1979,7 +1979,7 @@
       "name": "KMap.Interaction.Modify#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "provides": [
         "KMap.Interaction.Modify"
       ]
@@ -1988,7 +1988,7 @@
       "name": "KMap.Interaction.Modify#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "provides": [
         "KMap.Interaction.Modify"
       ]
@@ -1997,7 +1997,7 @@
       "name": "KMap.Interaction.Modify#setActive",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\modify.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\modify.js",
       "provides": [
         "KMap.Interaction.Modify"
       ]
@@ -2007,7 +2007,7 @@
       "kind": "class",
       "description": "选择",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\pointer.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\pointer.js",
       "extends": "ol.interaction.Pointer",
       "params": [
         {
@@ -2026,7 +2026,7 @@
       "kind": "class",
       "description": "选择",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "extends": "ol.interaction.Select",
       "params": [
         {
@@ -2045,7 +2045,7 @@
       "kind": "function",
       "description": "是否是有效选择",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2055,7 +2055,7 @@
       "kind": "function",
       "description": "获得所选",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "returns": {
         "types": [
           "Array.<KMap.Graphic>"
@@ -2070,7 +2070,7 @@
       "kind": "function",
       "description": "删除所选",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2080,7 +2080,7 @@
       "kind": "function",
       "description": "清空选择",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2089,7 +2089,7 @@
       "name": "KMap.Interaction.Select#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2098,7 +2098,7 @@
       "name": "KMap.Interaction.Select#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2107,7 +2107,7 @@
       "name": "KMap.Interaction.Select#setActive",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
       ]
@@ -2116,9 +2116,71 @@
       "name": "KMap.Conditions",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\interaction\\select.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\select.js",
       "provides": [
         "KMap.Interaction.Select"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\amaplayer.js",
+      "extends": "KMap.Layer",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "types": [
+            "Object",
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.AMapLayer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer.fromLayer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\amaplayer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.AMapLayer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getType",
+      "kind": "function",
+      "description": "返回图层的类型",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\amaplayer.js",
+      "returns": {
+        "types": [
+          "KMap.Layer.Type"
+        ]
+      },
+      "provides": [
+        "KMap.AMapLayer"
       ]
     },
     {
@@ -2126,7 +2188,7 @@
       "kind": "class",
       "description": "ArcGIS REST 图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -2151,7 +2213,7 @@
       "name": "KMap.ArcGISRestLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
       "params": [
         {
           "name": "layer",
@@ -2174,7 +2236,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2189,7 +2251,7 @@
       "kind": "function",
       "description": "动态修改参数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
       "params": [
         {
           "name": "params",
@@ -2207,7 +2269,7 @@
       "kind": "function",
       "description": "Return the GetFeatureInfo URL for the passed coordinate, resolution, and\rprojection. Return `undefined` if the GetFeatureInfo URL cannot be\rconstructed.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisrestlayer.js",
       "params": [
         {
           "name": "coordinate",
@@ -2250,7 +2312,7 @@
       "kind": "class",
       "description": "ArcGIS REST 图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -2275,7 +2337,7 @@
       "name": "KMap.ArcGISTileLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
       "params": [
         {
           "name": "layer",
@@ -2298,7 +2360,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgistilelayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2312,7 +2374,7 @@
       "name": "KMap.BaiduLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\baidulayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\baidulayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -2337,7 +2399,7 @@
       "name": "KMap.BaiduLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\baidulayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\baidulayer.js",
       "params": [
         {
           "name": "layer",
@@ -2360,7 +2422,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\baidulayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\baidulayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2374,7 +2436,7 @@
       "name": "KMap.FeatureLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
       "extends": "KMap.GraphicsLayer",
       "params": [
         {
@@ -2399,7 +2461,7 @@
       "name": "KMap.FeatureLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
       "params": [
         {
           "name": "layer",
@@ -2422,7 +2484,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2436,7 +2498,7 @@
       "name": "KMap.GraphicsLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -2461,7 +2523,7 @@
       "name": "KMap.GraphicsLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "layer",
@@ -2484,7 +2546,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2498,7 +2560,7 @@
       "name": "KMap.GraphicsLayer#getSource",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "ol.source.Vector"
@@ -2512,7 +2574,7 @@
       "name": "KMap.GraphicsLayer#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -2526,7 +2588,7 @@
       "name": "KMap.GraphicsLayer#add",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "graphic",
@@ -2543,7 +2605,7 @@
       "name": "KMap.GraphicsLayer#remove",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "provides": [
         "KMap.GraphicsLayer"
       ]
@@ -2552,7 +2614,7 @@
       "name": "KMap.GraphicsLayer#clear",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "provides": [
         "KMap.GraphicsLayer"
       ]
@@ -2562,7 +2624,7 @@
       "kind": "function",
       "description": "添加多个图形到图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "graphicArray",
@@ -2580,7 +2642,7 @@
       "kind": "function",
       "description": "添加多个图形到图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "id",
@@ -2603,7 +2665,7 @@
       "kind": "function",
       "description": "返回图形的总数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "number"
@@ -2618,7 +2680,7 @@
       "kind": "function",
       "description": "遍历图层所有图形",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "callback",
@@ -2649,7 +2711,7 @@
       "name": "KMap.GraphicsLayer#setRenderer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "renderer",
@@ -2666,7 +2728,7 @@
       "name": "KMap.GraphicsLayer#getRenderer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "KMap.Renderer"
@@ -2680,7 +2742,7 @@
       "name": "KMap.GraphicsLayer#setInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "infoTemplate",
@@ -2697,7 +2759,7 @@
       "name": "KMap.GraphicsLayer#getInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "KMap.InfoTemplate"
@@ -2711,7 +2773,7 @@
       "name": "KMap.GroupLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -2736,7 +2798,7 @@
       "name": "KMap.GroupLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "params": [
         {
           "name": "layer",
@@ -2759,7 +2821,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -2773,7 +2835,7 @@
       "name": "KMap.GroupLayer#push",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "params": [
         {
           "name": "layer",
@@ -2790,7 +2852,7 @@
       "name": "KMap.GroupLayer#remove",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "params": [
         {
           "name": "layer",
@@ -2807,7 +2869,7 @@
       "name": "KMap.GroupLayer#clear",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "provides": [
         "KMap.GroupLayer"
       ]
@@ -2816,7 +2878,7 @@
       "name": "KMap.GroupLayer#getLayers",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "returns": {
         "types": [
           "ol.Collection.<KMap.Layer>"
@@ -2830,7 +2892,7 @@
       "name": "KMap.GroupLayer#getSubLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\grouplayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\grouplayer.js",
       "params": [
         {
           "name": "id",
@@ -2853,7 +2915,7 @@
       "kind": "class",
       "description": "所在图层对象的包装基类",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -2878,7 +2940,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -2893,7 +2955,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -2911,7 +2973,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -2926,7 +2988,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -2944,7 +3006,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -2959,7 +3021,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -2977,7 +3039,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -2994,7 +3056,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -3012,7 +3074,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -3027,7 +3089,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -3050,7 +3112,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -3060,7 +3122,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -3082,7 +3144,7 @@
       "name": "KMap.Layer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -3105,7 +3167,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -3119,7 +3181,7 @@
       "name": "KMap.TileWMSLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -3144,7 +3206,7 @@
       "name": "KMap.TileWMSLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
       "params": [
         {
           "name": "layer",
@@ -3167,7 +3229,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -3182,7 +3244,7 @@
       "kind": "function",
       "description": "动态修改参数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
       "params": [
         {
           "name": "params",
@@ -3200,7 +3262,7 @@
       "kind": "function",
       "description": "Return the GetFeatureInfo URL for the passed coordinate, resolution, and\rprojection. Return `undefined` if the GetFeatureInfo URL cannot be\rconstructed.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tilewmslayer.js",
       "params": [
         {
           "name": "coordinate",
@@ -3242,7 +3304,7 @@
       "name": "KMap.WMSLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -3267,7 +3329,7 @@
       "name": "KMap.WMSLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "params": [
         {
           "name": "layer",
@@ -3290,7 +3352,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -3305,7 +3367,7 @@
       "kind": "function",
       "description": "动态修改参数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "params": [
         {
           "name": "params",
@@ -3323,7 +3385,7 @@
       "kind": "function",
       "description": "动态修改参数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "returns": {
         "types": [
           "Object"
@@ -3338,7 +3400,7 @@
       "kind": "function",
       "description": "Return the GetFeatureInfo URL for the passed coordinate, resolution, and\rprojection. Return `undefined` if the GetFeatureInfo URL cannot be\rconstructed.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmslayer.js",
       "params": [
         {
           "name": "coordinate",
@@ -3380,7 +3442,7 @@
       "name": "KMap.WMTSLayer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
       "extends": "KMap.Layer",
       "params": [
         {
@@ -3405,7 +3467,7 @@
       "name": "KMap.WMTSLayer.fromLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
       "params": [
         {
           "name": "layer",
@@ -3428,7 +3490,7 @@
       "kind": "function",
       "description": "返回图层的类型",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\wmtslayer.js",
       "returns": {
         "types": [
           "KMap.Layer.Type"
@@ -3442,7 +3504,7 @@
       "name": "KMap.Map",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "target",
@@ -3465,7 +3527,7 @@
       "name": "KMap.Map#infoWindow",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "types": [
         "KMap.Popup"
       ],
@@ -3478,7 +3540,7 @@
       "kind": "function",
       "description": "地图坐标转屏幕坐标",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "coordinate",
@@ -3501,7 +3563,7 @@
       "kind": "function",
       "description": "屏幕坐标转地图坐标",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "pixel",
@@ -3524,7 +3586,7 @@
       "kind": "function",
       "description": "Detect features that intersect a pixel on the viewport, and execute a\rcallback with each intersecting feature. Layers included in the detection can\rbe configured through `opt_layerFilter`.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "pixel",
@@ -3562,7 +3624,7 @@
       "kind": "function",
       "description": "Detect layers that have a color value at a pixel on the viewport, and\rexecute a callback with each matching layer. Layers included in the\rdetection can be configured through `opt_layerFilter`.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "pixel",
@@ -3614,7 +3676,7 @@
       "kind": "function",
       "description": "返回地图视图大小",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3624,7 +3686,7 @@
       "kind": "function",
       "description": "设置地图视图大小",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3634,7 +3696,7 @@
       "kind": "function",
       "description": "重新计算地图视图大小",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3644,7 +3706,7 @@
       "kind": "function",
       "description": "获取地图中心点",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3654,7 +3716,7 @@
       "kind": "function",
       "description": "设置地图中心点",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3664,7 +3726,7 @@
       "kind": "function",
       "description": "设置地图缩放级别",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3674,7 +3736,7 @@
       "kind": "function",
       "description": "设置地图缩放级别",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "number",
@@ -3690,7 +3752,7 @@
       "kind": "function",
       "description": "设置地图像素密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "resolution",
@@ -3708,7 +3770,7 @@
       "kind": "function",
       "description": "返回地图像素密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "number",
@@ -3723,7 +3785,7 @@
       "name": "KMap.Map#centerAndZoom",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "center",
@@ -3753,7 +3815,7 @@
       "name": "KMap.Map#centerAt",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "coordinate",
@@ -3777,7 +3839,7 @@
       "kind": "function",
       "description": "移动地图中心到指定的位置",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3787,7 +3849,7 @@
       "kind": "function",
       "description": "按范围缩放",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3797,7 +3859,7 @@
       "kind": "function",
       "description": "缩放地图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3807,7 +3869,7 @@
       "kind": "function",
       "description": "地图放大一级",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3817,7 +3879,7 @@
       "kind": "function",
       "description": "地图缩小一级",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3827,7 +3889,7 @@
       "kind": "function",
       "description": "返回地图内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "ol.Map"
@@ -3842,7 +3904,7 @@
       "kind": "function",
       "description": "当前地图的当前范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -3857,7 +3919,7 @@
       "kind": "function",
       "description": "设置地图的当前的显示范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "extent",
@@ -3875,7 +3937,7 @@
       "kind": "function",
       "description": "当前地图的当前范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3885,7 +3947,7 @@
       "kind": "function",
       "description": "设置地图的范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3895,7 +3957,7 @@
       "kind": "function",
       "description": "设置地图的范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3905,7 +3967,7 @@
       "kind": "function",
       "description": "地图打印",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3915,7 +3977,7 @@
       "kind": "function",
       "description": "返回底图图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3925,7 +3987,7 @@
       "kind": "function",
       "description": "添加底图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3935,7 +3997,7 @@
       "kind": "function",
       "description": "移除底图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3945,7 +4007,7 @@
       "kind": "function",
       "description": "清空底图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3955,7 +4017,7 @@
       "kind": "function",
       "description": "返回动态图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3965,7 +4027,7 @@
       "kind": "function",
       "description": "添加动态图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3975,7 +4037,7 @@
       "kind": "function",
       "description": "移除动态图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3985,7 +4047,7 @@
       "kind": "function",
       "description": "清空动态图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -3995,7 +4057,7 @@
       "kind": "function",
       "description": "返回动态图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4005,7 +4067,7 @@
       "kind": "function",
       "description": "添加绘制图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4015,7 +4077,7 @@
       "kind": "function",
       "description": "移除绘制图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4025,7 +4087,7 @@
       "kind": "function",
       "description": "清空绘制图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4034,7 +4096,7 @@
       "name": "KMap.Map#addOverlay",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4043,7 +4105,7 @@
       "name": "KMap.Map#removeOverlay",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4053,7 +4115,7 @@
       "kind": "function",
       "description": "刷新地图",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4063,7 +4125,7 @@
       "kind": "function",
       "description": "监听事件只触发一次",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4073,7 +4135,7 @@
       "kind": "function",
       "description": "监听事件",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4083,7 +4145,7 @@
       "kind": "function",
       "description": "取消监听事件",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4093,7 +4155,7 @@
       "kind": "function",
       "description": "鼠标单击地图的位置",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4103,7 +4165,7 @@
       "kind": "function",
       "description": "设置当前地图的响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "KMap.Action.MapAction"
@@ -4118,7 +4180,7 @@
       "kind": "function",
       "description": "设置当前地图的响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "action",
@@ -4136,7 +4198,7 @@
       "kind": "function",
       "description": "默认绘制图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "provides": [
         "KMap.Map"
       ]
@@ -4145,7 +4207,7 @@
       "name": "KMap.Map#getLayer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "layerId",
@@ -4167,7 +4229,7 @@
       "name": "KMap.Map#setInfoWindow",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "infoWindow",
@@ -4184,7 +4246,7 @@
       "name": "KMap.Map#getInfoWindow",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "returns": {
         "types": [
           "KMap.Popup"
@@ -4198,7 +4260,7 @@
       "name": "KMap.Map#addInteraction",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "interaction",
@@ -4215,7 +4277,7 @@
       "name": "KMap.Map#removeInteraction",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\map.js",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
       "params": [
         {
           "name": "interaction",
@@ -4232,7 +4294,7 @@
       "name": "KMap.Overlay",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\overlay.js",
+      "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "extends": "ol.Overlay",
       "params": [
         {
@@ -4250,7 +4312,7 @@
       "name": "KMap.Overlay#setPosition",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\overlay.js",
+      "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "provides": [
         "KMap.Overlay"
       ]
@@ -4259,7 +4321,7 @@
       "name": "KMap.Overlay#setElement",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\overlay.js",
+      "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "provides": [
         "KMap.Overlay"
       ]
@@ -4268,7 +4330,7 @@
       "name": "KMap.Popup",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "extends": "KMap.Overlay",
       "params": [
         {
@@ -4287,7 +4349,7 @@
       "kind": "function",
       "description": "Show the popup.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "params": [
         {
           "name": "coord",
@@ -4305,7 +4367,7 @@
       "kind": "function",
       "description": "隐藏信息窗.",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "provides": [
         "KMap.Popup"
       ]
@@ -4314,7 +4376,7 @@
       "name": "KMap.Popup#setSize",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "params": [
         {
           "name": "w",
@@ -4337,7 +4399,7 @@
       "name": "KMap.Popup#setOffset",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "params": [
         {
           "name": "offset",
@@ -4354,7 +4416,7 @@
       "name": "KMap.Popup#setSelectedFeature",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "params": [
         {
           "name": "feature",
@@ -4371,7 +4433,7 @@
       "name": "KMap.Popup#getSelectedFeature",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "returns": {
         "types": [
           "KMap.Graphic"
@@ -4385,7 +4447,7 @@
       "name": "KMap.Popup#reposition",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "provides": [
         "KMap.Popup"
       ]
@@ -4394,7 +4456,7 @@
       "name": "KMap.Popup#restore",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "provides": [
         "KMap.Popup"
       ]
@@ -4403,7 +4465,7 @@
       "name": "KMap.Popup#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "provides": [
         "KMap.Popup"
       ]
@@ -4412,7 +4474,7 @@
       "name": "KMap.Popup#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "provides": [
         "KMap.Popup"
       ]
@@ -4421,7 +4483,7 @@
       "name": "KMap.Popup.Event",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "extends": "ol.events.Event",
       "params": [
         {
@@ -4446,7 +4508,7 @@
       "name": "KMap.Popup.Event#oldValue",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\popup.js",
+      "path": "E:\\VScode\\kmap\\src\\popup.js",
       "types": [
         "KMap.Graphic",
         "undefined",
@@ -4461,7 +4523,7 @@
       "kind": "class",
       "description": "定义坐标系并注册",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\projection.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\projection.js",
       "params": [
         {
           "name": "options",
@@ -4480,7 +4542,7 @@
       "kind": "function",
       "description": "定义一系列与当前坐标系相等的坐标系",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\projection.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\projection.js",
       "params": [
         {
           "name": "codes",
@@ -4498,7 +4560,7 @@
       "kind": "class",
       "description": "常用的商用坐标系和WGS84,3857之间的转换",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\transform.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
       "provides": [
         "KMap.Transform"
       ]
@@ -4508,7 +4570,7 @@
       "kind": "function",
       "description": "WGS-84 to GCJ-02",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\transform.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
       "params": [
         {
           "name": "wgsLat",
@@ -4537,7 +4599,7 @@
       "kind": "function",
       "description": "GCJ-02 to WGS-84",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\transform.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
       "params": [
         {
           "name": "gcjLat",
@@ -4566,7 +4628,7 @@
       "kind": "function",
       "description": "GCJ-02 to WGS-84 exactly",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\transform.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
       "params": [
         {
           "name": "gcjLat",
@@ -4595,7 +4657,7 @@
       "kind": "function",
       "description": "two point's distance",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\proj\\transform.js",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
       "provides": [
         "KMap.Transform"
       ]
@@ -4604,7 +4666,7 @@
       "name": "KMap.Renderer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\renderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\renderer.js",
       "provides": [
         "KMap.Renderer"
       ]
@@ -4613,7 +4675,7 @@
       "name": "KMap.Renderer#getSymbol",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\renderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\renderer.js",
       "params": [
         {
           "name": "graphic",
@@ -4635,7 +4697,7 @@
       "name": "KMap.SimpleRenderer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\simplerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\simplerenderer.js",
       "extends": "KMap.Renderer",
       "params": [
         {
@@ -4653,7 +4715,7 @@
       "name": "KMap.SimpleRenderer#getSymbol",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\simplerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\simplerenderer.js",
       "params": [
         {
           "name": "graphic",
@@ -4675,7 +4737,7 @@
       "name": "KMap.UniqueValueRenderer",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
       "extends": "KMap.Renderer",
       "params": [
         {
@@ -4699,7 +4761,7 @@
       "name": "KMap.UniqueValueRenderer#getSymbol",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
       "params": [
         {
           "name": "graphic",
@@ -4721,7 +4783,7 @@
       "name": "KMap.UniqueValueRenderer#addValue",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
       "params": [
         {
           "name": "value",
@@ -4744,7 +4806,7 @@
       "name": "KMap.UniqueValueRenderer#removeValue",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\uniquevaluerenderer.js",
       "params": [
         {
           "name": "value",
@@ -4761,7 +4823,7 @@
       "name": "KMap.PictureMarkerSymbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
       "extends": "KMap.Symbol",
       "params": [
         {
@@ -4780,7 +4842,7 @@
       "name": "KMap.PictureMarkerSymbol#setOpacity",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
       "params": [
         {
           "name": "opacity",
@@ -4797,7 +4859,7 @@
       "name": "KMap.PictureMarkerSymbol#setRotation",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
       "params": [
         {
           "name": "rotation",
@@ -4814,7 +4876,7 @@
       "name": "KMap.PictureMarkerSymbol#setAngle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
       "params": [
         {
           "name": "angle",
@@ -4831,7 +4893,7 @@
       "name": "KMap.PictureMarkerSymbol#setScale",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\picturemarkersymbol.js",
       "params": [
         {
           "name": "scale",
@@ -4848,7 +4910,7 @@
       "name": "KMap.SimpleFillSymbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplefillsymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplefillsymbol.js",
       "extends": "KMap.Symbol",
       "params": [
         {
@@ -4867,7 +4929,7 @@
       "name": "KMap.SimpleLineSymbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplelinesymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplelinesymbol.js",
       "extends": "KMap.Symbol",
       "params": [
         {
@@ -4886,7 +4948,7 @@
       "name": "KMap.SimpleMarkerSymbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
       "extends": "KMap.Symbol",
       "params": [
         {
@@ -4905,7 +4967,7 @@
       "name": "KMap.SimpleMarkerSymbol#setOpacity",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
       "params": [
         {
           "name": "opacity",
@@ -4922,7 +4984,7 @@
       "name": "KMap.SimpleMarkerSymbol#setRotation",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
       "params": [
         {
           "name": "rotation",
@@ -4939,7 +5001,7 @@
       "name": "KMap.SimpleMarkerSymbol#setAngle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
       "params": [
         {
           "name": "angle",
@@ -4956,7 +5018,7 @@
       "name": "KMap.SimpleMarkerSymbol#setScale",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simplemarkersymbol.js",
       "params": [
         {
           "name": "scale",
@@ -4973,7 +5035,7 @@
       "name": "KMap.SimpleTextSymbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
       "extends": "KMap.Symbol",
       "params": [
         {
@@ -4992,7 +5054,7 @@
       "name": "KMap.SimpleTextSymbol#getText",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
       "returns": {
         "types": [
           "string",
@@ -5007,7 +5069,7 @@
       "name": "KMap.SimpleTextSymbol#setText",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\simpletextsymbol.js",
       "params": [
         {
           "name": "value",
@@ -5024,7 +5086,7 @@
       "name": "KMap.Symbol",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "params": [
         {
           "name": "options",
@@ -5042,7 +5104,7 @@
       "name": "KMap.Symbol.fromStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "params": [
         {
           "name": "style",
@@ -5064,7 +5126,7 @@
       "name": "KMap.Symbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -5078,7 +5140,7 @@
       "name": "KMap.Basemap",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "params": [
         {
           "name": "options",
@@ -5096,7 +5158,7 @@
       "name": "KMap.Basemap#layers",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "types": [
         "KMap.Layer"
       ],
@@ -5109,7 +5171,7 @@
       "name": "KMap.Basemap#title",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "types": [
         "string"
       ],
@@ -5122,7 +5184,7 @@
       "name": "KMap.Basemap#thumbnailUrl",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "types": [
         "string"
       ],
@@ -5135,7 +5197,7 @@
       "name": "KMap.BasemapGallery",
       "kind": "class",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "params": [
         {
           "name": "options",
@@ -5159,7 +5221,7 @@
       "name": "KMap.BasemapGallery#startup",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "provides": [
         "KMap.Basemap",
         "KMap.BasemapGallery"
@@ -5169,7 +5231,7 @@
       "name": "KMap.BasemapGallery#getSelected",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "returns": {
         "types": [
           "KMap.Basemap"
@@ -5184,7 +5246,7 @@
       "name": "KMap.BasemapGallery#onError",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "params": [
         {
           "name": "msg",
@@ -5202,7 +5264,7 @@
       "name": "KMap.BasemapGallery#onSelectionChange",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
+      "path": "E:\\VScode\\kmap\\src\\widget\\basemapgallery.js",
       "provides": [
         "KMap.Basemap",
         "KMap.BasemapGallery"
@@ -5212,7 +5274,7 @@
       "name": "KMap.Action.ClearGraphics#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -5226,7 +5288,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5237,7 +5299,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5248,7 +5310,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -5267,7 +5329,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -5282,7 +5344,7 @@
       "name": "KMap.Action.ClearGraphics#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5292,7 +5354,7 @@
       "name": "KMap.Action.ClearGraphics#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5302,7 +5364,7 @@
       "name": "KMap.Action.MapLocation#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -5316,7 +5378,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5327,7 +5389,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5338,7 +5400,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -5357,7 +5419,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -5372,7 +5434,7 @@
       "name": "KMap.Action.MapLocation#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5382,7 +5444,7 @@
       "name": "KMap.Action.MapLocation#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5392,7 +5454,7 @@
       "name": "KMap.Action.MeasureArea#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -5406,7 +5468,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5417,7 +5479,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5428,7 +5490,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -5447,7 +5509,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -5462,7 +5524,7 @@
       "name": "KMap.Action.MeasureArea#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5472,7 +5534,7 @@
       "name": "KMap.Action.MeasureArea#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5482,7 +5544,7 @@
       "name": "KMap.Action.MeasureLength#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -5496,7 +5558,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5507,7 +5569,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5518,7 +5580,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -5537,7 +5599,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -5552,7 +5614,7 @@
       "name": "KMap.Action.MeasureLength#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5562,7 +5624,7 @@
       "name": "KMap.Action.MeasureLength#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5572,7 +5634,7 @@
       "name": "KMap.Action.SelectByBox#actionName",
       "kind": "member",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "types": [
         "string"
       ],
@@ -5586,7 +5648,7 @@
       "kind": "function",
       "description": "响应动作",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5597,7 +5659,7 @@
       "kind": "function",
       "description": "销毁Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5608,7 +5670,7 @@
       "kind": "function",
       "description": "设置为活动Action",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "params": [
         {
           "name": "map",
@@ -5627,7 +5689,7 @@
       "kind": "function",
       "description": "返回内部地图对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "returns": {
         "types": [
           "KMap.Map"
@@ -5642,7 +5704,7 @@
       "name": "KMap.Action.SelectByBox#on",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5652,7 +5714,7 @@
       "name": "KMap.Action.SelectByBox#un",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
       "provides": [
         "KMap.Action",
         "KMap.Action.MapAction"
@@ -5662,7 +5724,7 @@
       "name": "KMap.Circle#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.geom.Geometry"
@@ -5676,7 +5738,7 @@
       "name": "KMap.Circle#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -5693,7 +5755,7 @@
       "name": "KMap.Circle#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -5707,7 +5769,7 @@
       "name": "KMap.Circle#getType",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "string"
@@ -5721,7 +5783,7 @@
       "name": "KMap.Circle#getCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Coordinate",
@@ -5737,7 +5799,7 @@
       "name": "KMap.Point#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.geom.Geometry"
@@ -5751,7 +5813,7 @@
       "name": "KMap.Point#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -5768,7 +5830,7 @@
       "name": "KMap.Point#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -5782,7 +5844,7 @@
       "name": "KMap.Point#getType",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "string"
@@ -5796,7 +5858,7 @@
       "name": "KMap.Point#getCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Coordinate",
@@ -5812,7 +5874,7 @@
       "name": "KMap.Polygon#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.geom.Geometry"
@@ -5826,7 +5888,7 @@
       "name": "KMap.Polygon#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -5843,7 +5905,7 @@
       "name": "KMap.Polygon#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -5857,7 +5919,7 @@
       "name": "KMap.Polygon#getType",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "string"
@@ -5871,7 +5933,7 @@
       "name": "KMap.Polygon#getCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Coordinate",
@@ -5887,7 +5949,7 @@
       "name": "KMap.Polyline#getGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.geom.Geometry"
@@ -5901,7 +5963,7 @@
       "name": "KMap.Polyline#setGeometry",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "params": [
         {
           "name": "geometry",
@@ -5918,7 +5980,7 @@
       "name": "KMap.Polyline#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -5932,7 +5994,7 @@
       "name": "KMap.Polyline#getType",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "string"
@@ -5946,7 +6008,7 @@
       "name": "KMap.Polyline#getCoordinates",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
       "returns": {
         "types": [
           "ol.Coordinate",
@@ -5959,11 +6021,216 @@
       ]
     },
     {
+      "name": "KMap.AMapLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getExtent",
+      "kind": "function",
+      "description": "返回图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.Extent",
+          "null",
+          "undefined"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.AMapLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
       "name": "KMap.ArcGISRestLayer#getId",
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -5978,7 +6245,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -5996,7 +6263,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -6011,7 +6278,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -6029,7 +6296,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -6044,7 +6311,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -6062,7 +6329,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -6079,7 +6346,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -6097,7 +6364,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -6112,7 +6379,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -6135,7 +6402,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -6145,7 +6412,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -6168,7 +6435,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -6183,7 +6450,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -6201,7 +6468,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -6216,7 +6483,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -6234,7 +6501,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -6249,7 +6516,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -6267,7 +6534,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -6284,7 +6551,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -6302,7 +6569,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -6317,7 +6584,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -6340,7 +6607,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -6350,7 +6617,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -6373,7 +6640,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -6388,7 +6655,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -6406,7 +6673,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -6421,7 +6688,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -6439,7 +6706,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -6454,7 +6721,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -6472,7 +6739,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -6489,7 +6756,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -6507,7 +6774,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -6522,7 +6789,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -6545,7 +6812,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -6555,7 +6822,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -6578,7 +6845,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -6593,7 +6860,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -6611,7 +6878,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -6626,7 +6893,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -6644,7 +6911,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -6659,7 +6926,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -6677,7 +6944,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -6695,7 +6962,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -6710,7 +6977,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -6733,7 +7000,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -6743,7 +7010,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -6765,7 +7032,7 @@
       "name": "KMap.FeatureLayer#getSource",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "ol.source.Vector"
@@ -6779,7 +7046,7 @@
       "name": "KMap.FeatureLayer#getExtent",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "ol.Extent"
@@ -6793,7 +7060,7 @@
       "name": "KMap.FeatureLayer#add",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "graphic",
@@ -6810,7 +7077,7 @@
       "name": "KMap.FeatureLayer#remove",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "provides": [
         "KMap.GraphicsLayer"
       ]
@@ -6819,7 +7086,7 @@
       "name": "KMap.FeatureLayer#clear",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "provides": [
         "KMap.GraphicsLayer"
       ]
@@ -6829,7 +7096,7 @@
       "kind": "function",
       "description": "添加多个图形到图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "graphicArray",
@@ -6847,7 +7114,7 @@
       "kind": "function",
       "description": "添加多个图形到图层",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "id",
@@ -6870,7 +7137,7 @@
       "kind": "function",
       "description": "返回图形的总数",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "number"
@@ -6885,7 +7152,7 @@
       "kind": "function",
       "description": "遍历图层所有图形",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "callback",
@@ -6916,7 +7183,7 @@
       "name": "KMap.FeatureLayer#setRenderer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "renderer",
@@ -6933,7 +7200,7 @@
       "name": "KMap.FeatureLayer#getRenderer",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "KMap.Renderer"
@@ -6947,7 +7214,7 @@
       "name": "KMap.FeatureLayer#setInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "params": [
         {
           "name": "infoTemplate",
@@ -6964,7 +7231,7 @@
       "name": "KMap.FeatureLayer#getInfoTemplate",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
       "returns": {
         "types": [
           "KMap.InfoTemplate"
@@ -6979,7 +7246,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -6994,7 +7261,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -7012,7 +7279,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -7027,7 +7294,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -7045,7 +7312,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -7060,7 +7327,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -7078,7 +7345,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -7096,7 +7363,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -7111,7 +7378,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -7134,7 +7401,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -7144,7 +7411,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -7167,7 +7434,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -7182,7 +7449,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -7200,7 +7467,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -7215,7 +7482,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -7233,7 +7500,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -7248,7 +7515,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -7266,7 +7533,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -7283,7 +7550,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -7301,7 +7568,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -7316,7 +7583,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -7339,7 +7606,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -7349,7 +7616,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -7372,7 +7639,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -7387,7 +7654,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -7405,7 +7672,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -7420,7 +7687,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -7438,7 +7705,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -7453,7 +7720,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -7471,7 +7738,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -7488,7 +7755,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -7506,7 +7773,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -7521,7 +7788,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -7544,7 +7811,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -7554,7 +7821,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -7577,7 +7844,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -7592,7 +7859,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -7610,7 +7877,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -7625,7 +7892,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -7643,7 +7910,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -7658,7 +7925,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -7676,7 +7943,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -7693,7 +7960,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -7711,7 +7978,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -7726,7 +7993,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -7749,7 +8016,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -7759,7 +8026,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -7782,7 +8049,7 @@
       "kind": "function",
       "description": "返回图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "string"
@@ -7797,7 +8064,7 @@
       "kind": "function",
       "description": "设置图层的ID",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "id",
@@ -7815,7 +8082,7 @@
       "kind": "function",
       "description": "反回图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.layer.Base"
@@ -7830,7 +8097,7 @@
       "kind": "function",
       "description": "设置图层的内部对象",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "layer",
@@ -7848,7 +8115,7 @@
       "kind": "function",
       "description": "返回图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "boolean"
@@ -7863,7 +8130,7 @@
       "kind": "function",
       "description": "修改图层是否可以显示",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "visible",
@@ -7881,7 +8148,7 @@
       "kind": "function",
       "description": "返回图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "ol.Extent",
@@ -7898,7 +8165,7 @@
       "kind": "function",
       "description": "设置图层的边界范围",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "extent",
@@ -7916,7 +8183,7 @@
       "kind": "function",
       "description": "返回图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "returns": {
         "types": [
           "number"
@@ -7931,7 +8198,7 @@
       "kind": "function",
       "description": "设置图层的最大显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "maxResolution",
@@ -7954,7 +8221,7 @@
       "kind": "function",
       "description": "返回图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "provides": [
         "KMap.Layer"
       ]
@@ -7964,7 +8231,7 @@
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\layer\\layer.js",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
       "params": [
         {
           "name": "minResolution",
@@ -7986,7 +8253,7 @@
       "name": "KMap.Popup#setPosition",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\overlay.js",
+      "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "provides": [
         "KMap.Overlay"
       ]
@@ -7995,7 +8262,7 @@
       "name": "KMap.Popup#setElement",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\overlay.js",
+      "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "provides": [
         "KMap.Overlay"
       ]
@@ -8004,7 +8271,7 @@
       "name": "KMap.PictureMarkerSymbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -8018,7 +8285,7 @@
       "name": "KMap.SimpleFillSymbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -8032,7 +8299,7 @@
       "name": "KMap.SimpleLineSymbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -8046,7 +8313,7 @@
       "name": "KMap.SimpleMarkerSymbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -8060,7 +8327,7 @@
       "name": "KMap.SimpleTextSymbol#getStyle",
       "kind": "function",
       "stability": "experimental",
-      "path": "e:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
       "returns": {
         "types": [
           "ol.style.Style"
@@ -8780,7 +9047,7 @@
     {
       "name": "olx",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\olx.js",
+      "path": "E:\\VScode\\kmap\\externs\\olx.js",
       "types": [
         "Object"
       ]
@@ -8788,12 +9055,12 @@
     {
       "name": "GeoJSONObject",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js"
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js"
     },
     {
       "name": "GeoJSONObject#bbox",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "undefined"
@@ -8802,7 +9069,7 @@
     {
       "name": "GeoJSONObject#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8810,7 +9077,7 @@
     {
       "name": "GeoJSONObject#crs",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRS",
         "undefined"
@@ -8819,13 +9086,13 @@
     {
       "name": "GeoJSONCRS",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js"
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js"
     },
     {
       "name": "GeoJSONCRS#type",
       "kind": "member",
       "description": "CRS type. One of `link` or `name`.",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8834,7 +9101,7 @@
       "name": "GeoJSONCRS#properties",
       "kind": "member",
       "description": "TODO: remove GeoJSONCRSCode when http://jira.codehaus.org/browse/GEOS-5996\nis fixed and widely deployed.",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRSCode",
         "GeoJSONCRSName",
@@ -8845,13 +9112,13 @@
       "name": "GeoJSONCRSCode",
       "kind": "class",
       "description": "`GeoJSONCRSCode` is not part of the GeoJSON specification, but is generated\nby GeoServer.\nTODO: remove GeoJSONCRSCode when http://jira.codehaus.org/browse/GEOS-5996\nis fixed and widely deployed.",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js"
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js"
     },
     {
       "name": "GeoJSONCRSCode#code",
       "kind": "member",
       "description": "TODO: remove this when http://jira.codehaus.org/browse/GEOS-5996 is fixed\nand widely deployed.",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8859,12 +9126,12 @@
     {
       "name": "GeoJSONCRSName",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js"
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js"
     },
     {
       "name": "GeoJSONCRSName#name",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8872,13 +9139,13 @@
     {
       "name": "GeoJSONGeometry",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "extends": "GeoJSONObject"
     },
     {
       "name": "GeoJSONGeometry#coordinates",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "!Array.<!Array.<number>>",
@@ -8888,13 +9155,13 @@
     {
       "name": "GeoJSONGeometryCollection",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "extends": "GeoJSONObject"
     },
     {
       "name": "GeoJSONGeometryCollection#geometries",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "Array.<GeoJSONGeometry>"
       ]
@@ -8902,13 +9169,13 @@
     {
       "name": "GeoJSONFeature",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "extends": "GeoJSONObject"
     },
     {
       "name": "GeoJSONFeature#geometry",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONGeometry",
         "GeoJSONGeometryCollection"
@@ -8917,7 +9184,7 @@
     {
       "name": "GeoJSONFeature#id",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "number",
         "string",
@@ -8927,7 +9194,7 @@
     {
       "name": "GeoJSONFeature#properties",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "Object.<string, *>"
       ]
@@ -8935,13 +9202,13 @@
     {
       "name": "GeoJSONFeatureCollection",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "extends": "GeoJSONObject"
     },
     {
       "name": "GeoJSONFeatureCollection#features",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "Array.<GeoJSONFeature>"
       ]
@@ -8949,12 +9216,12 @@
     {
       "name": "GeoJSONLink",
       "kind": "class",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js"
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js"
     },
     {
       "name": "GeoJSONLink#href",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8962,7 +9229,7 @@
     {
       "name": "GeoJSONLink#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8970,7 +9237,7 @@
     {
       "name": "GeoJSONGeometry#bbox",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "undefined"
@@ -8979,7 +9246,7 @@
     {
       "name": "GeoJSONGeometry#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -8987,7 +9254,7 @@
     {
       "name": "GeoJSONGeometry#crs",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRS",
         "undefined"
@@ -8996,7 +9263,7 @@
     {
       "name": "GeoJSONGeometryCollection#bbox",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "undefined"
@@ -9005,7 +9272,7 @@
     {
       "name": "GeoJSONGeometryCollection#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -9013,7 +9280,7 @@
     {
       "name": "GeoJSONGeometryCollection#crs",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRS",
         "undefined"
@@ -9022,7 +9289,7 @@
     {
       "name": "GeoJSONFeature#bbox",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "undefined"
@@ -9031,7 +9298,7 @@
     {
       "name": "GeoJSONFeature#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -9039,7 +9306,7 @@
     {
       "name": "GeoJSONFeature#crs",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRS",
         "undefined"
@@ -9048,7 +9315,7 @@
     {
       "name": "GeoJSONFeatureCollection#bbox",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "!Array.<number>",
         "undefined"
@@ -9057,7 +9324,7 @@
     {
       "name": "GeoJSONFeatureCollection#type",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "string"
       ]
@@ -9065,7 +9332,7 @@
     {
       "name": "GeoJSONFeatureCollection#crs",
       "kind": "member",
-      "path": "e:\\VScode\\kmap\\externs\\geojson.js",
+      "path": "E:\\VScode\\kmap\\externs\\geojson.js",
       "types": [
         "GeoJSONCRS",
         "undefined"

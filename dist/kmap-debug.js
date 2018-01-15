@@ -1,5 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
+// Version: 0.1
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -81539,22 +81540,22 @@ goog.require('KMap');
  * @param {Object|ol.layer.Base} options
  */
 KMap.Layer = function (id, options) {
-    
-    var layer = null;
-    if (options instanceof ol.layer.Base) {
-        layer = /** @type {ol.layer.Base} */ (options);
-    } else {
-        layer = this.createLayer(options);
-        layer.set(KMap.Layer.Property.TYPE, this.getType());
-    }
 
-    /**
-     * @protected
-     * @type {ol.layer.Base}
-     */
-    this.layer_ = layer;
+  var layer = null;
+  if (options instanceof ol.layer.Base) {
+    layer = /** @type {ol.layer.Base} */ (options);
+  } else {
+    layer = this.createLayer(options);
+    layer.set(KMap.Layer.Property.TYPE, this.getType());
+  }
 
-    this.setId(id);
+  /**
+   * @protected
+   * @type {ol.layer.Base}
+   */
+  this.layer_ = layer;
+
+  this.setId(id);
 };
 
 /**
@@ -81563,7 +81564,7 @@ KMap.Layer = function (id, options) {
  * @return {string}
  */
 KMap.Layer.prototype.getId = function () {
-    return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
+  return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
 };
 
 /**
@@ -81572,7 +81573,7 @@ KMap.Layer.prototype.getId = function () {
  * @param {string} id
  */
 KMap.Layer.prototype.setId = function (id) {
-    this.layer_.set(KMap.Layer.Property.ID, id);
+  this.layer_.set(KMap.Layer.Property.ID, id);
 };
 
 /**
@@ -81581,7 +81582,7 @@ KMap.Layer.prototype.setId = function (id) {
  * @return {ol.layer.Base}
  */
 KMap.Layer.prototype.getLayer = function () {
-    return this.layer_;
+  return this.layer_;
 };
 
 /** 设置图层的内部对象
@@ -81589,7 +81590,7 @@ KMap.Layer.prototype.getLayer = function () {
  * @param {ol.layer.Base} layer
  */
 KMap.Layer.prototype.setLayer = function (layer) {
-    this.layer_ = layer;
+  this.layer_ = layer;
 };
 
 /**
@@ -81598,8 +81599,8 @@ KMap.Layer.prototype.setLayer = function (layer) {
  * @return {boolean}
  */
 KMap.Layer.prototype.getVisible = function () {
-    var layer = this.getLayer();
-    return layer.getVisible();
+  var layer = this.getLayer();
+  return layer.getVisible();
 };
 
 /**
@@ -81608,8 +81609,8 @@ KMap.Layer.prototype.getVisible = function () {
  * @param {boolean} visible
  */
 KMap.Layer.prototype.setVisible = function (visible) {
-    var layer = this.getLayer();
-    layer.setVisible(visible);
+  var layer = this.getLayer();
+  layer.setVisible(visible);
 };
 
 /**
@@ -81618,8 +81619,8 @@ KMap.Layer.prototype.setVisible = function (visible) {
  * @return {ol.Extent|null|undefined}
  */
 KMap.Layer.prototype.getExtent = function () {
-    var layer = this.getLayer();
-    return layer.getExtent();
+  var layer = this.getLayer();
+  return layer.getExtent();
 };
 
 /**
@@ -81628,8 +81629,8 @@ KMap.Layer.prototype.getExtent = function () {
  * @param {ol.Extent} extent
  */
 KMap.Layer.prototype.setExtent = function (extent) {
-    var layer = this.getLayer();
-    layer.setExtent(extent);
+  var layer = this.getLayer();
+  layer.setExtent(extent);
 };
 
 /**
@@ -81638,8 +81639,8 @@ KMap.Layer.prototype.setExtent = function (extent) {
  * @return {number}
  */
 KMap.Layer.prototype.getMaxResolution = function () {
-    var layer = this.getLayer();
-    return layer.getMaxResolution();
+  var layer = this.getLayer();
+  return layer.getMaxResolution();
 };
 
 /**
@@ -81649,9 +81650,9 @@ KMap.Layer.prototype.getMaxResolution = function () {
  * @api
  */
 KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
-    var layer = this.getLayer();
-    layer.setMaxResolution(maxResolution);
-    return this;
+  var layer = this.getLayer();
+  layer.setMaxResolution(maxResolution);
+  return this;
 };
 
 /**
@@ -81659,8 +81660,8 @@ KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
  * @api
  */
 KMap.Layer.prototype.getMinResolution = function () {
-    var layer = this.getLayer();
-    return layer.getMinResolution();
+  var layer = this.getLayer();
+  return layer.getMinResolution();
 };
 
 /**
@@ -81670,9 +81671,9 @@ KMap.Layer.prototype.getMinResolution = function () {
  * @api
  */
 KMap.Layer.prototype.setMinResolution = function (minResolution) {
-    var layer = this.getLayer();
-    layer.setMinResolution(minResolution);
-    return this;
+  var layer = this.getLayer();
+  layer.setMinResolution(minResolution);
+  return this;
 };
 
 /**
@@ -81680,7 +81681,7 @@ KMap.Layer.prototype.setMinResolution = function (minResolution) {
  * @returns {ol.layer.Base}
  */
 KMap.Layer.prototype.createLayer = function (options) {
-    throw 'layer create error';
+  throw 'layer create error';
 };
 
 /**
@@ -81689,28 +81690,30 @@ KMap.Layer.prototype.createLayer = function (options) {
  * @returns {KMap.Layer}
  */
 KMap.Layer.fromLayer = function (layer) {
-    var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
-    switch (layerType) {
-        case KMap.Layer.Type.ArcGISRestLayer:
-            return KMap.ArcGISRestLayer.fromLayer(layer);
-        case KMap.Layer.Type.ArcGISTileLayer:
-            return KMap.ArcGISTileLayer.fromLayer(layer);
-        case KMap.Layer.Type.BaiduLayer:
-            return KMap.BaiduLayer.fromLayer(layer);
-        case KMap.Layer.Type.FeatureLayer:
-            return KMap.FeatureLayer.fromLayer(layer);
-        case KMap.Layer.Type.GraphicsLayer:
-            return KMap.GraphicsLayer.fromLayer(layer);
-        case KMap.Layer.Type.GroupLayer:
-            return KMap.GroupLayer.fromLayer(layer);
-        case KMap.Layer.Type.TileWMSLayer:
-            return KMap.TileWMSLayer.fromLayer(layer);
-        case KMap.Layer.Type.WMSLayer:
-            return KMap.WMSLayer.fromLayer(layer);
-        case KMap.Layer.Type.WMTSLayer:
-            return KMap.WMTSLayer.fromLayer(layer);
-    };
-    throw 'invalid layer type';
+  var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
+  switch (layerType) {
+    case KMap.Layer.Type.ArcGISRestLayer:
+      return KMap.ArcGISRestLayer.fromLayer(layer);
+    case KMap.Layer.Type.ArcGISTileLayer:
+      return KMap.ArcGISTileLayer.fromLayer(layer);
+    case KMap.Layer.Type.BaiduLayer:
+      return KMap.BaiduLayer.fromLayer(layer);
+    case KMap.Layer.Type.FeatureLayer:
+      return KMap.FeatureLayer.fromLayer(layer);
+    case KMap.Layer.Type.GraphicsLayer:
+      return KMap.GraphicsLayer.fromLayer(layer);
+    case KMap.Layer.Type.GroupLayer:
+      return KMap.GroupLayer.fromLayer(layer);
+    case KMap.Layer.Type.TileWMSLayer:
+      return KMap.TileWMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMSLayer:
+      return KMap.WMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMTSLayer:
+      return KMap.WMTSLayer.fromLayer(layer);
+    case KMap.Layer.Type.AMapLayer:
+      return KMap.AMapLayer.fromLayer(layer);
+  };
+  throw 'invalid layer type';
 };
 
 /**
@@ -81719,7 +81722,7 @@ KMap.Layer.fromLayer = function (layer) {
  * @api
  */
 KMap.Layer.prototype.getType = function () {
-    throw 'invalid layer type';
+  throw 'invalid layer type';
 };
 
 /**
@@ -81727,15 +81730,16 @@ KMap.Layer.prototype.getType = function () {
  * @api
  */
 KMap.Layer.Type = {
-    ArcGISRestLayer: 'ArcGISRestLayer',
-    ArcGISTileLayer: 'ArcGISTileLayer',
-    BaiduLayer: 'BaiduLayer',
-    FeatureLayer: 'FeatureLayer',
-    GraphicsLayer: 'GraphicsLayer',
-    GroupLayer: 'GroupLayer',
-    TileWMSLayer: 'TileWMSLayer',
-    WMSLayer: 'WMSLayer',
-    WMTSLayer: 'WMTSLayer'
+  ArcGISRestLayer: 'ArcGISRestLayer',
+  ArcGISTileLayer: 'ArcGISTileLayer',
+  BaiduLayer: 'BaiduLayer',
+  FeatureLayer: 'FeatureLayer',
+  GraphicsLayer: 'GraphicsLayer',
+  GroupLayer: 'GroupLayer',
+  TileWMSLayer: 'TileWMSLayer',
+  WMSLayer: 'WMSLayer',
+  WMTSLayer: 'WMTSLayer',
+  AMapLayer: 'AMapLayer'
 };
 
 /**
@@ -81743,9 +81747,10 @@ KMap.Layer.Type = {
  * @api
  */
 KMap.Layer.Property = {
-    ID: 'LAYER_ID',
-    TYPE: 'LAYER_TYPE'
+  ID: 'LAYER_ID',
+  TYPE: 'LAYER_TYPE'
 };
+
 goog.provide('KMap.Renderer');
 
 goog.require('KMap.Symbol');
@@ -82425,6 +82430,58 @@ KMap.Conditions = {
   'targetNotEditable': ol.events.condition.targetNotEditable
 }
 
+﻿goog.provide('KMap.AMapLayer');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('ol.proj');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.Layer}
+ * @param {string} id id.
+ * @param {Object|ol.layer.Base} options options.
+ */
+KMap.AMapLayer = function (id, options) {
+    KMap.Layer.call(this, id, options);
+};
+ol.inherits(KMap.AMapLayer, KMap.Layer);
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.AMapLayer.prototype.createLayer = function (options) {
+    var projection = ol.proj.get("EPSG:3857");
+    var amap_source = new ol.source.XYZ({
+        url: options["url"]
+    })
+
+    var amap_layer = new ol.layer.Tile({
+        source: amap_source
+    });
+    return amap_layer;
+};
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.AMapLayer.fromLayer = function (layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.AMapLayer(layerId, layer);
+};
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.AMapLayer.prototype.getType = function () {
+    return KMap.Layer.Type.AMapLayer;
+};
 ﻿goog.provide('KMap.ArcGISRestLayer');
 
 goog.require('KMap');
@@ -83842,6 +83899,9 @@ KMap.Map.prototype.centerAt = function (coordinate, callback) {
  * @api
  */
 KMap.Map.prototype.panTo = function (coordinate) {
+    if(isNaN(coordinate[0]) || isNaN(coordinate[1])) {
+        return;
+    }
     var view = this.map_.getView();
     if (view.getAnimating()) {
         view.cancelAnimations();
@@ -84944,6 +85004,7 @@ goog.addDependency(
  */
 
 goog.require('KMap');
+goog.require('KMap.AMapLayer');
 goog.require('KMap.Action');
 goog.require('KMap.Action.ClearGraphics');
 goog.require('KMap.Action.MapAction');
@@ -85651,6 +85712,21 @@ goog.exportSymbol(
     'KMap.Conditions',
     KMap.Conditions,
     OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.AMapLayer',
+    KMap.AMapLayer,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.AMapLayer.fromLayer',
+    KMap.AMapLayer.fromLayer,
+    OPENLAYERS);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getType',
+    KMap.AMapLayer.prototype.getType);
 
 goog.exportSymbol(
     'KMap.ArcGISRestLayer',
@@ -86833,6 +86909,66 @@ goog.exportProperty(
     KMap.Polyline.prototype.getCoordinates);
 
 goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getId',
+    KMap.AMapLayer.prototype.getId);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setId',
+    KMap.AMapLayer.prototype.setId);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getLayer',
+    KMap.AMapLayer.prototype.getLayer);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setLayer',
+    KMap.AMapLayer.prototype.setLayer);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getVisible',
+    KMap.AMapLayer.prototype.getVisible);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setVisible',
+    KMap.AMapLayer.prototype.setVisible);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getExtent',
+    KMap.AMapLayer.prototype.getExtent);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setExtent',
+    KMap.AMapLayer.prototype.setExtent);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getMaxResolution',
+    KMap.AMapLayer.prototype.getMaxResolution);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setMaxResolution',
+    KMap.AMapLayer.prototype.setMaxResolution);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'getMinResolution',
+    KMap.AMapLayer.prototype.getMinResolution);
+
+goog.exportProperty(
+    KMap.AMapLayer.prototype,
+    'setMinResolution',
+    KMap.AMapLayer.prototype.setMinResolution);
+
+goog.exportProperty(
     KMap.ArcGISRestLayer.prototype,
     'getId',
     KMap.ArcGISRestLayer.prototype.getId);
@@ -87461,7 +87597,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '';
+ol.VERSION = '0.1';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
