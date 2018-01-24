@@ -152,13 +152,13 @@ KMap.Geometry.fromGeometry = function (geometry) {
         return new KMap.Point(point);
     } else if (geometry instanceof ol.geom.MultiPoint) {
         var multiPoint = /** @type {ol.geom.MultiPoint} */ (geometry);
-        return new KMap.Point(multiPoint.getPoint(0).getCoordinates());
+        return new KMap.MultiPoint(multiPoint);
     } else if (geometry instanceof ol.geom.Polygon) {
         var polygon = /** @type {ol.geom.Polygon} */ (geometry);
         return new KMap.Polygon(polygon);
     } else if (geometry instanceof ol.geom.MultiPolygon) {
         var multiPolygon = /** @type {ol.geom.MultiPolygon} */ (geometry);
-        return new KMap.Polygon(multiPolygon.getPolygon(0));
+        return new KMap.MultiPolygon(multiPolygon);
     } else if (geometry instanceof ol.geom.LineString) {
         return new KMap.Polyline([geometry.getCoordinates()]);
     } else if (geometry instanceof ol.geom.MultiLineString) {
