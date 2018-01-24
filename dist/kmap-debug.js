@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1
+// Version: 0.1-3-g7c586e4
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79750,13 +79750,13 @@ KMap.Geometry.fromGeometry = function (geometry) {
         return new KMap.Point(point);
     } else if (geometry instanceof ol.geom.MultiPoint) {
         var multiPoint = /** @type {ol.geom.MultiPoint} */ (geometry);
-        return new KMap.Point(multiPoint.getPoint(0).getCoordinates());
+        return new KMap.MultiPoint(multiPoint);
     } else if (geometry instanceof ol.geom.Polygon) {
         var polygon = /** @type {ol.geom.Polygon} */ (geometry);
         return new KMap.Polygon(polygon);
     } else if (geometry instanceof ol.geom.MultiPolygon) {
         var multiPolygon = /** @type {ol.geom.MultiPolygon} */ (geometry);
-        return new KMap.Polygon(multiPolygon.getPolygon(0));
+        return new KMap.MultiPolygon(multiPolygon);
     } else if (geometry instanceof ol.geom.LineString) {
         return new KMap.Polyline([geometry.getCoordinates()]);
     } else if (geometry instanceof ol.geom.MultiLineString) {
@@ -79903,6 +79903,48 @@ KMap.Circle.prototype.contains = function(point) {
     }
     return this.geometry_.intersectsCoordinate(coordinate);
 };
+goog.provide('KMap.MultiPoint');
+
+goog.require('KMap');
+goog.require('ol.geom.MultiPoint');
+
+/**
+ * @constructor
+ * @extends {KMap.Geometry}
+ * @param  {Array.<ol.Coordinate> | ol.geom.MultiPoint} coordinates
+ * @api
+ */
+KMap.MultiPoint = function (coordinates) {
+    var geometry;
+    if (coordinates instanceof ol.geom.MultiPoint) {
+        geometry = /**@type {ol.geom.MultiPoint} */ (coordinates);
+    } else {
+        geometry = new ol.geom.MultiPoint(coordinates);
+    }
+    KMap.Geometry.call(this, geometry);
+}
+ol.inherits(KMap.MultiPoint, KMap.Geometry);
+goog.provide('KMap.MultiPolygon');
+
+goog.require('KMap');
+goog.require('ol.geom.MultiPolygon');
+
+/**
+ * @constructor
+ * @extends {KMap.Geometry}
+ * @param  {Array.<Array.<Array.<ol.Coordinate>>> | ol.geom.MultiPolygon} coordinates
+ * @api
+ */
+KMap.MultiPolygon = function (coordinates) {
+    var geometry;
+    if (coordinates instanceof ol.geom.MultiPolygon) {
+        geometry = /**@type {ol.geom.MultiPolygon} */ (coordinates);
+    } else {
+        geometry = new ol.geom.MultiPolygon(coordinates);
+    }
+    KMap.Geometry.call(this, geometry);
+}
+ol.inherits(KMap.MultiPolygon, KMap.Geometry);
 goog.provide('KMap.Polygon');
 
 goog.require('KMap');
@@ -85036,6 +85078,8 @@ goog.require('KMap.Interaction.Pointer');
 goog.require('KMap.Interaction.Select');
 goog.require('KMap.Layer');
 goog.require('KMap.Map');
+goog.require('KMap.MultiPoint');
+goog.require('KMap.MultiPolygon');
 goog.require('KMap.Overlay');
 goog.require('KMap.PictureMarkerSymbol');
 goog.require('KMap.Point');
@@ -85227,6 +85271,16 @@ goog.exportProperty(
     KMap.Geometry.prototype,
     'getCoordinates',
     KMap.Geometry.prototype.getCoordinates);
+
+goog.exportSymbol(
+    'KMap.MultiPoint',
+    KMap.MultiPoint,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.MultiPolygon',
+    KMap.MultiPolygon,
+    OPENLAYERS);
 
 goog.exportSymbol(
     'KMap.Point',
@@ -86834,6 +86888,56 @@ goog.exportProperty(
     KMap.Circle.prototype.getCoordinates);
 
 goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'getGeometry',
+    KMap.MultiPoint.prototype.getGeometry);
+
+goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'setGeometry',
+    KMap.MultiPoint.prototype.setGeometry);
+
+goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'getExtent',
+    KMap.MultiPoint.prototype.getExtent);
+
+goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'getType',
+    KMap.MultiPoint.prototype.getType);
+
+goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'getCoordinates',
+    KMap.MultiPoint.prototype.getCoordinates);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'getGeometry',
+    KMap.MultiPolygon.prototype.getGeometry);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'setGeometry',
+    KMap.MultiPolygon.prototype.setGeometry);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'getExtent',
+    KMap.MultiPolygon.prototype.getExtent);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'getType',
+    KMap.MultiPolygon.prototype.getType);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'getCoordinates',
+    KMap.MultiPolygon.prototype.getCoordinates);
+
+goog.exportProperty(
     KMap.Point.prototype,
     'getGeometry',
     KMap.Point.prototype.getGeometry);
@@ -87597,7 +87701,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1';
+ol.VERSION = '0.1-3-g7c586e4';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

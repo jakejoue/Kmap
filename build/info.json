@@ -646,6 +646,44 @@
       ]
     },
     {
+      "name": "KMap.MultiPoint",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\multipoint.js",
+      "extends": "KMap.Geometry",
+      "params": [
+        {
+          "name": "coordinates",
+          "types": [
+            "Array.<ol.Coordinate>",
+            "ol.geom.MultiPoint"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.MultiPoint"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\multipolygon.js",
+      "extends": "KMap.Geometry",
+      "params": [
+        {
+          "name": "coordinates",
+          "types": [
+            "Array.<Array.<Array.<ol.Coordinate>>>",
+            "ol.geom.MultiPolygon"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.MultiPolygon"
+      ]
+    },
+    {
       "name": "KMap.Point",
       "kind": "class",
       "stability": "experimental",
@@ -5781,6 +5819,156 @@
     },
     {
       "name": "KMap.Circle#getCoordinates",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.Coordinate",
+          "Array.<ol.Coordinate>",
+          "Array.<Array.<ol.Coordinate>>"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#getGeometry",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.geom.Geometry"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#setGeometry",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "geometry",
+          "types": [
+            "ol.geom.Geometry"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#getExtent",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.Extent"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#getType",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#getCoordinates",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.Coordinate",
+          "Array.<ol.Coordinate>",
+          "Array.<Array.<ol.Coordinate>>"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon#getGeometry",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.geom.Geometry"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon#setGeometry",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "geometry",
+          "types": [
+            "ol.geom.Geometry"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon#getExtent",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "ol.Extent"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon#getType",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPolygon#getCoordinates",
       "kind": "function",
       "stability": "experimental",
       "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
