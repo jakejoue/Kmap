@@ -19,13 +19,19 @@ KMap.Extent.expand = function (extent, value) {
 
 /**
  * @param {ol.Extent} extent
- * @param {KMap.Point} point
+ * @param {KMap.Point | ol.Coordinate} point
  * @return {boolean}
  * @api
  */
 KMap.Extent.contains = function (extent, point) {
-    if(!extent || !point) {
+    if (!extent || !point) {
         return false;
     }
-    return ol.extent.containsCoordinate(extent, point.getCoordinates());
+    var coord = [];
+    if (point instanceof KMap.Point) {
+        coord = point.getCoordinates();
+    } else {
+        coord = /**@type {ol.Coordinate} */ (point);
+    }
+    return ol.extent.containsCoordinate(extent, coord);
 };

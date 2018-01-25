@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-3-g7c586e4
+// Version: 0.1-4-gffe299e
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -87701,7 +87701,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-3-g7c586e4';
+ol.VERSION = '0.1-4-gffe299e';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

@@ -419,14 +419,20 @@ KMap.Map.prototype.panTo = function (coordinate) {
 /**
  * 按范围缩放
  * @api
+ * @param {ol.Extent} extent
+ * @param {olx.view.FitOptions=} opt_options
  */
-KMap.Map.prototype.zoomByExtent = function (extent) {
+KMap.Map.prototype.zoomByExtent = function (extent, opt_options) {
     var view = this.map_.getView();
     if (view.getAnimating()) {
         view.cancelAnimations();
     }
     if (!ol.extent.isEmpty(extent) && !isNaN(extent[0]) && !isNaN(extent[1]) && !isNaN(extent[2]) && !isNaN(extent[3])) {
-        view.fit(extent, { duration: 250 });
+        var options = { duration: 250 };
+        if(opt_options) {
+            options = ol.obj.assign(options, opt_options)
+        }
+        view.fit(extent, options);
     }
 };
 
