@@ -20,6 +20,24 @@
       ]
     },
     {
+      "name": "KMap.DrawTool",
+      "kind": "class",
+      "description": "绘画工具",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\drawtool.js",
+      "params": [
+        {
+          "name": "options",
+          "types": [
+            "*"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.DrawTool"
+      ]
+    },
+    {
       "name": "KMap.Action.MapAction",
       "kind": "class",
       "description": "地图动作基类",
@@ -241,6 +259,64 @@
       ],
       "provides": [
         "KMap.Action.SelectByBox"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle",
+      "kind": "class",
+      "description": "圈选动作",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbycircle.js",
+      "extends": "KMap.Action.MapAction",
+      "params": [
+        {
+          "name": "options",
+          "types": [
+            "*"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Action.SelectByCircle"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle.Event",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbycircle.js",
+      "extends": "ol.events.Event",
+      "params": [
+        {
+          "name": "type",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ],
+          "optional": true
+        }
+      ],
+      "provides": [
+        "KMap.Action.SelectByCircle"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle.Event#extent",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\selectbycircle.js",
+      "types": [
+        "ol.Extent",
+        "undefined",
+        "null"
+      ],
+      "provides": [
+        "KMap.Action.SelectByCircle"
       ]
     },
     {
@@ -4381,6 +4457,36 @@
       ]
     },
     {
+      "name": "KMap.OverViewMap",
+      "kind": "class",
+      "description": "鹰眼地图",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\overViewMap.js",
+      "params": [
+        {
+          "name": "target",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "kmap",
+          "types": [
+            "KMap.Map"
+          ]
+        },
+        {
+          "name": "options",
+          "types": [
+            "*"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.OverViewMap"
+      ]
+    },
+    {
       "name": "KMap.Popup",
       "kind": "class",
       "stability": "experimental",
@@ -5840,6 +5946,96 @@
     },
     {
       "name": "KMap.Action.SelectByBox#un",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#actionName",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "types": [
+        "string"
+      ],
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#activate",
+      "kind": "function",
+      "description": "响应动作",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#deactivate",
+      "kind": "function",
+      "description": "销毁Action",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#setMap",
+      "kind": "function",
+      "description": "设置为活动Action",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "params": [
+        {
+          "name": "map",
+          "types": [
+            "KMap.Map"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#getMap",
+      "kind": "function",
+      "description": "返回内部地图对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "returns": {
+        "types": [
+          "KMap.Map"
+        ]
+      },
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#on",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",
+      "provides": [
+        "KMap.Action",
+        "KMap.Action.MapAction"
+      ]
+    },
+    {
+      "name": "KMap.Action.SelectByCircle#un",
       "kind": "function",
       "stability": "experimental",
       "path": "E:\\VScode\\kmap\\src\\action\\mapaction.js",

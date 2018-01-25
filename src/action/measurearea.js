@@ -168,9 +168,9 @@ KMap.Action.MeasureArea.prototype.formatArea = function (polygon) {
     }
     var output;
     if (area > 10000) {
-        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup>2</sup>';
+        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup style="vertical-align: text-top">2</sup>';
     } else {
-        output = (Math.round(area * 100) / 100) + ' 米<sup>2</sup>';
+        output = (Math.round(area * 100) / 100) + ' 米<sup style="vertical-align: text-top">2</sup>';
     }
     return output;
 };

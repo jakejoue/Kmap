@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-5-gf578d36
+// Version: 0.1-6-g6d3bb60
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -78797,50 +78797,387 @@ KMap.Action.ClearGraphics.prototype.deactivate = function () {
     
 };
 
-goog.provide('KMap.Action.MapLocation');
+goog.provide('KMap.Layer');
 
 goog.require('KMap');
 
-goog.require('KMap.Action');
-goog.require('KMap.Action.MapAction');
+/**
+ * 所在图层对象的包装基类
+ * @api
+ * @constructor
+ * @param {string} id
+ * @param {Object|ol.layer.Base} options
+ */
+KMap.Layer = function (id, options) {
 
-goog.require('ol.Sphere');
-goog.require('ol.source.Vector');
-goog.require('ol.Overlay');
+  var layer = null;
+  if (options instanceof ol.layer.Base) {
+    layer = /** @type {ol.layer.Base} */ (options);
+  } else {
+    layer = this.createLayer(options);
+    layer.set(KMap.Layer.Property.TYPE, this.getType());
+  }
+
+  /**
+   * @protected
+   * @type {ol.layer.Base}
+   */
+  this.layer_ = layer;
+
+  this.setId(id);
+};
 
 /**
- * 框选动作
- * @constructor
- * @extends {KMap.Action.MapAction}
- * @param {MapX.MapLocationOptions} options
+ * 返回图层的ID
+ * @api
+ * @return {string}
+ */
+KMap.Layer.prototype.getId = function () {
+  return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
+};
+
+/**
+ * 设置图层的ID
+ * @api
+ * @param {string} id
+ */
+KMap.Layer.prototype.setId = function (id) {
+  this.layer_.set(KMap.Layer.Property.ID, id);
+};
+
+/**
+ * 反回图层的内部对象
+ * @api
+ * @return {ol.layer.Base}
+ */
+KMap.Layer.prototype.getLayer = function () {
+  return this.layer_;
+};
+
+/** 设置图层的内部对象
+ * @api
+ * @param {ol.layer.Base} layer
+ */
+KMap.Layer.prototype.setLayer = function (layer) {
+  this.layer_ = layer;
+};
+
+/**
+ * 返回图层是否可以显示
+ * @api
+ * @return {boolean}
+ */
+KMap.Layer.prototype.getVisible = function () {
+  var layer = this.getLayer();
+  return layer.getVisible();
+};
+
+/**
+ * 修改图层是否可以显示
+ * @api
+ * @param {boolean} visible
+ */
+KMap.Layer.prototype.setVisible = function (visible) {
+  var layer = this.getLayer();
+  layer.setVisible(visible);
+};
+
+/**
+ * 返回图层的边界范围
+ * @api
+ * @return {ol.Extent|null|undefined}
+ */
+KMap.Layer.prototype.getExtent = function () {
+  var layer = this.getLayer();
+  return layer.getExtent();
+};
+
+/**
+ * 设置图层的边界范围
+ * @api
+ * @param {ol.Extent} extent
+ */
+KMap.Layer.prototype.setExtent = function (extent) {
+  var layer = this.getLayer();
+  layer.setExtent(extent);
+};
+
+/**
+ * 返回图层的最大显示密度
+ * @api
+ * @return {number}
+ */
+KMap.Layer.prototype.getMaxResolution = function () {
+  var layer = this.getLayer();
+  return layer.getMaxResolution();
+};
+
+/**
+ * 设置图层的最大显示密度
+ * @param {number} maxResolution
+ * @return {KMap.Layer} 返回图层对象
  * @api
  */
-KMap.Action.MapLocation = function (options) {
-    KMap.Action.MapAction.call(this, { actionName: options.actionName });
+KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
+  var layer = this.getLayer();
+  layer.setMaxResolution(maxResolution);
+  return this;
+};
 
+/**
+ * 返回图层的最小显示密度
+ * @api
+ */
+KMap.Layer.prototype.getMinResolution = function () {
+  var layer = this.getLayer();
+  return layer.getMinResolution();
+};
+
+/**
+ * 设置图层的最小显示密度
+ * @param {number} minResolution
+ * @return {KMap.Layer} 返回图层对象
+ * @api
+ */
+KMap.Layer.prototype.setMinResolution = function (minResolution) {
+  var layer = this.getLayer();
+  layer.setMinResolution(minResolution);
+  return this;
+};
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.Layer.prototype.createLayer = function (options) {
+  throw 'layer create error';
+};
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.Layer.fromLayer = function (layer) {
+  var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
+  switch (layerType) {
+    case KMap.Layer.Type.ArcGISRestLayer:
+      return KMap.ArcGISRestLayer.fromLayer(layer);
+    case KMap.Layer.Type.ArcGISTileLayer:
+      return KMap.ArcGISTileLayer.fromLayer(layer);
+    case KMap.Layer.Type.BaiduLayer:
+      return KMap.BaiduLayer.fromLayer(layer);
+    case KMap.Layer.Type.FeatureLayer:
+      return KMap.FeatureLayer.fromLayer(layer);
+    case KMap.Layer.Type.GraphicsLayer:
+      return KMap.GraphicsLayer.fromLayer(layer);
+    case KMap.Layer.Type.GroupLayer:
+      return KMap.GroupLayer.fromLayer(layer);
+    case KMap.Layer.Type.TileWMSLayer:
+      return KMap.TileWMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMSLayer:
+      return KMap.WMSLayer.fromLayer(layer);
+    case KMap.Layer.Type.WMTSLayer:
+      return KMap.WMTSLayer.fromLayer(layer);
+    case KMap.Layer.Type.AMapLayer:
+      return KMap.AMapLayer.fromLayer(layer);
+  };
+  throw 'invalid layer type';
+};
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.Layer.prototype.getType = function () {
+  throw 'invalid layer type';
+};
+
+/**
+ * @enum {string}
+ * @api
+ */
+KMap.Layer.Type = {
+  ArcGISRestLayer: 'ArcGISRestLayer',
+  ArcGISTileLayer: 'ArcGISTileLayer',
+  BaiduLayer: 'BaiduLayer',
+  FeatureLayer: 'FeatureLayer',
+  GraphicsLayer: 'GraphicsLayer',
+  GroupLayer: 'GroupLayer',
+  TileWMSLayer: 'TileWMSLayer',
+  WMSLayer: 'WMSLayer',
+  WMTSLayer: 'WMTSLayer',
+  AMapLayer: 'AMapLayer'
+};
+
+/**
+ * @enum {string}
+ * @api
+ */
+KMap.Layer.Property = {
+  ID: 'LAYER_ID',
+  TYPE: 'LAYER_TYPE'
+};
+
+goog.provide('KMap.GroupLayer');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('ol.Collection');
+goog.require('ol.CollectionEventType');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.Layer}
+ * @param {string} id
+ * @param {Object|ol.layer.Base} options
+ */
+KMap.GroupLayer = function (id, options) {
+    KMap.Layer.call(this, id, options);
+};
+ol.inherits(KMap.GroupLayer, KMap.Layer);
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.GroupLayer.prototype.createLayer = function (options) {
+    var group_layer = new ol.layer.Group();
+    return group_layer;
+};
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.GroupLayer.fromLayer = function (layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.GroupLayer(layerId, layer);
+};
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.GroupLayer.prototype.getType = function () {
+    return KMap.Layer.Type.GroupLayer;
+};
+
+/**
+ * @api
+ * @param {KMap.Layer} layer
+ */
+KMap.GroupLayer.prototype.push = function (layer) {
+    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
+    groupLayer.getLayers().push(layer.getLayer());
+};
+
+/**
+ * @api
+ * @param {KMap.Layer} layer
+ */
+KMap.GroupLayer.prototype.remove = function (layer) {
+    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
+    groupLayer.getLayers().remove(layer.getLayer());
+};
+
+/**
+ * @api
+ */
+KMap.GroupLayer.prototype.clear = function () {
+    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
+    groupLayer.getLayers().clear();
+};
+
+/**
+ * @api
+ * @return {ol.Collection.<KMap.Layer>}
+ */
+KMap.GroupLayer.prototype.getLayers = function () {
+    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
+    var layers = groupLayer.getLayers();
+
+    var newLayers = new ol.Collection();
+    for (var i = 0; i < layers.getLength(); i++) {
+        newLayers.push(KMap.Layer.fromLayer(layers.item(i)));
+    }
+    return newLayers;
+};
+
+/**
+ * @api
+ * @param {string} id
+ * @return {KMap.Layer}
+ */
+KMap.GroupLayer.prototype.getSubLayer = function (id) {
+    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
+    var layers = groupLayer.getLayersArray();
+
+    var layer = ol.array.find(layers, function (item) {
+        var layerId = /**@type {string}*/ (item.get(KMap.Layer.Property.ID));
+        if (layerId === id) {
+            return true;
+        }
+        return false;
+    });
+    if (layer) {
+        return KMap.Layer.fromLayer(layer);
+    }
+    return null;
+};
+goog.provide('KMap.Interaction.Location');
+goog.provide('KMap.Interaction.Location.Event');
+
+goog.require('KMap');
+
+/**
+ * 地图坐标择取
+ * @api
+ * @constructor
+ * @extends {ol.interaction.Interaction}
+ */
+KMap.Interaction.Location = function () {
+    ol.interaction.Interaction.call(this, {
+        handleEvent: KMap.Interaction.Location.handleEvent
+    });
+};
+ol.inherits(KMap.Interaction.Location, ol.interaction.Interaction);
+
+/**
+ * @this {KMap.Interaction.Location}
+ */
+KMap.Interaction.Location.handleEvent = function (mapBrowserEvent) {
+    var stopEvent = false;
+    var browserEvent = mapBrowserEvent.originalEvent;
+    if (mapBrowserEvent.type == ol.MapBrowserEventType.SINGLECLICK) {
+        //var map = mapBrowserEvent.map;
+        this.dispatchEvent(new KMap.Interaction.Location.Event(
+            'location', mapBrowserEvent.coordinate));
+        mapBrowserEvent.preventDefault();
+        stopEvent = true;
+    }
+    return !stopEvent;
+};
+
+/**
+ * @api
+ * @constructor
+ * @extends {ol.events.Event}
+ */
+KMap.Interaction.Location.Event = function (type, coordinate) {
+
+    ol.events.Event.call(this, type);
     /**
-     * @type {MapX.LocationFunction}
+     * @api
      */
-    this.locationFunction_ = options.locationFunction;
+    this.coordinate = coordinate;
 };
-ol.inherits(KMap.Action.MapLocation, KMap.Action.MapAction);
+ol.inherits(KMap.Interaction.Location.Event, ol.events.Event);
 
-/**
- * @override
- */
-KMap.Action.MapLocation.prototype.activate = function () {
-    var map = this.map_.getMap();
-    map.once('click', function (e) {
-        this.locationFunction_(e.coordinate);
-    }, this);
-};
-
-/**
- * @override
- */
-KMap.Action.MapLocation.prototype.deactivate = function () {
-
-};
 
 goog.provide('KMap.Action.MeasureArea');
 
@@ -79012,9 +79349,9 @@ KMap.Action.MeasureArea.prototype.formatArea = function (polygon) {
     }
     var output;
     if (area > 10000) {
-        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup>2</sup>';
+        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup style="vertical-align: text-top">2</sup>';
     } else {
-        output = (Math.round(area * 100) / 100) + ' 米<sup>2</sup>';
+        output = (Math.round(area * 100) / 100) + ' 米<sup style="vertical-align: text-top">2</sup>';
     }
     return output;
 };
@@ -79579,23 +79916,788 @@ KMap.Action.SelectByBox.Event = function (type, extent) {
     this.extent = extent;
 };
 ol.inherits(KMap.Action.SelectByBox.Event, ol.events.Event);
-goog.provide('KMap.Collection');
+goog.provide('KMap.Map');
 
 goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('KMap.GroupLayer');
+goog.require('KMap.Interaction.Location');
+
+goog.require('KMap.Action.MeasureArea');
+goog.require('KMap.Action.MeasureLength');
+goog.require('KMap.Action.SelectByBox');
+goog.require('KMap.Action.ClearGraphics');
+
+goog.require('ol.Map');
+goog.require('ol.layer.Group');
 goog.require('ol.Collection');
+goog.require('ol.CollectionEventType');
 
 /**
+ * 
  * @constructor
- * @extends {ol.Collection}
- * @param {!Array.<T>=} opt_array Array. 
- * @param {olx.CollectionOptions=} opt_options Collection options. 
- * @template T
+ * @param {string} target
+ * @param {MapX.MapOptions} options 
  * @api
  */
-KMap.Collection = function (opt_array, opt_options) {
-    ol.Collection.call(this, opt_array, opt_options);
+KMap.Map = function (target, options) {
+    /**
+    * 内部地图对象
+    */
+    this.map_ = new ol.Map({
+        target: target,
+        controls: [],//ol.control.defaults(),
+        logo: false,
+        loadTilesWhileAnimating: true,
+        loadTilesWhileInteracting: true
+    });
+
+    /**
+    * 地图底图
+    */
+    this.baseLayers_ = new KMap.GroupLayer('baseLayers', null);
+    this.map_.addLayer(this.baseLayers_.getLayer());
+
+    /**
+    * 动态图层
+    */
+    this.dynamicLayers_ = new KMap.GroupLayer('dynamicLayers', null);
+    this.map_.addLayer(this.dynamicLayers_.getLayer());
+
+    /**
+    * 绘画图层
+    */
+    this.graphicsLayers_ = new KMap.GroupLayer('graphicsLayers', null);
+    this.map_.addLayer(this.graphicsLayers_.getLayer());
+
+    /**
+     * 默认的GraphicsLayer
+     * @type {KMap.GraphicsLayer}
+     */
+    this.graphics_ = new KMap.GraphicsLayer("graphics", {});
+    this.map_.addLayer(this.graphics_.getLayer());
+
+    /**
+    * 视图
+    */
+    var center = [0, 0];
+    if (options.center) {
+        center[0] = options.center[0] || center[0];
+        center[1] = options.center[1] || center[1];
+    }
+
+    this.view_ = new ol.View({
+        projection: options.projection,
+        center: center,
+        extent: options.extent,
+        resolutions: options.resolutions,
+        minResolution: options.minResolution,
+        maxResolution: options.maxResolution,
+        resolution: options.zoom ? undefined : options.resolution,
+        minZoom: options.minZoom,
+        maxZoom: options.maxZoom,
+        zoom: options.zoom || 0,
+        zoomFactor: options.zoomFactor
+    });
+    this.map_.setView(this.view_);
+
+    /**
+    * 坐标拾取
+    */
+    this.locationAction_ = new KMap.Interaction.Location();
+    this.map_.addInteraction(this.locationAction_);
+
+    /**
+    * 鼠标坐标
+    */
+    var mousePositionControl = new ol.control.MousePosition({
+        coordinateFormat: function (coordinate) {
+            return ol.coordinate.format(coordinate, '{x}, {y}', 6);
+        },
+        className: 'custom-mouse-position',
+        undefinedHTML: '超出范围'
+    });
+    this.map_.addControl(mousePositionControl);
+
+    /**
+    * 比例尺
+    */
+    var scaleLineControl = new ol.control.ScaleLine({ minWidth: 38 });
+    this.map_.addControl(scaleLineControl);
+
+    /**
+     * @type {KMap.Action.MapAction}
+     */
+    this.mapAction_ = null;
+
+    /**
+     * @type {boolean|undefined}
+     */
+    this.geodesic_ = options.geodesic;
+
+    /**
+     * @type {KMap.Popup}
+     * @api
+     */
+    this.infoWindow = null;
 };
-ol.inherits(KMap.Collection, ol.Collection);
+
+/**
+ * 地图坐标转屏幕坐标
+ * @api
+ * @param {ol.Coordinate} coordinate 地图坐标
+ * @return {ol.Pixel} 像素点对应的地图坐标
+ */
+KMap.Map.prototype.getPixelFromCoordinate = function (coordinate) {
+    return this.map_.getPixelFromCoordinate(coordinate);
+};
+
+/**
+ * 屏幕坐标转地图坐标
+ * @param {ol.Pixel} pixel 屏幕像素点.
+ * @return {ol.Coordinate} 地图坐标对应的像素点.
+ * @api
+ */
+KMap.Map.prototype.getCoordinateFromPixel = function (pixel) {
+    return this.map_.getCoordinateFromPixel(pixel);
+};
+
+/**
+ * Detect features that intersect a pixel on the viewport, and execute a
+ * callback with each intersecting feature. Layers included in the detection can
+ * be configured through `opt_layerFilter`.
+ * @param {ol.Pixel} pixel Pixel.
+ * @param {function(this: S, (KMap.Graphic),
+ *     KMap.Layer): T} callback Feature callback. The callback will be
+ *     called with two arguments. The first argument is one
+ *     {@link KMap.Graphic graphic} at the pixel, the second is
+ *     the {@link KMap.Layer kLayer} of the feature and will be null for
+ *     unmanaged layers. To stop detection, callback functions can return a
+ *     truthy value.
+ * @param {olx.AtPixelOptions=} opt_options Optional options.
+ * @return {T|undefined} Callback result, i.e. the return value of last
+ * callback execution, or the first truthy callback return value.
+ * @template S,T
+ * @api
+ */
+KMap.Map.prototype.forEachFeatureAtPixel = function (pixel, callback, opt_options) {
+    var map = this.map_;
+    return map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+        /**@type {KMap.Graphic} */
+        var graphic = new KMap.Graphic(/** @type {ol.Feature} */(feature));
+        /**@type {KMap.Layer} */
+        var kLayer = layer ? KMap.Layer.fromLayer(layer) : null;
+        return callback(graphic, kLayer);
+    }, opt_options);
+};
+
+/**
+ * Detect layers that have a color value at a pixel on the viewport, and
+ * execute a callback with each matching layer. Layers included in the
+ * detection can be configured through `opt_layerFilter`.
+ * @param {ol.Pixel} pixel Pixel.
+ * @param {function(this: S, KMap.Layer, (Uint8ClampedArray|Uint8Array)): T} callback
+ *     Layer callback. This callback will recieve two arguments: first is the
+ *     {@link KMap.Layer layer}, second argument is an array representing
+ *     [R, G, B, A] pixel values (0 - 255) and will be `null` for layer types
+ *     that do not currently support this argument. To stop detection, callback
+ *     functions can return a truthy value.
+ * @param {S=} opt_this Value to use as `this` when executing `callback`.
+ * @param {(function(this: U, KMap.Layer): boolean)=} opt_layerFilter Layer
+ *     filter function. The filter function will receive one argument, the
+ *     {@link KMap.Layer layer-candidate} and it should return a boolean
+ *     value. Only layers which are visible and for which this function returns
+ *     `true` will be tested for features. By default, all visible layers will
+ *     be tested.
+ * @param {U=} opt_this2 Value to use as `this` when executing `layerFilter`.
+ * @return {T|undefined} Callback result, i.e. the return value of last
+ * callback execution, or the first truthy callback return value.
+ * @template S,T,U
+ * @api
+ */
+KMap.Map.prototype.forEachLayerAtPixel = function (pixel, callback, opt_this, opt_layerFilter, opt_this2) {
+    var map = this.map_;
+    return map.forEachLayerAtPixel(pixel, function (layer, arr) {
+        if (callback) {
+            return callback.call(opt_this, KMap.Layer.fromLayer(layer), arr);
+        }
+    }, opt_this, function (layer) {
+        if (opt_layerFilter) {
+            return opt_layerFilter.call(opt_this2, KMap.Layer.fromLayer(layer));
+        }
+        return true;
+    }, opt_this2);
+};
+
+/**
+ * 地图单击要素时，弹出要素信息
+ */
+KMap.Map.prototype.handleMouseClick_ = function (e) {
+    var map = this.map_;
+    var coordinate = e.coordinate;
+    var pixel = this.getPixelFromCoordinate(coordinate);
+
+    console.log(coordinate.join(','));
+
+    var selectFeature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+        var graphic = new KMap.Graphic(feature);
+        if (graphic.getVisible()) {
+            if (this.infoWindow) {
+                this.infoWindow.hide();
+                var selectLayer = graphic.getLayer();
+
+                var template = graphic.getInfoTemplate();
+                if (template) {
+                    this.infoWindow.setSelectedFeature(graphic);
+                    var geometry = graphic.getGeometry();
+                    if (geometry.getType() === 'point') {
+                        coordinate = geometry.getCoordinates();
+                    }
+                    this.infoWindow.show(coordinate);
+                    return feature;
+                }
+            }
+        }
+    }.bind(this), { hitTolerance: 0 });
+
+    if (!selectFeature && this.infoWindow) {
+        this.infoWindow.hide();
+    }
+};
+
+/**
+ * 返回地图视图大小
+ * @api
+ */
+KMap.Map.prototype.getSize = function () {
+    return this.map_.getSize();
+};
+
+/**
+ * 设置地图视图大小
+ * @api
+ */
+KMap.Map.prototype.setSize = function (size) {
+    var target = this.map_.getTargetElement();
+    var style = getComputedStyle(target);
+    if (style) {
+        target.style.width = size[0] + "px";
+        target.style.height = size[1] + "px";
+        this.map_.updateSize();
+    }
+};
+
+/**
+ * 重新计算地图视图大小
+ * @api
+ */
+KMap.Map.prototype.updateSize = function () {
+    var target = this.map_.getTargetElement();
+    var style = getComputedStyle(target);
+    if (style) {
+        this.map_.updateSize();
+    }
+};
+
+/**
+ * 获取地图中心点
+ * @api
+ */
+KMap.Map.prototype.getCenter = function () {
+    return this.map_.getView().getCenter();
+};
+
+/**
+ * 设置地图中心点
+ * @api
+ */
+KMap.Map.prototype.setCenter = function (coordinate) {
+    var view = this.map_.getView();
+    var center = view.constrainCenter(coordinate);
+    this.map_.getView().setCenter(center);
+};
+
+/**
+ * 设置地图缩放级别
+ * @api
+ */
+KMap.Map.prototype.setZoom = function (zoom) {
+    var view = this.map_.getView();
+    this.map_.getView().setZoom(zoom);
+};
+
+/**
+ * 设置地图缩放级别
+ * @return {number|undefined}
+ * @api
+ */
+KMap.Map.prototype.getZoom = function () {
+    var view = this.map_.getView();
+    return this.map_.getView().getZoom();
+};
+
+/**
+ * 设置地图像素密度
+ * @param {number} resolution
+ * @api
+ */
+KMap.Map.prototype.setResolution = function (resolution) {
+    var view = this.map_.getView();
+    return this.map_.getView().setResolution(resolution);
+};
+
+/**
+ * 返回地图像素密度
+ * @return {number|undefined}
+ * @api
+ */
+KMap.Map.prototype.getResolution = function () {
+    var view = this.map_.getView();
+    return this.map_.getView().getResolution();
+};
+
+/**
+ * @api
+ * @param {ol.Coordinate|KMap.Point} center
+ * @param {number} zoom
+ * @param {function(boolean)} callback
+ */
+KMap.Map.prototype.centerAndZoom = function (center, zoom, callback) {
+    var view = this.map_.getView();
+    if (view.getAnimating()) {
+        view.cancelAnimations();
+    }
+    /**@type {ol.Coordinate} */
+    var coordinate;
+    if (center instanceof KMap.Point) {
+        coordinate = /**@type {ol.Coordinate} */(center.getCoordinates());
+    } else {
+        coordinate = /**@type {ol.Coordinate} */(center);
+    }
+    if (coordinate) {
+        if (callback) {
+            view.animate({
+                center: coordinate,
+                zoom: zoom,
+                duration: 250
+            }, callback);
+        } else {
+            view.animate({
+                center: coordinate,
+                zoom: zoom,
+                duration: 250
+            });
+        }
+    }
+};
+
+/**
+ * @api
+ * @param {ol.Coordinate} coordinate
+ * @param {function(boolean)} callback
+ */
+KMap.Map.prototype.centerAt = function (coordinate, callback) {
+    var view = this.map_.getView();
+    if (view.getAnimating()) {
+        view.cancelAnimations();
+    }
+    if (callback) {
+        view.animate({
+            center: coordinate,
+            duration: 250
+        }, callback);
+    } else {
+        view.animate({
+            center: coordinate,
+            duration: 250
+        });
+    }
+};
+
+/**
+ * 移动地图中心到指定的位置
+ * @api
+ */
+KMap.Map.prototype.panTo = function (coordinate) {
+    if(isNaN(coordinate[0]) || isNaN(coordinate[1])) {
+        return;
+    }
+    var view = this.map_.getView();
+    if (view.getAnimating()) {
+        view.cancelAnimations();
+    }
+    var center = view.constrainCenter(coordinate);
+    view.animate({
+        center: center,
+        duration: 250,
+        easing: ol.easing.easeOut
+    });
+};
+
+/**
+ * 按范围缩放
+ * @api
+ * @param {ol.Extent} extent
+ * @param {olx.view.FitOptions=} opt_options
+ */
+KMap.Map.prototype.zoomByExtent = function (extent, opt_options) {
+    var view = this.map_.getView();
+    if (view.getAnimating()) {
+        view.cancelAnimations();
+    }
+    if (!ol.extent.isEmpty(extent) && !isNaN(extent[0]) && !isNaN(extent[1]) && !isNaN(extent[2]) && !isNaN(extent[3])) {
+        var options = { duration: 250 };
+        if(opt_options) {
+            options = ol.obj.assign(options, opt_options)
+        }
+        view.fit(extent, options);
+    }
+};
+
+/**
+ * 缩放地图
+ * @api
+ */
+KMap.Map.prototype.zoomByDelta = function (delta, duration) {
+    var view = this.map_.getView();
+    if (!view) {
+        return;
+    }
+    var currentResolution = view.getResolution();
+    if (currentResolution) {
+        var newResolution = view.constrainResolution(currentResolution, delta);
+        if (duration > 0) {
+            if (view.getAnimating()) {
+                view.cancelAnimations();
+            }
+            view.animate({
+                resolution: newResolution,
+                duration: duration,
+                easing: ol.easing.easeOut
+            });
+        } else {
+            view.setResolution(newResolution);
+        }
+    }
+};
+
+/**
+ * 地图放大一级
+ * @api
+ */
+KMap.Map.prototype.zoomIn = function () {
+    this.zoomByDelta(1, 250);
+};
+
+/**
+ * 地图缩小一级
+ * @api
+ */
+KMap.Map.prototype.zoomOut = function () {
+    this.zoomByDelta(-1, 250);
+};
+
+/**
+ * 返回地图内部对象
+ * @return {ol.Map}
+ * @api
+ */
+KMap.Map.prototype.getMap = function () {
+    return this.map_;
+};
+
+/**
+ * 当前地图的当前范围
+ * @return {ol.Extent}
+ * @api
+ */
+KMap.Map.prototype.getExtent = function () {
+    var size = /**@type {Array.<number>} */ (this.map_.getSize());
+    var lt = this.map_.getCoordinateFromPixel([0, 0]);
+    var rb = this.map_.getCoordinateFromPixel(size);
+    return [lt[0], rb[1], rb[0], lt[1]];
+};
+
+/**
+ * 设置地图的当前的显示范围
+ * @param {ol.Extent} extent
+ * @api
+ */
+KMap.Map.prototype.setExtent = function (extent) {
+    this.zoomByExtent(extent);
+};
+
+/**
+ * 当前地图的当前范围
+ * @api
+ */
+KMap.Map.prototype.getFullExtent = function () {
+    var view = this.map_.getView();
+    var extent = this.extent_ || view.getProjection().getExtent();
+    return extent;
+};
+
+/**
+ * 设置地图的范围
+ * @api
+ */
+KMap.Map.prototype.setFullExtent = function (extent) {
+    this.extent_ = extent;
+};
+
+/**
+ * 设置地图的范围
+ * @api
+ */
+KMap.Map.prototype.zoomToFullExtent = function () {
+    var extent = this.getFullExtent();
+    this.zoomByExtent(extent);
+};
+
+/**
+ * 地图打印
+ * @api
+ */
+KMap.Map.prototype.print = function () {
+
+};
+
+/**
+ * 返回底图图层
+ * @api
+ */
+KMap.Map.prototype.getBaseLayers = function () {
+    return this.baseLayers_;
+};
+
+/**
+ * 添加底图
+ * @api
+ */
+KMap.Map.prototype.addBaseLayer = function (layer) {
+    this.baseLayers_.push(layer);
+};
+
+/**
+ * 移除底图
+ * @api
+ */
+KMap.Map.prototype.removeBaseLayer = function (layer) {
+    this.baseLayers_.remove(layer);
+};
+
+/**
+ * 清空底图
+ * @api
+ */
+KMap.Map.prototype.clearBaseLayer = function () {
+    this.baseLayers_.clear();
+};
+
+/**
+ * 返回动态图层
+ * @api
+ */
+KMap.Map.prototype.getDynamicLayers = function () {
+    return this.dynamicLayers_;
+};
+
+/**
+ * 添加动态图层
+ * @api
+ */
+KMap.Map.prototype.addDynamicLayer = function (layer) {
+    this.dynamicLayers_.push(layer);
+};
+
+/**
+ * 移除动态图层
+ * @api
+ */
+KMap.Map.prototype.removeDynamicLayer = function (layer) {
+    this.dynamicLayers_.remove(layer);
+};
+
+/**
+ * 清空动态图层
+ * @api
+ */
+KMap.Map.prototype.clearDynamicLayers = function () {
+    this.dynamicLayers_.clear();
+};
+
+/**
+ * 返回动态图层
+ * @api
+ */
+KMap.Map.prototype.getGraphicsLayers = function () {
+    return this.graphicsLayers_;
+};
+
+/**
+ * 添加绘制图层
+ * @api
+ */
+KMap.Map.prototype.addGraphicsLayer = function (layer) {
+    this.graphicsLayers_.push(layer);
+};
+
+/**
+ * 移除绘制图层
+ * @api
+ */
+KMap.Map.prototype.removeGraphicsLayer = function (layer) {
+    this.graphicsLayers_.remove(layer);
+};
+
+/**
+ * 清空绘制图层
+ * @api
+ */
+KMap.Map.prototype.clearGraphicsLayers = function () {
+    this.graphicsLayers_.clear();
+};
+
+/**
+ * @api
+ */
+KMap.Map.prototype.addOverlay = function (overlay) {
+    this.map_.addOverlay(overlay);
+};
+
+/**
+ * @api
+ */
+KMap.Map.prototype.removeOverlay = function (overlay) {
+    this.map_.removeOverlay(overlay);
+};
+
+/**
+ * 刷新地图
+ * @api
+ */
+KMap.Map.prototype.refresh = function () {
+    this.map_.render();
+};
+
+/**
+ * 监听事件只触发一次
+ * @api
+ */
+KMap.Map.prototype.once = function (type, listener, thizObj) {
+    this.map_.once(type, listener, thizObj);
+};
+
+/**
+ * 监听事件
+ * @api
+ */
+KMap.Map.prototype.on = function (type, listener, thizObj) {
+    this.map_.on(type, listener, thizObj);
+};
+
+/**
+ * 取消监听事件
+ * @api
+ */
+KMap.Map.prototype.un = function (type, listener, thizObj) {
+    this.map_.un(type, listener, thizObj);
+};
+
+/**
+ * 鼠标单击地图的位置
+ * @api
+ */
+KMap.Map.prototype.getLocation = function (callback) {
+    this.locationAction_.once('location', function (evt) {
+        callback(evt.coordinate);
+    });
+};
+
+/**
+ * 设置当前地图的响应动作
+ * @return {KMap.Action.MapAction}
+ * @api
+ */
+KMap.Map.prototype.getAction = function () {
+    return this.mapAction_;
+};
+
+/**
+ * 设置当前地图的响应动作
+ * @param {KMap.Action.MapAction} action
+ * @api
+ */
+KMap.Map.prototype.setAction = function (action) {
+    if (this.mapAction_) {
+        this.mapAction_.setMap(null);
+    }
+    this.mapAction_ = action;
+    if (this.mapAction_) {
+        this.mapAction_.setMap(this);
+    }
+};
+
+/**
+ * 默认绘制图层
+ * @api
+ */
+KMap.Map.prototype.getGraphics = function () {
+    return this.graphics_;
+};
+
+/**
+ * @param {string} layerId
+ * @return {KMap.Layer}
+ * @api
+ */
+KMap.Map.prototype.getLayer = function (layerId) {
+    var map = this.getMap();
+    var layerGroup = map.getLayerGroup();
+    var layers = layerGroup.getLayersArray();
+    var layer = ol.array.find(layers, function (value, index, arr) {
+        if (value.get(KMap.Layer.Property.ID) === layerId) {
+            return true;
+        }
+        return false;
+    });
+    if (layer) {
+        return KMap.Layer.fromLayer(layer);
+    }
+    return null;
+};
+
+/**
+ * @api
+ * @param {KMap.Popup} infoWindow
+ */
+KMap.Map.prototype.setInfoWindow = function (infoWindow) {
+    this.infoWindow = infoWindow;
+};
+
+/**
+ * @api
+ * @return {KMap.Popup}
+ */
+KMap.Map.prototype.getInfoWindow = function () {
+    return this.infoWindow;
+};
+
+/**
+ * @api
+ * @param {ol.interaction.Interaction} interaction
+ */
+KMap.Map.prototype.addInteraction = function (interaction) {
+    this.map_.addInteraction(interaction);
+};
+
+/**
+ * @api
+ * @param {ol.interaction.Interaction} interaction
+ */
+KMap.Map.prototype.removeInteraction = function (interaction) {
+    this.map_.removeInteraction(interaction);
+};
 goog.provide('KMap.Geometry');
 
 goog.require('KMap');
@@ -79795,6 +80897,863 @@ KMap.Geometry.prototype.getCoordinates = function () {
     }
     return null;
 };
+goog.provide('KMap.Symbol');
+
+goog.require('ol.style.Style');
+
+/**
+ * @api
+ * @constructor
+ * @param {Object|ol.style.Style} options
+ */
+KMap.Symbol = function (options) {
+    var style = null;
+    if (options instanceof ol.style.Style) {
+        style = /** @type {ol.style.Style} */ (options);
+    } else {
+        style = new ol.style.Style();
+        this.init(style, options);
+    }
+    /**
+     * @protected
+     * @type {ol.style.Style}
+     */
+    this.style_ = style;
+
+    var obj = /**@type {Object}*/ (this.style_);
+    obj["SYMBOL_TYPE"] = this.getType();
+};
+
+/**
+ * @param {ol.style.Style} style
+ * @param {Object} options
+ */
+KMap.Symbol.prototype.init = function (style, options) {
+    throw 'not implemented';
+};
+
+/**
+ * @param {ol.style.Style} style
+ * @return {KMap.Symbol}
+ * @api
+ */
+KMap.Symbol.fromStyle = function (style) {
+    var obj = /**@type {Object}*/ (style);
+    var type = /** @type {KMap.Symbol.Type} */ (obj["SYMBOL_TYPE"]);
+    switch (type) {
+        case KMap.Symbol.Type.PictureMarkerSymbol:
+            return new KMap.PictureMarkerSymbol(style);
+        case KMap.Symbol.Type.SimpleMarkerSymbol:
+            return new KMap.SimpleMarkerSymbol(style);
+        case KMap.Symbol.Type.SimpleLineSymbol:
+            return new KMap.SimpleLineSymbol(style);
+        case KMap.Symbol.Type.SimpleFillSymbol:
+            return new KMap.SimpleFillSymbol(style);
+        case KMap.Symbol.Type.SimpleTextSymbol:
+            return new KMap.SimpleTextSymbol(style);
+    }
+    throw 'invalid style';
+};
+
+/**
+ * @return {KMap.Symbol.Type}
+ */
+KMap.Symbol.prototype.getType = function () {
+    throw 'invalid symbol type';
+};
+
+/**
+ * @return {ol.style.Style}
+ * @api
+ */
+KMap.Symbol.prototype.getStyle = function () {
+    return this.style_;
+};
+
+/**
+ * @enum {string}
+ * @api
+ */
+KMap.Symbol.Type = {
+    PictureMarkerSymbol: 'PictureMarkerSymbol',
+    SimpleMarkerSymbol: 'SimpleMarkerSymbol',
+    SimpleLineSymbol: 'SimpleLineSymbol',
+    SimpleFillSymbol: 'SimpleFillSymbol',
+    SimpleTextSymbol: 'SimpleTextSymbol'
+};
+goog.provide('KMap.Graphic');
+
+goog.require('KMap.Geometry');
+goog.require('KMap.Symbol');
+goog.require('ol.Feature');
+
+/**
+ * Graphic对象，是对ol.Feature的包装
+ * @constructor
+ * @param {ol.Feature|undefined|null} feature
+ * @api
+ */
+KMap.Graphic = function (feature) {
+    if (!feature || !(feature instanceof ol.Feature)) {
+        feature = new ol.Feature({});
+        feature.set(KMap.Graphic.Property.ATTRIBUTES, {});
+        feature.set(KMap.Graphic.Property.VISIBLE, true);
+    }
+    /**
+     * @type {ol.Feature}
+     */
+    this.feature_ = feature;
+
+    var attrs = this.getAttributes();
+    if (!attrs) {
+        // 复制属性
+        feature.set(KMap.Graphic.Property.ATTRIBUTES, {});
+        feature.set(KMap.Graphic.Property.VISIBLE, true);
+
+        var keys = feature.getKeys();
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            if (KMap.Graphic.Properties.indexOf(key) < 0) {
+                var value = feature.get(key);
+                if (!(value instanceof ol.geom.Geometry)) {
+                    this.setAttribute(key, value);
+                }
+            }
+        }
+    }
+};
+
+/**
+ * @api
+ * @return {number|string|undefined}
+ */
+KMap.Graphic.prototype.getId = function () {
+    return this.feature_.getId();
+};
+
+/**
+ * @api
+ * @param {number|string|undefined} id
+ */
+KMap.Graphic.prototype.setId = function (id) {
+    return this.feature_.setId(id);
+};
+
+/**
+ * @api 
+ * @return {KMap.Geometry}
+ */
+KMap.Graphic.prototype.getGeometry = function () {
+    var geometry = /** @type {ol.geom.Geometry} */ (this.feature_.getGeometry());
+    return KMap.Geometry.fromGeometry(geometry);
+};
+
+/**
+ * @param {KMap.Geometry} geometry
+ * @api
+ */
+KMap.Graphic.prototype.setGeometry = function (geometry) {
+    if (geometry) {
+        this.feature_.setGeometry(geometry.getGeometry());
+    } else {
+        this.feature_.setGeometry(undefined);
+    }
+};
+
+/**
+ * @api 
+ * @return {string}
+ */
+KMap.Graphic.prototype.getGeometryName = function () {
+    return this.feature_.getGeometryName();
+};
+
+/**
+ * @param {string} geometryName
+ * @api
+ */
+KMap.Graphic.prototype.setGeometryName = function (geometryName) {
+    this.feature_.setGeometryName(geometryName);
+};
+
+/**
+ * @api
+ * @return {KMap.Symbol|null}
+ */
+KMap.Graphic.prototype.getSymbol = function () {
+    var style = /** @type {ol.style.Style} */ (this.feature_.getStyle());
+    if (style) {
+        return KMap.Symbol.fromStyle(style);
+    }
+    return null;
+};
+
+/**
+ * @api
+ * @param {KMap.Symbol} symbol
+ */
+KMap.Graphic.prototype.setSymbol = function (symbol) {
+    this.feature_.setStyle(symbol.getStyle());
+};
+
+/**
+ * @api
+ */
+KMap.Graphic.prototype.getAttributes = function () {
+    return this.feature_.get(KMap.Graphic.Property.ATTRIBUTES);
+};
+
+/**
+ * @api
+ */
+KMap.Graphic.prototype.setAttributes = function (attrs) {
+    this.feature_.set(KMap.Graphic.Property.ATTRIBUTES, attrs || {});
+};
+
+/**
+ * @api
+ * @param {string} name
+ * @return {Object}
+ */
+KMap.Graphic.prototype.getAttribute = function (name) {
+    var attrs = this.getAttributes();
+    return attrs[name];
+};
+
+/**
+ * @api
+ * @param {string} name
+ * @param {*} value
+ */
+KMap.Graphic.prototype.setAttribute = function (name, value) {
+    var attrs = this.getAttributes();
+    attrs[name] = value;
+};
+
+/**
+ * @api
+ * @return {ol.Feature}
+ */
+KMap.Graphic.prototype.getFeature = function () {
+    return this.feature_;
+};
+
+/**
+ * @api
+ * @param {ol.Feature} feature
+ */
+KMap.Graphic.prototype.setFeature = function (feature) {
+    this.feature_ = feature;
+};
+
+/**
+ * @api
+ * @return {boolean}
+ */
+KMap.Graphic.prototype.getVisible = function () {
+    return /** @type {boolean} */ (this.feature_.get(KMap.Graphic.Property.VISIBLE));
+};
+
+/**
+ * @api
+ * @param {boolean} visible
+ */
+KMap.Graphic.prototype.setVisible = function (visible) {
+    this.feature_.set(KMap.Graphic.Property.VISIBLE, visible);
+};
+
+/**
+ * @param {KMap.InfoTemplate} infoTemplate
+ * @api
+ */
+KMap.Graphic.prototype.setInfoTemplate = function (infoTemplate) {
+    this.feature_.set(KMap.Graphic.Property.INFOTEMPLATE, infoTemplate);
+};
+
+/**
+ * @return {KMap.InfoTemplate}
+ * @api
+ */
+KMap.Graphic.prototype.getInfoTemplate = function () {
+    var template = /**@type {KMap.InfoTemplate} */ (this.feature_.get(KMap.Graphic.Property.INFOTEMPLATE));
+    if (!template) {
+        var layer = this.getLayer();
+        if (layer) {
+            template = layer.getInfoTemplate();
+        }
+    }
+    return template;
+};
+
+/**
+ * @api
+ * @return {KMap.GraphicsLayer}
+ */
+KMap.Graphic.prototype.getLayer = function () {
+    return /**@type {KMap.GraphicsLayer} */ (this.feature_.get(KMap.Graphic.Property.LAYER));
+};
+
+/**
+ * @param {KMap.GraphicsLayer} layer
+ * @api
+ */
+KMap.Graphic.prototype.setLayer = function (layer) {
+    this.feature_.set(KMap.Graphic.Property.LAYER, layer);
+};
+
+/**
+ * @return {string|null|undefined}
+ * @api
+ */
+KMap.Graphic.prototype.getContent = function () {
+    var template = this.getInfoTemplate();
+    if (template) {
+        return template.bind(template.getContent(), this);
+    }
+    return "";
+};
+
+/**
+ * @return {string|null|undefined}
+ * @api
+ */
+KMap.Graphic.prototype.getTitle = function () {
+    var template = this.getInfoTemplate();
+    if (template) {
+        return template.bind(template.getTitle(), this);
+    }
+    return "";
+};
+
+/**
+ * @enum {string}
+ * @api
+ */
+KMap.Graphic.Property = {
+    LAYER: 'GRAPHIC_LAYER',
+    VISIBLE: 'GRAPHIC_VISIBLE',
+    ATTRIBUTES: 'GRAPHIC_ATTRIBUTES',
+    INFOTEMPLATE: 'GRAPHIC_INFOTEMPLATE'
+};
+
+KMap.Graphic.Properties = [
+    KMap.Graphic.Property.LAYER,
+    KMap.Graphic.Property.VISIBLE,
+    KMap.Graphic.Property.ATTRIBUTES,
+    KMap.Graphic.Property.INFOTEMPLATE
+];
+goog.provide('KMap.Renderer');
+
+goog.require('KMap.Symbol');
+
+/**
+ * @constructor
+ * @api
+ */
+KMap.Renderer = function() {
+
+};
+
+ /**
+  * 
+  * @param {KMap.Graphic} graphic
+  * @return {KMap.Symbol}
+  * @api
+  */
+ KMap.Renderer.prototype.getSymbol = function (graphic) {
+     return null;
+ };
+﻿goog.provide('KMap.GraphicsLayer');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('KMap.Renderer');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.Layer}
+ * @param {string} id
+ * @param {Object|ol.layer.Base} options
+ */
+KMap.GraphicsLayer = function (id, options) {
+    KMap.Layer.call(this, id, options);
+};
+ol.inherits(KMap.GraphicsLayer, KMap.Layer);
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.GraphicsLayer.prototype.createLayer = function (options) {
+    var self = this;
+    var source = new ol.source.Vector();
+    /**
+     * 添加要素和图层之间的关系
+     */
+    source.on("addfeature", function (e) {
+        var graphic = new KMap.Graphic(e.feature);
+        graphic.setLayer(self);
+    });
+    source.on("removefeature", function (e) {
+        var graphic = new KMap.Graphic(e.feature);
+        graphic.setLayer(null);
+    });
+
+    var vector_layer = new ol.layer.Vector({
+        source: source,
+        style: function (feature) {
+            var style = null;
+            var graphic = new KMap.Graphic(feature);
+            if (graphic.getVisible()) {
+                var symbol = graphic.getSymbol();
+                if (!symbol) {
+                    var renderer = self.getRenderer();
+                    if (renderer) {
+                        symbol = renderer.getSymbol(graphic);
+                    }
+                }
+                if (symbol) {
+                    style = symbol.getStyle();
+                }
+            }
+            return style;
+        }
+    });
+    return vector_layer;
+};
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.GraphicsLayer.fromLayer = function (layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.GraphicsLayer(layerId, layer);
+};
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.GraphicsLayer.prototype.getType = function () {
+    return KMap.Layer.Type.GraphicsLayer;
+};
+
+/**
+ * @api
+ * @return {ol.source.Vector}
+ */
+KMap.GraphicsLayer.prototype.getSource = function () {
+    var layer = /**@type {ol.layer.Vector}*/ (this.getLayer());
+    return /**@type {ol.source.Vector}*/ (layer.getSource());
+};
+
+/**
+ * @api
+ * @return {ol.Extent}
+ */
+KMap.GraphicsLayer.prototype.getExtent = function () {
+    var layer = /**@type {ol.layer.Vector}*/ (this.getLayer());
+    return layer.getExtent() || layer.getSource().getExtent();
+};
+
+/**
+ * @api
+ * @param {KMap.Graphic} graphic
+ */
+KMap.GraphicsLayer.prototype.add = function (graphic) {
+    var source = this.getSource();
+    source.addFeature(graphic.getFeature());
+};
+
+/**
+ * @api
+ */
+KMap.GraphicsLayer.prototype.remove = function (graphic) {
+    var source = this.getSource();
+    source.removeFeature(graphic.getFeature());
+};
+
+/**
+ * @api
+ */
+KMap.GraphicsLayer.prototype.clear = function () {
+    var source = this.getSource();
+    source.clear();
+};
+
+/**
+ * 添加多个图形到图层
+ * @api
+ * @param {Array.<KMap.Graphic>} graphicArray
+ */
+KMap.GraphicsLayer.prototype.addAll = function (graphicArray) {
+    var features = [];
+    for (var i = 0; i < graphicArray.length; i++) {
+        features.push(graphicArray[i].getFeature());
+    }
+    var source = this.getSource();
+    source.addFeatures(features);
+};
+
+/**
+ * 添加多个图形到图层
+ * @api
+ * @param {string} id
+ * @return {KMap.Graphic}
+ */
+KMap.GraphicsLayer.prototype.get = function (id) {
+    var source = this.getSource();
+    var feature = source.getFeatureById(id);
+    if (feature) {
+        return new KMap.Graphic(feature);
+    }
+    return null;
+};
+
+/**
+ * 返回图形的总数
+ * @api
+ * @return {number} 图形的总数
+ */
+KMap.GraphicsLayer.prototype.getLength = function () {
+    var source = this.getSource();
+    var features = source.getFeatures();
+    return features.length;
+};
+
+/**
+ * 遍历图层所有图形
+ * @api
+ * @param {function(this: T, KMap.Graphic): S} callback 
+ * @param {T=} opt_this The object to use as `this` in the callback
+ * @return {S|undefined} The return value from the last call to the callback. 
+ * @template T,S 
+ */
+KMap.GraphicsLayer.prototype.forEach = function (callback, opt_this) {
+    return this.getSource().forEachFeature(
+        function (feature) {
+            return callback.call(opt_this, new KMap.Graphic(feature))
+        });
+};
+
+/**
+ * @api
+ * @param {KMap.Renderer} renderer
+ */
+KMap.GraphicsLayer.prototype.setRenderer = function (renderer) {
+    var layer = this.getLayer();
+    layer.set(KMap.GraphicsLayer.Property.RENDERER, renderer);
+};
+
+/**
+ * @api
+ * @return {KMap.Renderer}
+ */
+KMap.GraphicsLayer.prototype.getRenderer = function () {
+    var layer = this.getLayer();
+    return /** @type {KMap.Renderer}*/ (layer.get(KMap.GraphicsLayer.Property.RENDERER));
+};
+
+/**
+ * @param {KMap.InfoTemplate} infoTemplate
+ * @api
+ */
+KMap.GraphicsLayer.prototype.setInfoTemplate = function (infoTemplate) {
+    var layer = this.getLayer();
+    layer.set(KMap.GraphicsLayer.Property.INFOTEMPLATE, infoTemplate);
+};
+
+/**
+ * @return {KMap.InfoTemplate}
+ * @api
+ */
+KMap.GraphicsLayer.prototype.getInfoTemplate = function () {
+    var layer = this.getLayer();
+    return /** @type {KMap.InfoTemplate}*/ (layer.get(KMap.GraphicsLayer.Property.INFOTEMPLATE));
+};
+
+/**
+ * @enum {string}
+ * @api
+ */
+KMap.GraphicsLayer.Property = {
+    RENDERER: 'GRAPHICSLAYER_RENDERER',
+    INFOTEMPLATE: 'GRAPHICSLAYER_INFOTEMPLATE'
+};
+goog.provide('KMap.DrawTool');
+
+goog.require('KMap');
+goog.require('KMap.Map');
+
+goog.require('KMap.Graphic');
+goog.require('KMap.GraphicsLayer');
+
+goog.require('ol.interaction.Draw');
+
+/**
+ * 绘画工具
+ * @constructor
+ * @param {*} options
+ * @api
+ */
+KMap.DrawTool = function (options) {
+  this.target_ = options.target;
+  this.className_ = options.className || '';
+  /**
+   * @type {Array.<string>}
+   */
+  this.types_ = options.types ? options.types.filter(function (e) {
+    return KMap.DrawTool.TYPES.indexOf(e) == -1;
+  }) : KMap.DrawTool.TYPES;
+
+  /**
+   * @type {KMap.GraphicsLayer}
+   */
+  this.layer_ = options.layer || new KMap.GraphicsLayer('', {});
+  /**
+   * @type {Function | undefined}
+   */
+  this.symbol_ = options.symbol || undefined;
+
+  this.dom_ = null;
+  /**
+   * @type {ol.interaction.Draw}
+   */
+  this.draw_ = null;
+
+  /**
+   * @type {KMap.Map}
+   */
+  this.map_ = null;
+};
+
+/**
+ * 渲染画图工具dom并绑定事件
+ */
+KMap.DrawTool.prototype.renderDom = function () {
+  var self = this;
+  if (!this.dom_) {
+    var dom = document.createElement("ul");
+    dom.className = "drawtool " + this.className_;
+    this.types_.forEach(function (e) {
+      var li = document.createElement("li");
+      li.className = /** @type {string}*/ (e).toLowerCase();;
+      li.onclick = function () {
+        self.switch(e);
+      };
+      dom.appendChild(li);
+    });
+    this.dom_ = dom;
+    document.getElementById(this.target_).appendChild(this.dom_);
+  } else {
+    document.getElementById(this.target_).removeChild(this.dom_);
+    this.dom_ = null;
+  }
+};
+
+/**
+ * 切换
+ * @param {string | undefined} type
+ */
+KMap.DrawTool.prototype.switch = function (type) {
+  var self = this;
+  this.map_.removeInteraction(this.draw_);
+  if (type) {
+    var type_ = type.split('Free')[0];
+    this.draw_ = new ol.interaction.Draw({
+      type: /** @type {ol.geom.GeometryType} */ (type_),
+      freehand: /** @type {boolean} */ (type.indexOf('Free') != -1)
+    });
+    this.draw_.on('drawend', function (e) {
+      var graphic = new KMap.Graphic(e.feature);
+      if (self.symbol_) {
+        graphic.setSymbol(self.symbol_(type_));
+      } else {
+        e.feature.setStyle(KMap.DrawTool.GETSYMBOL(type_))
+      }
+      self.layer_.add(graphic);
+      setTimeout(function () {
+        self.switch(undefined);
+      }, 1);
+    });
+    this.map_.addInteraction(this.draw_);
+  }
+};
+
+/**
+ * @param {KMap.Map} map
+ */
+KMap.DrawTool.prototype.setMap = function (map) {
+  if (map) {
+    this.map_ = map;
+    this.renderDom();
+    map.addGraphicsLayer(this.layer_);
+  } else {
+    map = this.map_;
+    this.renderDom();
+    map.removeInteraction(this.draw_);
+    map.removeGraphicsLayer(this.layer_);
+  }
+};
+
+KMap.DrawTool.TYPES = ['Point', 'LineString', 'LineStringFree', 'Polygon', 'PolygonFree', 'Circle', 'CircleFree'];
+KMap.DrawTool.GETSYMBOL = function (type) {
+  return ol.style.Style.createDefaultEditing()[type];
+};
+
+goog.provide('KMap.Action.MapLocation');
+
+goog.require('KMap');
+
+goog.require('KMap.Action');
+goog.require('KMap.Action.MapAction');
+
+goog.require('ol.Sphere');
+goog.require('ol.source.Vector');
+goog.require('ol.Overlay');
+
+/**
+ * 框选动作
+ * @constructor
+ * @extends {KMap.Action.MapAction}
+ * @param {MapX.MapLocationOptions} options
+ * @api
+ */
+KMap.Action.MapLocation = function (options) {
+    KMap.Action.MapAction.call(this, { actionName: options.actionName });
+
+    /**
+     * @type {MapX.LocationFunction}
+     */
+    this.locationFunction_ = options.locationFunction;
+};
+ol.inherits(KMap.Action.MapLocation, KMap.Action.MapAction);
+
+/**
+ * @override
+ */
+KMap.Action.MapLocation.prototype.activate = function () {
+    var map = this.map_.getMap();
+    map.once('click', function (e) {
+        this.locationFunction_(e.coordinate);
+    }, this);
+};
+
+/**
+ * @override
+ */
+KMap.Action.MapLocation.prototype.deactivate = function () {
+
+};
+
+goog.provide('KMap.Action.SelectByCircle');
+
+goog.require('KMap');
+
+goog.require('KMap.Action');
+goog.require('KMap.Action.MapAction');
+
+goog.require('ol.interaction.Draw');
+
+/**
+ * 圈选动作
+ * @constructor
+ * @extends {KMap.Action.MapAction}
+ * @param {*} options
+ * @api
+ */
+KMap.Action.SelectByCircle = function (options) {
+  KMap.Action.MapAction.call(this, {
+    actionName: options.actionName
+  });
+
+  /**
+   * @type {ol.interaction.Draw}
+   */
+  this.drawCircle_ = new ol.interaction.Draw({
+    type: /** @type {ol.geom.GeometryType} */ ("Circle"),
+    style: new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        width: 3,
+        color: [255, 0, 146, 1]
+      }),
+      fill: new ol.style.Fill({
+        color: [255, 0, 146, 0.4]
+      })
+    }),
+    freehand: true
+  });
+};
+ol.inherits(KMap.Action.SelectByCircle, KMap.Action.MapAction);
+
+KMap.Action.SelectByCircle.prototype.handleCircleStart = function () {
+  this.dispatchEvent(new KMap.Action.SelectByCircle.Event('circleStart'));
+};
+
+KMap.Action.SelectByCircle.prototype.handleCircleEnd = function (event) {
+  var extent = event.feature.getGeometry().getExtent();
+  this.dispatchEvent(new KMap.Action.SelectByCircle.Event('circleEnd', extent));
+};
+
+/**
+ * @override
+ */
+KMap.Action.SelectByCircle.prototype.activate = function () {
+  this.drawCircle_.on("drawstart", this.handleCircleStart, this);
+  this.drawCircle_.on("drawend", this.handleCircleEnd, this);
+  var map = this.map_.getMap();
+  map.addInteraction(this.drawCircle_)
+};
+
+/**
+ * @override
+ */
+KMap.Action.SelectByCircle.prototype.deactivate = function () {
+  this.drawCircle_.un("drawstart", this.handleCircleStart, this);
+  this.drawCircle_.un("drawend", this.handleCircleEnd, this);
+  var map = this.map_.getMap();
+  map.removeInteraction(this.drawCircle_);
+};
+
+/**
+ * @api
+ * @constructor
+ * @extends {ol.events.Event}
+ * @param {string} type
+ * @param {ol.Extent=} extent
+ */
+KMap.Action.SelectByCircle.Event = function (type, extent) {
+
+  ol.events.Event.call(this, type);
+  /**
+   * @api
+   * @type {ol.Extent|undefined|null}
+   */
+  this.extent = extent;
+};
+ol.inherits(KMap.Action.SelectByCircle.Event, ol.events.Event);
+
+goog.provide('KMap.Collection');
+
+goog.require('KMap');
+goog.require('ol.Collection');
+
+/**
+ * @constructor
+ * @extends {ol.Collection}
+ * @param {!Array.<T>=} opt_array Array. 
+ * @param {olx.CollectionOptions=} opt_options Collection options. 
+ * @template T
+ * @api
+ */
+KMap.Collection = function (opt_array, opt_options) {
+    ol.Collection.call(this, opt_array, opt_options);
+};
+ol.inherits(KMap.Collection, ol.Collection);
 goog.provide('KMap.Point');
 
 goog.require('KMap');
@@ -81054,351 +83013,6 @@ KMap.Contrail.prototype.getPercent = function () {
   return percent;
 };
 
-goog.provide('KMap.Symbol');
-
-goog.require('ol.style.Style');
-
-/**
- * @api
- * @constructor
- * @param {Object|ol.style.Style} options
- */
-KMap.Symbol = function (options) {
-    var style = null;
-    if (options instanceof ol.style.Style) {
-        style = /** @type {ol.style.Style} */ (options);
-    } else {
-        style = new ol.style.Style();
-        this.init(style, options);
-    }
-    /**
-     * @protected
-     * @type {ol.style.Style}
-     */
-    this.style_ = style;
-
-    var obj = /**@type {Object}*/ (this.style_);
-    obj["SYMBOL_TYPE"] = this.getType();
-};
-
-/**
- * @param {ol.style.Style} style
- * @param {Object} options
- */
-KMap.Symbol.prototype.init = function (style, options) {
-    throw 'not implemented';
-};
-
-/**
- * @param {ol.style.Style} style
- * @return {KMap.Symbol}
- * @api
- */
-KMap.Symbol.fromStyle = function (style) {
-    var obj = /**@type {Object}*/ (style);
-    var type = /** @type {KMap.Symbol.Type} */ (obj["SYMBOL_TYPE"]);
-    switch (type) {
-        case KMap.Symbol.Type.PictureMarkerSymbol:
-            return new KMap.PictureMarkerSymbol(style);
-        case KMap.Symbol.Type.SimpleMarkerSymbol:
-            return new KMap.SimpleMarkerSymbol(style);
-        case KMap.Symbol.Type.SimpleLineSymbol:
-            return new KMap.SimpleLineSymbol(style);
-        case KMap.Symbol.Type.SimpleFillSymbol:
-            return new KMap.SimpleFillSymbol(style);
-        case KMap.Symbol.Type.SimpleTextSymbol:
-            return new KMap.SimpleTextSymbol(style);
-    }
-    throw 'invalid style';
-};
-
-/**
- * @return {KMap.Symbol.Type}
- */
-KMap.Symbol.prototype.getType = function () {
-    throw 'invalid symbol type';
-};
-
-/**
- * @return {ol.style.Style}
- * @api
- */
-KMap.Symbol.prototype.getStyle = function () {
-    return this.style_;
-};
-
-/**
- * @enum {string}
- * @api
- */
-KMap.Symbol.Type = {
-    PictureMarkerSymbol: 'PictureMarkerSymbol',
-    SimpleMarkerSymbol: 'SimpleMarkerSymbol',
-    SimpleLineSymbol: 'SimpleLineSymbol',
-    SimpleFillSymbol: 'SimpleFillSymbol',
-    SimpleTextSymbol: 'SimpleTextSymbol'
-};
-goog.provide('KMap.Graphic');
-
-goog.require('KMap.Geometry');
-goog.require('KMap.Symbol');
-goog.require('ol.Feature');
-
-/**
- * Graphic对象，是对ol.Feature的包装
- * @constructor
- * @param {ol.Feature|undefined|null} feature
- * @api
- */
-KMap.Graphic = function (feature) {
-    if (!feature || !(feature instanceof ol.Feature)) {
-        feature = new ol.Feature({});
-        feature.set(KMap.Graphic.Property.ATTRIBUTES, {});
-        feature.set(KMap.Graphic.Property.VISIBLE, true);
-    }
-    /**
-     * @type {ol.Feature}
-     */
-    this.feature_ = feature;
-
-    var attrs = this.getAttributes();
-    if (!attrs) {
-        // 复制属性
-        feature.set(KMap.Graphic.Property.ATTRIBUTES, {});
-        feature.set(KMap.Graphic.Property.VISIBLE, true);
-
-        var keys = feature.getKeys();
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i];
-            if (KMap.Graphic.Properties.indexOf(key) < 0) {
-                var value = feature.get(key);
-                if (!(value instanceof ol.geom.Geometry)) {
-                    this.setAttribute(key, value);
-                }
-            }
-        }
-    }
-};
-
-/**
- * @api
- * @return {number|string|undefined}
- */
-KMap.Graphic.prototype.getId = function () {
-    return this.feature_.getId();
-};
-
-/**
- * @api
- * @param {number|string|undefined} id
- */
-KMap.Graphic.prototype.setId = function (id) {
-    return this.feature_.setId(id);
-};
-
-/**
- * @api 
- * @return {KMap.Geometry}
- */
-KMap.Graphic.prototype.getGeometry = function () {
-    var geometry = /** @type {ol.geom.Geometry} */ (this.feature_.getGeometry());
-    return KMap.Geometry.fromGeometry(geometry);
-};
-
-/**
- * @param {KMap.Geometry} geometry
- * @api
- */
-KMap.Graphic.prototype.setGeometry = function (geometry) {
-    if (geometry) {
-        this.feature_.setGeometry(geometry.getGeometry());
-    } else {
-        this.feature_.setGeometry(undefined);
-    }
-};
-
-/**
- * @api 
- * @return {string}
- */
-KMap.Graphic.prototype.getGeometryName = function () {
-    return this.feature_.getGeometryName();
-};
-
-/**
- * @param {string} geometryName
- * @api
- */
-KMap.Graphic.prototype.setGeometryName = function (geometryName) {
-    this.feature_.setGeometryName(geometryName);
-};
-
-/**
- * @api
- * @return {KMap.Symbol|null}
- */
-KMap.Graphic.prototype.getSymbol = function () {
-    var style = /** @type {ol.style.Style} */ (this.feature_.getStyle());
-    if (style) {
-        return KMap.Symbol.fromStyle(style);
-    }
-    return null;
-};
-
-/**
- * @api
- * @param {KMap.Symbol} symbol
- */
-KMap.Graphic.prototype.setSymbol = function (symbol) {
-    this.feature_.setStyle(symbol.getStyle());
-};
-
-/**
- * @api
- */
-KMap.Graphic.prototype.getAttributes = function () {
-    return this.feature_.get(KMap.Graphic.Property.ATTRIBUTES);
-};
-
-/**
- * @api
- */
-KMap.Graphic.prototype.setAttributes = function (attrs) {
-    this.feature_.set(KMap.Graphic.Property.ATTRIBUTES, attrs || {});
-};
-
-/**
- * @api
- * @param {string} name
- * @return {Object}
- */
-KMap.Graphic.prototype.getAttribute = function (name) {
-    var attrs = this.getAttributes();
-    return attrs[name];
-};
-
-/**
- * @api
- * @param {string} name
- * @param {*} value
- */
-KMap.Graphic.prototype.setAttribute = function (name, value) {
-    var attrs = this.getAttributes();
-    attrs[name] = value;
-};
-
-/**
- * @api
- * @return {ol.Feature}
- */
-KMap.Graphic.prototype.getFeature = function () {
-    return this.feature_;
-};
-
-/**
- * @api
- * @param {ol.Feature} feature
- */
-KMap.Graphic.prototype.setFeature = function (feature) {
-    this.feature_ = feature;
-};
-
-/**
- * @api
- * @return {boolean}
- */
-KMap.Graphic.prototype.getVisible = function () {
-    return /** @type {boolean} */ (this.feature_.get(KMap.Graphic.Property.VISIBLE));
-};
-
-/**
- * @api
- * @param {boolean} visible
- */
-KMap.Graphic.prototype.setVisible = function (visible) {
-    this.feature_.set(KMap.Graphic.Property.VISIBLE, visible);
-};
-
-/**
- * @param {KMap.InfoTemplate} infoTemplate
- * @api
- */
-KMap.Graphic.prototype.setInfoTemplate = function (infoTemplate) {
-    this.feature_.set(KMap.Graphic.Property.INFOTEMPLATE, infoTemplate);
-};
-
-/**
- * @return {KMap.InfoTemplate}
- * @api
- */
-KMap.Graphic.prototype.getInfoTemplate = function () {
-    var template = /**@type {KMap.InfoTemplate} */ (this.feature_.get(KMap.Graphic.Property.INFOTEMPLATE));
-    if (!template) {
-        var layer = this.getLayer();
-        if (layer) {
-            template = layer.getInfoTemplate();
-        }
-    }
-    return template;
-};
-
-/**
- * @api
- * @return {KMap.GraphicsLayer}
- */
-KMap.Graphic.prototype.getLayer = function () {
-    return /**@type {KMap.GraphicsLayer} */ (this.feature_.get(KMap.Graphic.Property.LAYER));
-};
-
-/**
- * @param {KMap.GraphicsLayer} layer
- * @api
- */
-KMap.Graphic.prototype.setLayer = function (layer) {
-    this.feature_.set(KMap.Graphic.Property.LAYER, layer);
-};
-
-/**
- * @return {string|null|undefined}
- * @api
- */
-KMap.Graphic.prototype.getContent = function () {
-    var template = this.getInfoTemplate();
-    if (template) {
-        return template.bind(template.getContent(), this);
-    }
-    return "";
-};
-
-/**
- * @return {string|null|undefined}
- * @api
- */
-KMap.Graphic.prototype.getTitle = function () {
-    var template = this.getInfoTemplate();
-    if (template) {
-        return template.bind(template.getTitle(), this);
-    }
-    return "";
-};
-
-/**
- * @enum {string}
- * @api
- */
-KMap.Graphic.Property = {
-    LAYER: 'GRAPHIC_LAYER',
-    VISIBLE: 'GRAPHIC_VISIBLE',
-    ATTRIBUTES: 'GRAPHIC_ATTRIBUTES',
-    INFOTEMPLATE: 'GRAPHIC_INFOTEMPLATE'
-};
-
-KMap.Graphic.Properties = [
-    KMap.Graphic.Property.LAYER,
-    KMap.Graphic.Property.VISIBLE,
-    KMap.Graphic.Property.ATTRIBUTES,
-    KMap.Graphic.Property.INFOTEMPLATE
-];
 goog.provide('KMap.Graphics');
 
 goog.require('KMap');
@@ -81580,471 +83194,6 @@ KMap.InfoTemplate.prototype.bind = function (template, graphic) {
     return data;
 };
 
-goog.provide('KMap.Layer');
-
-goog.require('KMap');
-
-/**
- * 所在图层对象的包装基类
- * @api
- * @constructor
- * @param {string} id
- * @param {Object|ol.layer.Base} options
- */
-KMap.Layer = function (id, options) {
-
-  var layer = null;
-  if (options instanceof ol.layer.Base) {
-    layer = /** @type {ol.layer.Base} */ (options);
-  } else {
-    layer = this.createLayer(options);
-    layer.set(KMap.Layer.Property.TYPE, this.getType());
-  }
-
-  /**
-   * @protected
-   * @type {ol.layer.Base}
-   */
-  this.layer_ = layer;
-
-  this.setId(id);
-};
-
-/**
- * 返回图层的ID
- * @api
- * @return {string}
- */
-KMap.Layer.prototype.getId = function () {
-  return /**@type {string} */ (this.layer_.get(KMap.Layer.Property.ID));
-};
-
-/**
- * 设置图层的ID
- * @api
- * @param {string} id
- */
-KMap.Layer.prototype.setId = function (id) {
-  this.layer_.set(KMap.Layer.Property.ID, id);
-};
-
-/**
- * 反回图层的内部对象
- * @api
- * @return {ol.layer.Base}
- */
-KMap.Layer.prototype.getLayer = function () {
-  return this.layer_;
-};
-
-/** 设置图层的内部对象
- * @api
- * @param {ol.layer.Base} layer
- */
-KMap.Layer.prototype.setLayer = function (layer) {
-  this.layer_ = layer;
-};
-
-/**
- * 返回图层是否可以显示
- * @api
- * @return {boolean}
- */
-KMap.Layer.prototype.getVisible = function () {
-  var layer = this.getLayer();
-  return layer.getVisible();
-};
-
-/**
- * 修改图层是否可以显示
- * @api
- * @param {boolean} visible
- */
-KMap.Layer.prototype.setVisible = function (visible) {
-  var layer = this.getLayer();
-  layer.setVisible(visible);
-};
-
-/**
- * 返回图层的边界范围
- * @api
- * @return {ol.Extent|null|undefined}
- */
-KMap.Layer.prototype.getExtent = function () {
-  var layer = this.getLayer();
-  return layer.getExtent();
-};
-
-/**
- * 设置图层的边界范围
- * @api
- * @param {ol.Extent} extent
- */
-KMap.Layer.prototype.setExtent = function (extent) {
-  var layer = this.getLayer();
-  layer.setExtent(extent);
-};
-
-/**
- * 返回图层的最大显示密度
- * @api
- * @return {number}
- */
-KMap.Layer.prototype.getMaxResolution = function () {
-  var layer = this.getLayer();
-  return layer.getMaxResolution();
-};
-
-/**
- * 设置图层的最大显示密度
- * @param {number} maxResolution
- * @return {KMap.Layer} 返回图层对象
- * @api
- */
-KMap.Layer.prototype.setMaxResolution = function (maxResolution) {
-  var layer = this.getLayer();
-  layer.setMaxResolution(maxResolution);
-  return this;
-};
-
-/**
- * 返回图层的最小显示密度
- * @api
- */
-KMap.Layer.prototype.getMinResolution = function () {
-  var layer = this.getLayer();
-  return layer.getMinResolution();
-};
-
-/**
- * 设置图层的最小显示密度
- * @param {number} minResolution
- * @return {KMap.Layer} 返回图层对象
- * @api
- */
-KMap.Layer.prototype.setMinResolution = function (minResolution) {
-  var layer = this.getLayer();
-  layer.setMinResolution(minResolution);
-  return this;
-};
-
-/**
- * @param {Object} options 
- * @returns {ol.layer.Base}
- */
-KMap.Layer.prototype.createLayer = function (options) {
-  throw 'layer create error';
-};
-
-/**
- * @api
- * @param {ol.layer.Base} layer 
- * @returns {KMap.Layer}
- */
-KMap.Layer.fromLayer = function (layer) {
-  var layerType = /**@type {string}*/ (layer.get(KMap.Layer.Property.TYPE));
-  switch (layerType) {
-    case KMap.Layer.Type.ArcGISRestLayer:
-      return KMap.ArcGISRestLayer.fromLayer(layer);
-    case KMap.Layer.Type.ArcGISTileLayer:
-      return KMap.ArcGISTileLayer.fromLayer(layer);
-    case KMap.Layer.Type.BaiduLayer:
-      return KMap.BaiduLayer.fromLayer(layer);
-    case KMap.Layer.Type.FeatureLayer:
-      return KMap.FeatureLayer.fromLayer(layer);
-    case KMap.Layer.Type.GraphicsLayer:
-      return KMap.GraphicsLayer.fromLayer(layer);
-    case KMap.Layer.Type.GroupLayer:
-      return KMap.GroupLayer.fromLayer(layer);
-    case KMap.Layer.Type.TileWMSLayer:
-      return KMap.TileWMSLayer.fromLayer(layer);
-    case KMap.Layer.Type.WMSLayer:
-      return KMap.WMSLayer.fromLayer(layer);
-    case KMap.Layer.Type.WMTSLayer:
-      return KMap.WMTSLayer.fromLayer(layer);
-    case KMap.Layer.Type.AMapLayer:
-      return KMap.AMapLayer.fromLayer(layer);
-  };
-  throw 'invalid layer type';
-};
-
-/**
- * 返回图层的类型
- * @return {KMap.Layer.Type}
- * @api
- */
-KMap.Layer.prototype.getType = function () {
-  throw 'invalid layer type';
-};
-
-/**
- * @enum {string}
- * @api
- */
-KMap.Layer.Type = {
-  ArcGISRestLayer: 'ArcGISRestLayer',
-  ArcGISTileLayer: 'ArcGISTileLayer',
-  BaiduLayer: 'BaiduLayer',
-  FeatureLayer: 'FeatureLayer',
-  GraphicsLayer: 'GraphicsLayer',
-  GroupLayer: 'GroupLayer',
-  TileWMSLayer: 'TileWMSLayer',
-  WMSLayer: 'WMSLayer',
-  WMTSLayer: 'WMTSLayer',
-  AMapLayer: 'AMapLayer'
-};
-
-/**
- * @enum {string}
- * @api
- */
-KMap.Layer.Property = {
-  ID: 'LAYER_ID',
-  TYPE: 'LAYER_TYPE'
-};
-
-goog.provide('KMap.Renderer');
-
-goog.require('KMap.Symbol');
-
-/**
- * @constructor
- * @api
- */
-KMap.Renderer = function() {
-
-};
-
- /**
-  * 
-  * @param {KMap.Graphic} graphic
-  * @return {KMap.Symbol}
-  * @api
-  */
- KMap.Renderer.prototype.getSymbol = function (graphic) {
-     return null;
- };
-﻿goog.provide('KMap.GraphicsLayer');
-
-goog.require('KMap');
-goog.require('KMap.Layer');
-goog.require('KMap.Renderer');
-
-/**
- * @api
- * @constructor
- * @extends {KMap.Layer}
- * @param {string} id
- * @param {Object|ol.layer.Base} options
- */
-KMap.GraphicsLayer = function (id, options) {
-    KMap.Layer.call(this, id, options);
-};
-ol.inherits(KMap.GraphicsLayer, KMap.Layer);
-
-/**
- * @param {Object} options 
- * @returns {ol.layer.Base}
- */
-KMap.GraphicsLayer.prototype.createLayer = function (options) {
-    var self = this;
-    var source = new ol.source.Vector();
-    /**
-     * 添加要素和图层之间的关系
-     */
-    source.on("addfeature", function (e) {
-        var graphic = new KMap.Graphic(e.feature);
-        graphic.setLayer(self);
-    });
-    source.on("removefeature", function (e) {
-        var graphic = new KMap.Graphic(e.feature);
-        graphic.setLayer(null);
-    });
-
-    var vector_layer = new ol.layer.Vector({
-        source: source,
-        style: function (feature) {
-            var style = null;
-            var graphic = new KMap.Graphic(feature);
-            if (graphic.getVisible()) {
-                var symbol = graphic.getSymbol();
-                if (!symbol) {
-                    var renderer = self.getRenderer();
-                    if (renderer) {
-                        symbol = renderer.getSymbol(graphic);
-                    }
-                }
-                if (symbol) {
-                    style = symbol.getStyle();
-                }
-            }
-            return style;
-        }
-    });
-    return vector_layer;
-};
-
-/**
- * @api
- * @param {ol.layer.Base} layer 
- * @returns {KMap.Layer}
- */
-KMap.GraphicsLayer.fromLayer = function (layer) {
-    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
-    return new KMap.GraphicsLayer(layerId, layer);
-};
-
-/**
- * 返回图层的类型
- * @return {KMap.Layer.Type}
- * @api
- */
-KMap.GraphicsLayer.prototype.getType = function () {
-    return KMap.Layer.Type.GraphicsLayer;
-};
-
-/**
- * @api
- * @return {ol.source.Vector}
- */
-KMap.GraphicsLayer.prototype.getSource = function () {
-    var layer = /**@type {ol.layer.Vector}*/ (this.getLayer());
-    return /**@type {ol.source.Vector}*/ (layer.getSource());
-};
-
-/**
- * @api
- * @return {ol.Extent}
- */
-KMap.GraphicsLayer.prototype.getExtent = function () {
-    var layer = /**@type {ol.layer.Vector}*/ (this.getLayer());
-    return layer.getExtent() || layer.getSource().getExtent();
-};
-
-/**
- * @api
- * @param {KMap.Graphic} graphic
- */
-KMap.GraphicsLayer.prototype.add = function (graphic) {
-    var source = this.getSource();
-    source.addFeature(graphic.getFeature());
-};
-
-/**
- * @api
- */
-KMap.GraphicsLayer.prototype.remove = function (graphic) {
-    var source = this.getSource();
-    source.removeFeature(graphic.getFeature());
-};
-
-/**
- * @api
- */
-KMap.GraphicsLayer.prototype.clear = function () {
-    var source = this.getSource();
-    source.clear();
-};
-
-/**
- * 添加多个图形到图层
- * @api
- * @param {Array.<KMap.Graphic>} graphicArray
- */
-KMap.GraphicsLayer.prototype.addAll = function (graphicArray) {
-    var features = [];
-    for (var i = 0; i < graphicArray.length; i++) {
-        features.push(graphicArray[i].getFeature());
-    }
-    var source = this.getSource();
-    source.addFeatures(features);
-};
-
-/**
- * 添加多个图形到图层
- * @api
- * @param {string} id
- * @return {KMap.Graphic}
- */
-KMap.GraphicsLayer.prototype.get = function (id) {
-    var source = this.getSource();
-    var feature = source.getFeatureById(id);
-    if (feature) {
-        return new KMap.Graphic(feature);
-    }
-    return null;
-};
-
-/**
- * 返回图形的总数
- * @api
- * @return {number} 图形的总数
- */
-KMap.GraphicsLayer.prototype.getLength = function () {
-    var source = this.getSource();
-    var features = source.getFeatures();
-    return features.length;
-};
-
-/**
- * 遍历图层所有图形
- * @api
- * @param {function(this: T, KMap.Graphic): S} callback 
- * @param {T=} opt_this The object to use as `this` in the callback
- * @return {S|undefined} The return value from the last call to the callback. 
- * @template T,S 
- */
-KMap.GraphicsLayer.prototype.forEach = function (callback, opt_this) {
-    return this.getSource().forEachFeature(
-        function (feature) {
-            return callback.call(opt_this, new KMap.Graphic(feature))
-        });
-};
-
-/**
- * @api
- * @param {KMap.Renderer} renderer
- */
-KMap.GraphicsLayer.prototype.setRenderer = function (renderer) {
-    var layer = this.getLayer();
-    layer.set(KMap.GraphicsLayer.Property.RENDERER, renderer);
-};
-
-/**
- * @api
- * @return {KMap.Renderer}
- */
-KMap.GraphicsLayer.prototype.getRenderer = function () {
-    var layer = this.getLayer();
-    return /** @type {KMap.Renderer}*/ (layer.get(KMap.GraphicsLayer.Property.RENDERER));
-};
-
-/**
- * @param {KMap.InfoTemplate} infoTemplate
- * @api
- */
-KMap.GraphicsLayer.prototype.setInfoTemplate = function (infoTemplate) {
-    var layer = this.getLayer();
-    layer.set(KMap.GraphicsLayer.Property.INFOTEMPLATE, infoTemplate);
-};
-
-/**
- * @return {KMap.InfoTemplate}
- * @api
- */
-KMap.GraphicsLayer.prototype.getInfoTemplate = function () {
-    var layer = this.getLayer();
-    return /** @type {KMap.InfoTemplate}*/ (layer.get(KMap.GraphicsLayer.Property.INFOTEMPLATE));
-};
-
-/**
- * @enum {string}
- * @api
- */
-KMap.GraphicsLayer.Property = {
-    RENDERER: 'GRAPHICSLAYER_RENDERER',
-    INFOTEMPLATE: 'GRAPHICSLAYER_INFOTEMPLATE'
-};
 goog.provide('KMap.Interaction.Draw');
 
 goog.require('KMap');
@@ -82153,56 +83302,6 @@ KMap.Interaction.Draw.prototype.setMap = function (map) {
   }
   ol.interaction.Draw.prototype.setMap.call(this, map);
 }
-
-goog.provide('KMap.Interaction.Location');
-goog.provide('KMap.Interaction.Location.Event');
-
-goog.require('KMap');
-
-/**
- * 地图坐标择取
- * @api
- * @constructor
- * @extends {ol.interaction.Interaction}
- */
-KMap.Interaction.Location = function () {
-    ol.interaction.Interaction.call(this, {
-        handleEvent: KMap.Interaction.Location.handleEvent
-    });
-};
-ol.inherits(KMap.Interaction.Location, ol.interaction.Interaction);
-
-/**
- * @this {KMap.Interaction.Location}
- */
-KMap.Interaction.Location.handleEvent = function (mapBrowserEvent) {
-    var stopEvent = false;
-    var browserEvent = mapBrowserEvent.originalEvent;
-    if (mapBrowserEvent.type == ol.MapBrowserEventType.SINGLECLICK) {
-        //var map = mapBrowserEvent.map;
-        this.dispatchEvent(new KMap.Interaction.Location.Event(
-            'location', mapBrowserEvent.coordinate));
-        mapBrowserEvent.preventDefault();
-        stopEvent = true;
-    }
-    return !stopEvent;
-};
-
-/**
- * @api
- * @constructor
- * @extends {ol.events.Event}
- */
-KMap.Interaction.Location.Event = function (type, coordinate) {
-
-    ol.events.Event.call(this, type);
-    /**
-     * @api
-     */
-    this.coordinate = coordinate;
-};
-ol.inherits(KMap.Interaction.Location.Event, ol.events.Event);
-
 
 goog.provide('KMap.Interaction.Modify');
 
@@ -82578,6 +83677,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
         var image_options = /**@type {olx.source.ImageArcGISRestOptions} */ ({
             "projection": options["projection"],
             "url": options["url"],
+            "ratio": options["ratio"],
             "params": {
                 "layers": options["layers"] || ""
             }
@@ -83165,115 +84265,6 @@ KMap.FeatureLayer.fromLayer = function (layer) {
 KMap.FeatureLayer.prototype.getType = function () {
     return KMap.Layer.Type.FeatureLayer;
 };
-goog.provide('KMap.GroupLayer');
-
-goog.require('KMap');
-goog.require('KMap.Layer');
-goog.require('ol.Collection');
-goog.require('ol.CollectionEventType');
-
-/**
- * @api
- * @constructor
- * @extends {KMap.Layer}
- * @param {string} id
- * @param {Object|ol.layer.Base} options
- */
-KMap.GroupLayer = function (id, options) {
-    KMap.Layer.call(this, id, options);
-};
-ol.inherits(KMap.GroupLayer, KMap.Layer);
-
-/**
- * @param {Object} options 
- * @returns {ol.layer.Base}
- */
-KMap.GroupLayer.prototype.createLayer = function (options) {
-    var group_layer = new ol.layer.Group();
-    return group_layer;
-};
-
-/**
- * @api
- * @param {ol.layer.Base} layer 
- * @returns {KMap.Layer}
- */
-KMap.GroupLayer.fromLayer = function (layer) {
-    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
-    return new KMap.GroupLayer(layerId, layer);
-};
-
-/**
- * 返回图层的类型
- * @return {KMap.Layer.Type}
- * @api
- */
-KMap.GroupLayer.prototype.getType = function () {
-    return KMap.Layer.Type.GroupLayer;
-};
-
-/**
- * @api
- * @param {KMap.Layer} layer
- */
-KMap.GroupLayer.prototype.push = function (layer) {
-    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
-    groupLayer.getLayers().push(layer.getLayer());
-};
-
-/**
- * @api
- * @param {KMap.Layer} layer
- */
-KMap.GroupLayer.prototype.remove = function (layer) {
-    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
-    groupLayer.getLayers().remove(layer.getLayer());
-};
-
-/**
- * @api
- */
-KMap.GroupLayer.prototype.clear = function () {
-    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
-    groupLayer.getLayers().clear();
-};
-
-/**
- * @api
- * @return {ol.Collection.<KMap.Layer>}
- */
-KMap.GroupLayer.prototype.getLayers = function () {
-    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
-    var layers = groupLayer.getLayers();
-
-    var newLayers = new ol.Collection();
-    for (var i = 0; i < layers.getLength(); i++) {
-        newLayers.push(KMap.Layer.fromLayer(layers.item(i)));
-    }
-    return newLayers;
-};
-
-/**
- * @api
- * @param {string} id
- * @return {KMap.Layer}
- */
-KMap.GroupLayer.prototype.getSubLayer = function (id) {
-    var groupLayer = /**@type {ol.layer.Group} */ (this.getLayer());
-    var layers = groupLayer.getLayersArray();
-
-    var layer = ol.array.find(layers, function (item) {
-        var layerId = /**@type {string}*/ (item.get(KMap.Layer.Property.ID));
-        if (layerId === id) {
-            return true;
-        }
-        return false;
-    });
-    if (layer) {
-        return KMap.Layer.fromLayer(layer);
-    }
-    return null;
-};
 ﻿goog.provide('KMap.TileWMSLayer');
 
 goog.require('KMap');
@@ -83548,788 +84539,6 @@ KMap.WMTSLayer.fromLayer = function (layer) {
 KMap.WMTSLayer.prototype.getType = function () {
     return KMap.Layer.Type.WMTSLayer;
 };
-goog.provide('KMap.Map');
-
-goog.require('KMap');
-goog.require('KMap.Layer');
-goog.require('KMap.GroupLayer');
-goog.require('KMap.Interaction.Location');
-
-goog.require('KMap.Action.MeasureArea');
-goog.require('KMap.Action.MeasureLength');
-goog.require('KMap.Action.SelectByBox');
-goog.require('KMap.Action.ClearGraphics');
-
-goog.require('ol.Map');
-goog.require('ol.layer.Group');
-goog.require('ol.Collection');
-goog.require('ol.CollectionEventType');
-
-/**
- * 
- * @constructor
- * @param {string} target
- * @param {MapX.MapOptions} options 
- * @api
- */
-KMap.Map = function (target, options) {
-    /**
-    * 内部地图对象
-    */
-    this.map_ = new ol.Map({
-        target: target,
-        controls: [],//ol.control.defaults(),
-        logo: false,
-        loadTilesWhileAnimating: true,
-        loadTilesWhileInteracting: true
-    });
-
-    /**
-    * 地图底图
-    */
-    this.baseLayers_ = new KMap.GroupLayer('baseLayers', null);
-    this.map_.addLayer(this.baseLayers_.getLayer());
-
-    /**
-    * 动态图层
-    */
-    this.dynamicLayers_ = new KMap.GroupLayer('dynamicLayers', null);
-    this.map_.addLayer(this.dynamicLayers_.getLayer());
-
-    /**
-    * 绘画图层
-    */
-    this.graphicsLayers_ = new KMap.GroupLayer('graphicsLayers', null);
-    this.map_.addLayer(this.graphicsLayers_.getLayer());
-
-    /**
-     * 默认的GraphicsLayer
-     * @type {KMap.GraphicsLayer}
-     */
-    this.graphics_ = new KMap.GraphicsLayer("graphics", {});
-    this.map_.addLayer(this.graphics_.getLayer());
-
-    /**
-    * 视图
-    */
-    var center = [0, 0];
-    if (options.center) {
-        center[0] = options.center[0] || center[0];
-        center[1] = options.center[1] || center[1];
-    }
-
-    this.view_ = new ol.View({
-        projection: options.projection,
-        center: center,
-        extent: options.extent,
-        resolutions: options.resolutions,
-        minResolution: options.minResolution,
-        maxResolution: options.maxResolution,
-        resolution: options.zoom ? undefined : options.resolution,
-        minZoom: options.minZoom,
-        maxZoom: options.maxZoom,
-        zoom: options.zoom || 0,
-        zoomFactor: options.zoomFactor
-    });
-    this.map_.setView(this.view_);
-
-    /**
-    * 坐标拾取
-    */
-    this.locationAction_ = new KMap.Interaction.Location();
-    this.map_.addInteraction(this.locationAction_);
-
-    /**
-    * 鼠标坐标
-    */
-    var mousePositionControl = new ol.control.MousePosition({
-        coordinateFormat: function (coordinate) {
-            return ol.coordinate.format(coordinate, '{x}, {y}', 6);
-        },
-        className: 'custom-mouse-position',
-        undefinedHTML: '超出范围'
-    });
-    this.map_.addControl(mousePositionControl);
-
-    /**
-    * 比例尺
-    */
-    var scaleLineControl = new ol.control.ScaleLine({ minWidth: 38 });
-    this.map_.addControl(scaleLineControl);
-
-    /**
-     * @type {KMap.Action.MapAction}
-     */
-    this.mapAction_ = null;
-
-    /**
-     * @type {boolean|undefined}
-     */
-    this.geodesic_ = options.geodesic;
-
-    /**
-     * @type {KMap.Popup}
-     * @api
-     */
-    this.infoWindow = null;
-};
-
-/**
- * 地图坐标转屏幕坐标
- * @api
- * @param {ol.Coordinate} coordinate 地图坐标
- * @return {ol.Pixel} 像素点对应的地图坐标
- */
-KMap.Map.prototype.getPixelFromCoordinate = function (coordinate) {
-    return this.map_.getPixelFromCoordinate(coordinate);
-};
-
-/**
- * 屏幕坐标转地图坐标
- * @param {ol.Pixel} pixel 屏幕像素点.
- * @return {ol.Coordinate} 地图坐标对应的像素点.
- * @api
- */
-KMap.Map.prototype.getCoordinateFromPixel = function (pixel) {
-    return this.map_.getCoordinateFromPixel(pixel);
-};
-
-/**
- * Detect features that intersect a pixel on the viewport, and execute a
- * callback with each intersecting feature. Layers included in the detection can
- * be configured through `opt_layerFilter`.
- * @param {ol.Pixel} pixel Pixel.
- * @param {function(this: S, (KMap.Graphic),
- *     KMap.Layer): T} callback Feature callback. The callback will be
- *     called with two arguments. The first argument is one
- *     {@link KMap.Graphic graphic} at the pixel, the second is
- *     the {@link KMap.Layer kLayer} of the feature and will be null for
- *     unmanaged layers. To stop detection, callback functions can return a
- *     truthy value.
- * @param {olx.AtPixelOptions=} opt_options Optional options.
- * @return {T|undefined} Callback result, i.e. the return value of last
- * callback execution, or the first truthy callback return value.
- * @template S,T
- * @api
- */
-KMap.Map.prototype.forEachFeatureAtPixel = function (pixel, callback, opt_options) {
-    var map = this.map_;
-    return map.forEachFeatureAtPixel(pixel, function (feature, layer) {
-        /**@type {KMap.Graphic} */
-        var graphic = new KMap.Graphic(/** @type {ol.Feature} */(feature));
-        /**@type {KMap.Layer} */
-        var kLayer = layer ? KMap.Layer.fromLayer(layer) : null;
-        return callback(graphic, kLayer);
-    }, opt_options);
-};
-
-/**
- * Detect layers that have a color value at a pixel on the viewport, and
- * execute a callback with each matching layer. Layers included in the
- * detection can be configured through `opt_layerFilter`.
- * @param {ol.Pixel} pixel Pixel.
- * @param {function(this: S, KMap.Layer, (Uint8ClampedArray|Uint8Array)): T} callback
- *     Layer callback. This callback will recieve two arguments: first is the
- *     {@link KMap.Layer layer}, second argument is an array representing
- *     [R, G, B, A] pixel values (0 - 255) and will be `null` for layer types
- *     that do not currently support this argument. To stop detection, callback
- *     functions can return a truthy value.
- * @param {S=} opt_this Value to use as `this` when executing `callback`.
- * @param {(function(this: U, KMap.Layer): boolean)=} opt_layerFilter Layer
- *     filter function. The filter function will receive one argument, the
- *     {@link KMap.Layer layer-candidate} and it should return a boolean
- *     value. Only layers which are visible and for which this function returns
- *     `true` will be tested for features. By default, all visible layers will
- *     be tested.
- * @param {U=} opt_this2 Value to use as `this` when executing `layerFilter`.
- * @return {T|undefined} Callback result, i.e. the return value of last
- * callback execution, or the first truthy callback return value.
- * @template S,T,U
- * @api
- */
-KMap.Map.prototype.forEachLayerAtPixel = function (pixel, callback, opt_this, opt_layerFilter, opt_this2) {
-    var map = this.map_;
-    return map.forEachLayerAtPixel(pixel, function (layer, arr) {
-        if (callback) {
-            return callback.call(opt_this, KMap.Layer.fromLayer(layer), arr);
-        }
-    }, opt_this, function (layer) {
-        if (opt_layerFilter) {
-            return opt_layerFilter.call(opt_this2, KMap.Layer.fromLayer(layer));
-        }
-        return true;
-    }, opt_this2);
-};
-
-/**
- * 地图单击要素时，弹出要素信息
- */
-KMap.Map.prototype.handleMouseClick_ = function (e) {
-    var map = this.map_;
-    var coordinate = e.coordinate;
-    var pixel = this.getPixelFromCoordinate(coordinate);
-
-    console.log(coordinate.join(','));
-
-    var selectFeature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
-        var graphic = new KMap.Graphic(feature);
-        if (graphic.getVisible()) {
-            if (this.infoWindow) {
-                this.infoWindow.hide();
-                var selectLayer = graphic.getLayer();
-
-                var template = graphic.getInfoTemplate();
-                if (template) {
-                    this.infoWindow.setSelectedFeature(graphic);
-                    var geometry = graphic.getGeometry();
-                    if (geometry.getType() === 'point') {
-                        coordinate = geometry.getCoordinates();
-                    }
-                    this.infoWindow.show(coordinate);
-                    return feature;
-                }
-            }
-        }
-    }.bind(this), { hitTolerance: 0 });
-
-    if (!selectFeature && this.infoWindow) {
-        this.infoWindow.hide();
-    }
-};
-
-/**
- * 返回地图视图大小
- * @api
- */
-KMap.Map.prototype.getSize = function () {
-    return this.map_.getSize();
-};
-
-/**
- * 设置地图视图大小
- * @api
- */
-KMap.Map.prototype.setSize = function (size) {
-    var target = this.map_.getTargetElement();
-    var style = getComputedStyle(target);
-    if (style) {
-        target.style.width = size[0] + "px";
-        target.style.height = size[1] + "px";
-        this.map_.updateSize();
-    }
-};
-
-/**
- * 重新计算地图视图大小
- * @api
- */
-KMap.Map.prototype.updateSize = function () {
-    var target = this.map_.getTargetElement();
-    var style = getComputedStyle(target);
-    if (style) {
-        this.map_.updateSize();
-    }
-};
-
-/**
- * 获取地图中心点
- * @api
- */
-KMap.Map.prototype.getCenter = function () {
-    return this.map_.getView().getCenter();
-};
-
-/**
- * 设置地图中心点
- * @api
- */
-KMap.Map.prototype.setCenter = function (coordinate) {
-    var view = this.map_.getView();
-    var center = view.constrainCenter(coordinate);
-    this.map_.getView().setCenter(center);
-};
-
-/**
- * 设置地图缩放级别
- * @api
- */
-KMap.Map.prototype.setZoom = function (zoom) {
-    var view = this.map_.getView();
-    this.map_.getView().setZoom(zoom);
-};
-
-/**
- * 设置地图缩放级别
- * @return {number|undefined}
- * @api
- */
-KMap.Map.prototype.getZoom = function () {
-    var view = this.map_.getView();
-    return this.map_.getView().getZoom();
-};
-
-/**
- * 设置地图像素密度
- * @param {number} resolution
- * @api
- */
-KMap.Map.prototype.setResolution = function (resolution) {
-    var view = this.map_.getView();
-    return this.map_.getView().setResolution(resolution);
-};
-
-/**
- * 返回地图像素密度
- * @return {number|undefined}
- * @api
- */
-KMap.Map.prototype.getResolution = function () {
-    var view = this.map_.getView();
-    return this.map_.getView().getResolution();
-};
-
-/**
- * @api
- * @param {ol.Coordinate|KMap.Point} center
- * @param {number} zoom
- * @param {function(boolean)} callback
- */
-KMap.Map.prototype.centerAndZoom = function (center, zoom, callback) {
-    var view = this.map_.getView();
-    if (view.getAnimating()) {
-        view.cancelAnimations();
-    }
-    /**@type {ol.Coordinate} */
-    var coordinate;
-    if (center instanceof KMap.Point) {
-        coordinate = /**@type {ol.Coordinate} */(center.getCoordinates());
-    } else {
-        coordinate = /**@type {ol.Coordinate} */(center);
-    }
-    if (coordinate) {
-        if (callback) {
-            view.animate({
-                center: coordinate,
-                zoom: zoom,
-                duration: 250
-            }, callback);
-        } else {
-            view.animate({
-                center: coordinate,
-                zoom: zoom,
-                duration: 250
-            });
-        }
-    }
-};
-
-/**
- * @api
- * @param {ol.Coordinate} coordinate
- * @param {function(boolean)} callback
- */
-KMap.Map.prototype.centerAt = function (coordinate, callback) {
-    var view = this.map_.getView();
-    if (view.getAnimating()) {
-        view.cancelAnimations();
-    }
-    if (callback) {
-        view.animate({
-            center: coordinate,
-            duration: 250
-        }, callback);
-    } else {
-        view.animate({
-            center: coordinate,
-            duration: 250
-        });
-    }
-};
-
-/**
- * 移动地图中心到指定的位置
- * @api
- */
-KMap.Map.prototype.panTo = function (coordinate) {
-    if(isNaN(coordinate[0]) || isNaN(coordinate[1])) {
-        return;
-    }
-    var view = this.map_.getView();
-    if (view.getAnimating()) {
-        view.cancelAnimations();
-    }
-    var center = view.constrainCenter(coordinate);
-    view.animate({
-        center: center,
-        duration: 250,
-        easing: ol.easing.easeOut
-    });
-};
-
-/**
- * 按范围缩放
- * @api
- * @param {ol.Extent} extent
- * @param {olx.view.FitOptions=} opt_options
- */
-KMap.Map.prototype.zoomByExtent = function (extent, opt_options) {
-    var view = this.map_.getView();
-    if (view.getAnimating()) {
-        view.cancelAnimations();
-    }
-    if (!ol.extent.isEmpty(extent) && !isNaN(extent[0]) && !isNaN(extent[1]) && !isNaN(extent[2]) && !isNaN(extent[3])) {
-        var options = { duration: 250 };
-        if(opt_options) {
-            options = ol.obj.assign(options, opt_options)
-        }
-        view.fit(extent, options);
-    }
-};
-
-/**
- * 缩放地图
- * @api
- */
-KMap.Map.prototype.zoomByDelta = function (delta, duration) {
-    var view = this.map_.getView();
-    if (!view) {
-        return;
-    }
-    var currentResolution = view.getResolution();
-    if (currentResolution) {
-        var newResolution = view.constrainResolution(currentResolution, delta);
-        if (duration > 0) {
-            if (view.getAnimating()) {
-                view.cancelAnimations();
-            }
-            view.animate({
-                resolution: newResolution,
-                duration: duration,
-                easing: ol.easing.easeOut
-            });
-        } else {
-            view.setResolution(newResolution);
-        }
-    }
-};
-
-/**
- * 地图放大一级
- * @api
- */
-KMap.Map.prototype.zoomIn = function () {
-    this.zoomByDelta(1, 250);
-};
-
-/**
- * 地图缩小一级
- * @api
- */
-KMap.Map.prototype.zoomOut = function () {
-    this.zoomByDelta(-1, 250);
-};
-
-/**
- * 返回地图内部对象
- * @return {ol.Map}
- * @api
- */
-KMap.Map.prototype.getMap = function () {
-    return this.map_;
-};
-
-/**
- * 当前地图的当前范围
- * @return {ol.Extent}
- * @api
- */
-KMap.Map.prototype.getExtent = function () {
-    var size = /**@type {Array.<number>} */ (this.map_.getSize());
-    var lt = this.map_.getCoordinateFromPixel([0, 0]);
-    var rb = this.map_.getCoordinateFromPixel(size);
-    return [lt[0], rb[1], rb[0], lt[1]];
-};
-
-/**
- * 设置地图的当前的显示范围
- * @param {ol.Extent} extent
- * @api
- */
-KMap.Map.prototype.setExtent = function (extent) {
-    this.zoomByExtent(extent);
-};
-
-/**
- * 当前地图的当前范围
- * @api
- */
-KMap.Map.prototype.getFullExtent = function () {
-    var view = this.map_.getView();
-    var extent = this.extent_ || view.getProjection().getExtent();
-    return extent;
-};
-
-/**
- * 设置地图的范围
- * @api
- */
-KMap.Map.prototype.setFullExtent = function (extent) {
-    this.extent_ = extent;
-};
-
-/**
- * 设置地图的范围
- * @api
- */
-KMap.Map.prototype.zoomToFullExtent = function () {
-    var extent = this.getFullExtent();
-    this.zoomByExtent(extent);
-};
-
-/**
- * 地图打印
- * @api
- */
-KMap.Map.prototype.print = function () {
-
-};
-
-/**
- * 返回底图图层
- * @api
- */
-KMap.Map.prototype.getBaseLayers = function () {
-    return this.baseLayers_;
-};
-
-/**
- * 添加底图
- * @api
- */
-KMap.Map.prototype.addBaseLayer = function (layer) {
-    this.baseLayers_.push(layer);
-};
-
-/**
- * 移除底图
- * @api
- */
-KMap.Map.prototype.removeBaseLayer = function (layer) {
-    this.baseLayers_.remove(layer);
-};
-
-/**
- * 清空底图
- * @api
- */
-KMap.Map.prototype.clearBaseLayer = function () {
-    this.baseLayers_.clear();
-};
-
-/**
- * 返回动态图层
- * @api
- */
-KMap.Map.prototype.getDynamicLayers = function () {
-    return this.dynamicLayers_;
-};
-
-/**
- * 添加动态图层
- * @api
- */
-KMap.Map.prototype.addDynamicLayer = function (layer) {
-    this.dynamicLayers_.push(layer);
-};
-
-/**
- * 移除动态图层
- * @api
- */
-KMap.Map.prototype.removeDynamicLayer = function (layer) {
-    this.dynamicLayers_.remove(layer);
-};
-
-/**
- * 清空动态图层
- * @api
- */
-KMap.Map.prototype.clearDynamicLayers = function () {
-    this.dynamicLayers_.clear();
-};
-
-/**
- * 返回动态图层
- * @api
- */
-KMap.Map.prototype.getGraphicsLayers = function () {
-    return this.graphicsLayers_;
-};
-
-/**
- * 添加绘制图层
- * @api
- */
-KMap.Map.prototype.addGraphicsLayer = function (layer) {
-    this.graphicsLayers_.push(layer);
-};
-
-/**
- * 移除绘制图层
- * @api
- */
-KMap.Map.prototype.removeGraphicsLayer = function (layer) {
-    this.graphicsLayers_.remove(layer);
-};
-
-/**
- * 清空绘制图层
- * @api
- */
-KMap.Map.prototype.clearGraphicsLayers = function () {
-    this.graphicsLayers_.clear();
-};
-
-/**
- * @api
- */
-KMap.Map.prototype.addOverlay = function (overlay) {
-    this.map_.addOverlay(overlay);
-};
-
-/**
- * @api
- */
-KMap.Map.prototype.removeOverlay = function (overlay) {
-    this.map_.removeOverlay(overlay);
-};
-
-/**
- * 刷新地图
- * @api
- */
-KMap.Map.prototype.refresh = function () {
-    this.map_.render();
-};
-
-/**
- * 监听事件只触发一次
- * @api
- */
-KMap.Map.prototype.once = function (type, listener, thizObj) {
-    this.map_.once(type, listener, thizObj);
-};
-
-/**
- * 监听事件
- * @api
- */
-KMap.Map.prototype.on = function (type, listener, thizObj) {
-    this.map_.on(type, listener, thizObj);
-};
-
-/**
- * 取消监听事件
- * @api
- */
-KMap.Map.prototype.un = function (type, listener, thizObj) {
-    this.map_.un(type, listener, thizObj);
-};
-
-/**
- * 鼠标单击地图的位置
- * @api
- */
-KMap.Map.prototype.getLocation = function (callback) {
-    this.locationAction_.once('location', function (evt) {
-        callback(evt.coordinate);
-    });
-};
-
-/**
- * 设置当前地图的响应动作
- * @return {KMap.Action.MapAction}
- * @api
- */
-KMap.Map.prototype.getAction = function () {
-    return this.mapAction_;
-};
-
-/**
- * 设置当前地图的响应动作
- * @param {KMap.Action.MapAction} action
- * @api
- */
-KMap.Map.prototype.setAction = function (action) {
-    if (this.mapAction_) {
-        this.mapAction_.setMap(null);
-    }
-    this.mapAction_ = action;
-    if (this.mapAction_) {
-        this.mapAction_.setMap(this);
-    }
-};
-
-/**
- * 默认绘制图层
- * @api
- */
-KMap.Map.prototype.getGraphics = function () {
-    return this.graphics_;
-};
-
-/**
- * @param {string} layerId
- * @return {KMap.Layer}
- * @api
- */
-KMap.Map.prototype.getLayer = function (layerId) {
-    var map = this.getMap();
-    var layerGroup = map.getLayerGroup();
-    var layers = layerGroup.getLayersArray();
-    var layer = ol.array.find(layers, function (value, index, arr) {
-        if (value.get(KMap.Layer.Property.ID) === layerId) {
-            return true;
-        }
-        return false;
-    });
-    if (layer) {
-        return KMap.Layer.fromLayer(layer);
-    }
-    return null;
-};
-
-/**
- * @api
- * @param {KMap.Popup} infoWindow
- */
-KMap.Map.prototype.setInfoWindow = function (infoWindow) {
-    this.infoWindow = infoWindow;
-};
-
-/**
- * @api
- * @return {KMap.Popup}
- */
-KMap.Map.prototype.getInfoWindow = function () {
-    return this.infoWindow;
-};
-
-/**
- * @api
- * @param {ol.interaction.Interaction} interaction
- */
-KMap.Map.prototype.addInteraction = function (interaction) {
-    this.map_.addInteraction(interaction);
-};
-
-/**
- * @api
- * @param {ol.interaction.Interaction} interaction
- */
-KMap.Map.prototype.removeInteraction = function (interaction) {
-    this.map_.removeInteraction(interaction);
-};
 goog.provide('KMap.Overlay');
 
 goog.require('KMap');
@@ -84365,6 +84574,196 @@ KMap.Overlay.prototype.setPosition = function (position) {
 KMap.Overlay.prototype.setElement = function (position) {
     return ol.Overlay.prototype.setElement.call(this, position);
 }
+goog.provide('KMap.OverViewMap');
+
+goog.require('KMap.Map');
+
+goog.require('ol.Map');
+goog.require('ol.View');
+goog.require('ol.layer.Group');
+
+/**
+ * 鹰眼地图
+ * @constructor
+ * @param {string} target
+ * @param {KMap.Map} kmap
+ * @param {*} options
+ * @api
+ */
+KMap.OverViewMap = function (target, kmap, options) {
+  var center = kmap.getCenter();
+  if (options.center) {
+    center[0] = options.center[0] || center[0];
+    center[1] = options.center[1] || center[1];
+  }
+  /**
+   * @type {ol.View}
+   */
+  this.view_ = new ol.View({
+    projection: options.projection,
+    center: center,
+    extent: options.extent,
+    resolutions: options.resolutions,
+    minResolution: options.minResolution,
+    maxResolution: options.maxResolution,
+    resolution: options.zoom ? undefined : options.resolution,
+    minZoom: options.minZoom,
+    maxZoom: options.maxZoom,
+    zoom: options.zoom || 0,
+    zoomFactor: options.zoomFactor
+  });
+  this.minZoom_ = options.minZoom || 0;
+
+  /**
+   * @type {ol.Map}
+   */
+  this.map_ = new ol.Map({
+    controls: [],
+    interactions: [],
+    view: this.view_,
+    target: target
+  });
+
+  /**
+   * @type {KMap.Map}
+   */
+  this.kmap = kmap;
+  var kview = /** @type {ol.View} */ (kmap.view_);
+  /**
+   * 添加监听（设置联动更新）
+   */
+  ol.events.listen(kview, ol.ObjectEventType.PROPERTYCHANGE, this.update_, this);
+
+  var baseLayer = this.kmap.getBaseLayers().getLayer();
+  this.map_.addLayer(baseLayer);
+
+  var source = new ol.source.Vector();
+  var layer = new ol.layer.Vector({
+    source: source,
+    style: new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: 'rgba(255, 0, 146, 0.2)'
+      }),
+      stroke: new ol.style.Stroke({
+        color: 'rgba(255, 0, 146, 1)',
+        width: 1
+      })
+    })
+  });
+  this.geom = new ol.geom.Polygon([]);
+  var feature = new ol.Feature(this.geom);
+  source.addFeature(feature);
+  this.map_.addLayer(layer);
+  this.pointerInteraction = new ol.interaction.Pointer({
+    handleDownEvent: this.pointerdown_.bind(this),
+    handleDragEvent: this.pointerdrag_.bind(this),
+    handleUpEvent: this.pointerup_.bind(this)
+  });
+  this.map_.addInteraction(this.pointerInteraction);
+
+  this.firstCoor = null;
+  this.lastCoor = null;
+  this.updating = true;
+  //目标像素范围
+  this.size = this.map_.getSize();
+  var targetDom = document.getElementById(target);
+  this.xy = [targetDom.offsetLeft, targetDom.offsetLeft];
+};
+
+KMap.OverViewMap.prototype.inTarget = function (pixel) {
+  var x = pixel[0] - this.xy[0];
+  var y = pixel[1] - this.xy[1];
+  if (x <= this.size[0] && y <= this.size[1] && x >= 0 && y >= 0) {
+    return true;
+  }
+  return false;
+};
+
+KMap.OverViewMap.prototype.pointerdown_ = function (e) {
+  var extent = this.geom.getExtent();
+  this.firstCoor = e.coordinate;
+  this.lastCoor = null;
+  if (ol.extent.containsCoordinate(extent, e.coordinate)) {
+    this.updating = false;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+KMap.OverViewMap.prototype.pointerdrag_ = function (e) {
+  if (this.inTarget(e.pixel)) {
+    if (this.lastCoor) {
+      var offsetX = e.coordinate[0] - this.lastCoor[0];
+      var offsetY = e.coordinate[1] - this.lastCoor[1];
+
+      var coor = this.geom.getCoordinates()[0];
+      var newCoor = coor.map(function (e) {
+        return [e[0] + offsetX, e[1] + offsetY];
+      });
+      this.geom.setCoordinates([newCoor]);
+      this.lastCoor = e.coordinate;
+    } else {
+      this.lastCoor = e.coordinate;
+    }
+  }
+};
+
+KMap.OverViewMap.prototype.pointerup_ = function (e) {
+  this.updating = true;
+  var offsetX = e.coordinate[0] - this.firstCoor[0];
+  var offsetY = e.coordinate[1] - this.firstCoor[1];
+  var center = this.kmap.getCenter();
+  this.kmap.panTo([center[0] + offsetX, center[1] + offsetY]);
+};
+
+/**
+ * 更新小地图小框
+ * @private
+ */
+KMap.OverViewMap.prototype.updateBox_ = function (zoom, extent) {
+  var perx = (extent[2] - extent[0]) / 4;
+  var pery = (extent[3] - extent[1]) / 4;
+  if ((zoom - 2) > this.minZoom_) {
+    var coor = [
+      [
+        [extent[0] + perx * 1, extent[1] + pery * 1],
+        [extent[0] + perx * 3, extent[1] + pery * 1],
+        [extent[0] + perx * 3, extent[1] + pery * 3],
+        [extent[0] + perx * 1, extent[1] + pery * 3],
+        [extent[0] + perx * 1, extent[1] + pery * 1]
+      ]
+    ];
+    this.geom.setCoordinates(coor);
+    return zoom - 2;
+  } else {
+    this.geom.setCoordinates([]);
+    return this.view_.getZoom;
+  }
+};
+
+/**
+ * 地图联动
+ * @private
+ */
+KMap.OverViewMap.prototype.update_ = function (event) {
+  if (this.updating) {
+    var center = this.kmap.getCenter();
+    var extent = this.kmap.getExtent();
+    var zoom = this.kmap.getZoom();
+    zoom = this.updateBox_(zoom, extent);
+    if (this.view_.getAnimating()) {
+      this.view_.cancelAnimations();
+    }
+    this.view_.animate({
+      center: center,
+      zoom: zoom,
+      duration: 250,
+      easing: ol.easing.easeOut
+    });
+  }
+};
+
 goog.provide('KMap.Popup');
 
 goog.require('KMap');
@@ -85106,6 +85505,7 @@ goog.require('KMap.Action.MapLocation');
 goog.require('KMap.Action.MeasureArea');
 goog.require('KMap.Action.MeasureLength');
 goog.require('KMap.Action.SelectByBox');
+goog.require('KMap.Action.SelectByCircle');
 goog.require('KMap.ArcGISRestLayer');
 goog.require('KMap.ArcGISTileLayer');
 goog.require('KMap.BaiduLayer');
@@ -85114,6 +85514,7 @@ goog.require('KMap.BasemapGallery');
 goog.require('KMap.Circle');
 goog.require('KMap.Collection');
 goog.require('KMap.Contrail');
+goog.require('KMap.DrawTool');
 goog.require('KMap.Extent');
 goog.require('KMap.FeatureLayer');
 goog.require('KMap.Geometry');
@@ -85132,6 +85533,7 @@ goog.require('KMap.Layer');
 goog.require('KMap.Map');
 goog.require('KMap.MultiPoint');
 goog.require('KMap.MultiPolygon');
+goog.require('KMap.OverViewMap');
 goog.require('KMap.Overlay');
 goog.require('KMap.PictureMarkerSymbol');
 goog.require('KMap.Point');
@@ -85157,6 +85559,11 @@ goog.require('KMap.WMTSLayer');
 goog.exportSymbol(
     'KMap.Action.ClearGraphics',
     KMap.Action.ClearGraphics,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.DrawTool',
+    KMap.DrawTool,
     OPENLAYERS);
 
 goog.exportSymbol(
@@ -85228,6 +85635,21 @@ goog.exportProperty(
     KMap.Action.SelectByBox.Event.prototype,
     'extent',
     KMap.Action.SelectByBox.Event.prototype.extent);
+
+goog.exportSymbol(
+    'KMap.Action.SelectByCircle',
+    KMap.Action.SelectByCircle,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.Action.SelectByCircle.Event',
+    KMap.Action.SelectByCircle.Event,
+    OPENLAYERS);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.Event.prototype,
+    'extent',
+    KMap.Action.SelectByCircle.Event.prototype.extent);
 
 goog.exportSymbol(
     'KMap.Collection',
@@ -86465,6 +86887,11 @@ goog.exportProperty(
     KMap.Overlay.prototype.setElement);
 
 goog.exportSymbol(
+    'KMap.OverViewMap',
+    KMap.OverViewMap,
+    OPENLAYERS);
+
+goog.exportSymbol(
     'KMap.Popup',
     KMap.Popup,
     OPENLAYERS);
@@ -86928,6 +87355,41 @@ goog.exportProperty(
     KMap.Action.SelectByBox.prototype,
     'un',
     KMap.Action.SelectByBox.prototype.un);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'actionName',
+    KMap.Action.SelectByCircle.prototype.actionName);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'activate',
+    KMap.Action.SelectByCircle.prototype.activate);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'deactivate',
+    KMap.Action.SelectByCircle.prototype.deactivate);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'setMap',
+    KMap.Action.SelectByCircle.prototype.setMap);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'getMap',
+    KMap.Action.SelectByCircle.prototype.getMap);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'on',
+    KMap.Action.SelectByCircle.prototype.on);
+
+goog.exportProperty(
+    KMap.Action.SelectByCircle.prototype,
+    'un',
+    KMap.Action.SelectByCircle.prototype.un);
 
 goog.exportProperty(
     KMap.Circle.prototype,
@@ -87768,7 +88230,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-5-gf578d36';
+ol.VERSION = '0.1-6-g6d3bb60';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
