@@ -42,6 +42,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
         var image_options = /**@type {olx.source.ImageArcGISRestOptions} */ ({
             "projection": options["projection"],
             "url": options["url"],
+            "ratio": options["ratio"],
             "params": {
                 "layers": options["layers"] || ""
             }

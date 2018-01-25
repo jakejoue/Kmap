@@ -71,9 +71,6 @@ KMap.InfoTemplate.prototype.getTitle = function () {
 KMap.InfoTemplate.prototype.bind = function (template, graphic) {
     var data = template;
     if (data) {
-        var find = /\$\{([^\$\{\}]+)\}/m;
-        var matchs = null;
-
         var feature = graphic.getFeature();
         var attrs = graphic.getAttributes();
         if (attrs) {
@@ -91,6 +88,12 @@ KMap.InfoTemplate.prototype.bind = function (template, graphic) {
                 data = data.replace(regex, attr);
             }
         }
+        var find = /\$\{([^\$\{\}]+)\}/mg;
+        if (find.test(data)) {
+            console.log("缺少字段: " + data.match(find));
+        }
+        data = data.replace(find, "");
+        data = data.replace(/NaN|undefined|null/gi, '');
     }
     return data;
 };

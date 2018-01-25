@@ -314,7 +314,8 @@
         {
           "name": "point",
           "types": [
-            "KMap.Point"
+            "KMap.Point",
+            "ol.Coordinate"
           ]
         }
       ],
@@ -3888,6 +3889,21 @@
       "description": "按范围缩放",
       "stability": "experimental",
       "path": "E:\\VScode\\kmap\\src\\map.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        },
+        {
+          "name": "opt_options",
+          "types": [
+            "olx.view.FitOptions"
+          ],
+          "optional": true
+        }
+      ],
       "provides": [
         "KMap.Map"
       ]
@@ -4589,6 +4605,80 @@
           ]
         }
       ],
+      "provides": [
+        "KMap.Projection"
+      ]
+    },
+    {
+      "name": "KMap.Projection#getMetersPerUnit",
+      "kind": "function",
+      "description": "获取每个单位多少米",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\projection.js",
+      "returns": {
+        "types": [
+          "number",
+          "undefined"
+        ]
+      },
+      "provides": [
+        "KMap.Projection"
+      ]
+    },
+    {
+      "name": "KMap.Projection.transform",
+      "kind": "function",
+      "description": "Transforms a coordinate from source projection to destination projection.\rThis returns a new coordinate (and does not modify the original).\r\rSee {@link ol.proj.transformExtent} for extent transformation.\rSee the transform method of {@link ol.geom.Geometry} and its subclasses for\rgeometry transforms.",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\projection.js",
+      "params": [
+        {
+          "name": "coordinate",
+          "types": [
+            "ol.Coordinate"
+          ]
+        },
+        {
+          "name": "source",
+          "types": [
+            "ol.ProjectionLike"
+          ]
+        },
+        {
+          "name": "destination",
+          "types": [
+            "ol.ProjectionLike"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "ol.Coordinate"
+        ]
+      },
+      "provides": [
+        "KMap.Projection"
+      ]
+    },
+    {
+      "name": "KMap.Projection.get",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\projection.js",
+      "params": [
+        {
+          "name": "options",
+          "types": [
+            "olx.ProjectionOptions",
+            "string"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Projection"
+        ]
+      },
       "provides": [
         "KMap.Projection"
       ]

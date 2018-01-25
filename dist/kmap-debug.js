@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-4-gffe299e
+// Version: 0.1-5-gf578d36
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79849,15 +79849,21 @@ KMap.Extent.expand = function (extent, value) {
 
 /**
  * @param {ol.Extent} extent
- * @param {KMap.Point} point
+ * @param {KMap.Point | ol.Coordinate} point
  * @return {boolean}
  * @api
  */
 KMap.Extent.contains = function (extent, point) {
-    if(!extent || !point) {
+    if (!extent || !point) {
         return false;
     }
-    return ol.extent.containsCoordinate(extent, point.getCoordinates());
+    var coord = [];
+    if (point instanceof KMap.Point) {
+        coord = point.getCoordinates();
+    } else {
+        coord = /**@type {ol.Coordinate} */ (point);
+    }
+    return ol.extent.containsCoordinate(extent, coord);
 };
 goog.provide('KMap.Circle');
 
@@ -81547,9 +81553,6 @@ KMap.InfoTemplate.prototype.getTitle = function () {
 KMap.InfoTemplate.prototype.bind = function (template, graphic) {
     var data = template;
     if (data) {
-        var find = /\$\{([^\$\{\}]+)\}/m;
-        var matchs = null;
-
         var feature = graphic.getFeature();
         var attrs = graphic.getAttributes();
         if (attrs) {
@@ -81567,9 +81570,16 @@ KMap.InfoTemplate.prototype.bind = function (template, graphic) {
                 data = data.replace(regex, attr);
             }
         }
+        var find = /\$\{([^\$\{\}]+)\}/mg;
+        if (find.test(data)) {
+            console.log("缺少字段: " + data.match(find));
+        }
+        data = data.replace(find, "");
+        data = data.replace(/NaN|undefined|null/gi, '');
     }
     return data;
 };
+
 goog.provide('KMap.Layer');
 
 goog.require('KMap');
@@ -83959,14 +83969,20 @@ KMap.Map.prototype.panTo = function (coordinate) {
 /**
  * 按范围缩放
  * @api
+ * @param {ol.Extent} extent
+ * @param {olx.view.FitOptions=} opt_options
  */
-KMap.Map.prototype.zoomByExtent = function (extent) {
+KMap.Map.prototype.zoomByExtent = function (extent, opt_options) {
     var view = this.map_.getView();
     if (view.getAnimating()) {
         view.cancelAnimations();
     }
     if (!ol.extent.isEmpty(extent) && !isNaN(extent[0]) && !isNaN(extent[1]) && !isNaN(extent[2]) && !isNaN(extent[3])) {
-        view.fit(extent, { duration: 250 });
+        var options = { duration: 250 };
+        if(opt_options) {
+            options = ol.obj.assign(options, opt_options)
+        }
+        view.fit(extent, options);
     }
 };
 
@@ -84577,6 +84593,42 @@ KMap.Projection.prototype.addEquivalentProjections = function (codes) {
     });
     projections.push(this.projection);
     ol.proj.addEquivalentProjections(projections);
+};
+
+/**
+ * 获取每个单位多少米
+ * @api
+ * @return {number|undefined}
+ */
+KMap.Projection.prototype.getMetersPerUnit = function(){
+    return this.projection.getMetersPerUnit();
+};
+
+/**
+ * Transforms a coordinate from source projection to destination projection.
+ * This returns a new coordinate (and does not modify the original).
+ *
+ * See {@link ol.proj.transformExtent} for extent transformation.
+ * See the transform method of {@link ol.geom.Geometry} and its subclasses for
+ * geometry transforms.
+ *
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {ol.ProjectionLike} source Source projection-like.
+ * @param {ol.ProjectionLike} destination Destination projection-like.
+ * @return {ol.Coordinate} Coordinate.
+ * @api
+ */
+KMap.Projection.transform = function(coordinate, source, destination) {
+    return ol.proj.transform(coordinate, source, destination);
+};
+
+/**
+* @param {olx.ProjectionOptions|string} options
+* @return {KMap.Projection} projection.
+* @api
+*/
+KMap.Projection.get = function(options){
+    return new KMap.Projection(options);
 };
 goog.provide('KMap.SimpleRenderer');
 
@@ -86487,6 +86539,21 @@ goog.exportProperty(
     'addEquivalentProjections',
     KMap.Projection.prototype.addEquivalentProjections);
 
+goog.exportProperty(
+    KMap.Projection.prototype,
+    'getMetersPerUnit',
+    KMap.Projection.prototype.getMetersPerUnit);
+
+goog.exportSymbol(
+    'KMap.Projection.transform',
+    KMap.Projection.transform,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.Projection.get',
+    KMap.Projection.get,
+    OPENLAYERS);
+
 goog.exportSymbol(
     'KMap.Transform',
     KMap.Transform,
@@ -87701,7 +87768,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-4-gffe299e';
+ol.VERSION = '0.1-5-gf578d36';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
