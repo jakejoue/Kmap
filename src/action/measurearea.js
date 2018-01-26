@@ -16,7 +16,9 @@ goog.require('ol.Overlay');
  * @api
  */
 KMap.Action.MeasureArea = function (options) {
-    KMap.Action.MapAction.call(this, { actionName: options.actionName });
+    KMap.Action.MapAction.call(this, {
+        actionName: options.actionName
+    });
 
     /**
      * 用来计算经纬度坐标测量结果
@@ -94,7 +96,7 @@ KMap.Action.MeasureArea = function (options) {
      * Message to show when the user is drawing a polygon.
      * @type {string}
      */
-    this.continuePolygonMsg_ = '双击地图结束测量';
+    this.continuePolygonMsg_ = '<div class="mapTip"><div></div><sapn>双击地图结束测量</span></div>';
 
     /**
      * 实时显示测量的图形
@@ -136,7 +138,7 @@ KMap.Action.MeasureArea.prototype.handlerPointerMove_ = function (evt) {
         return;
     }
     /** @type {string} */
-    var helpMsg = '单击开始测量';
+    var helpMsg = '<div class="mapTip"><div></div><sapn>单击开始测量</span></div>';
 
     if (this.sketch_) {
         var geom = (this.sketch_.getGeometry());
@@ -160,7 +162,7 @@ KMap.Action.MeasureArea.prototype.formatArea = function (polygon) {
     var map = this.map_.getMap();
     if (this.geodesic_) {
         var sourceProj = map.getView().getProjection();
-        var geom = /** @type {ol.geom.Polygon} */(polygon.clone().transform(sourceProj, 'EPSG:4326'));
+        var geom = /** @type {ol.geom.Polygon} */ (polygon.clone().transform(sourceProj, 'EPSG:4326'));
         var coordinates = geom.getLinearRing(0).getCoordinates();
         area = Math.abs(this.wgs84Sphere_.geodesicArea(coordinates));
     } else {
@@ -168,9 +170,9 @@ KMap.Action.MeasureArea.prototype.formatArea = function (polygon) {
     }
     var output;
     if (area > 10000) {
-        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup style="vertical-align: text-top">2</sup>';
+        output = (Math.round(area / 1000000 * 100) / 100) + ' 千米<sup style="vertical-align: super">2</sup>';
     } else {
-        output = (Math.round(area * 100) / 100) + ' 米<sup style="vertical-align: text-top">2</sup>';
+        output = (Math.round(area * 100) / 100) + ' 米<sup style="vertical-align: super">2</sup>';
     }
     return output;
 };
@@ -249,9 +251,6 @@ KMap.Action.MeasureArea.prototype.createMeasureTooltip = function () {
     this.overlays_.push(this.measureTooltip_);
 };
 
-/**
- * @override
- */
 KMap.Action.MeasureArea.prototype.activate = function () {
     var type = 'Polygon';
     this.draw_ = new ol.interaction.Draw({
@@ -292,9 +291,6 @@ KMap.Action.MeasureArea.prototype.activate = function () {
     map.on('pointermove', this.handlerPointerMove_, this);
 };
 
-/**
- * @override
- */
 KMap.Action.MeasureArea.prototype.deactivate = function () {
     this.source_.clear();
     var map = this.map_.getMap();
