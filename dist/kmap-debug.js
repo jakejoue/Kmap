@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-8-ged6baef
+// Version: 0.1-9-gbd519e4
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79743,7 +79743,7 @@ KMap.Action.MeasureLength.prototype.createMeasureTooltip = function () {
   this.measureTooltipElement_.className = 'tooltip tooltip-measure';
   this.measureTooltip_ = new ol.Overlay({
     element: this.measureTooltipElement_,
-    offset: [0, -15],
+    offset: [0, -30],
     positioning: 'bottom-center'
   });
 
@@ -83598,7 +83598,8 @@ ol.inherits(KMap.AMapLayer, KMap.Layer);
 KMap.AMapLayer.prototype.createLayer = function (options) {
     var projection = ol.proj.get("EPSG:3857");
     var amap_source = new ol.source.XYZ({
-        url: options["url"]
+        url: options["url"],
+        crossOrigin: "anonymous"
     })
 
     var amap_layer = new ol.layer.Tile({
@@ -83625,6 +83626,7 @@ KMap.AMapLayer.fromLayer = function (layer) {
 KMap.AMapLayer.prototype.getType = function () {
     return KMap.Layer.Type.AMapLayer;
 };
+
 ﻿goog.provide('KMap.ArcGISRestLayer');
 
 goog.require('KMap');
@@ -83656,6 +83658,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
         var tile_options = /**@type {olx.source.TileArcGISRestOptions} */ ({
             "projection": options["projection"],
             "url": options["url"],
+            "crossOrigin": options["crossOrigin"],
             "params": {
                 "layers": options["layers"] || ""
             }
@@ -83670,6 +83673,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
             "projection": options["projection"],
             "url": options["url"],
             "ratio": options["ratio"],
+            "crossOrigin": options["crossOrigin"],
             "params": {
                 "layers": options["layers"] || ""
             }
@@ -83834,8 +83838,10 @@ ol.inherits(KMap.ArcGISTileLayer, KMap.Layer);
  */
 KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
     var tile_options = /** @type {MapX.ArcGISTileLayerOptions} */ (ol.obj.assign({}, options));
+    var proxy = tile_options.proxy;
     var url = tile_options.url;
-    var projection = options.projection;
+    var projection = tile_options.projection;
+    var crossOragin = tile_options.crossOragin;
     var tile_layer = new ol.layer.Tile();
 
     /** @type {function(MapX.ArcGISTileLayerInfo)} */
@@ -83860,7 +83866,8 @@ KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
         var tile_source = new ol.source.TileImage({
             projection: projection,
             tileGrid: tilegrid,
-            url: url + '/tile/{z}/{y}/{x}'
+            url: proxy + url + '/tile/{z}/{y}/{x}',
+            crossOrigin: crossOragin
         });
         tile_layer.setSource(tile_source);
     };
@@ -83912,6 +83919,7 @@ KMap.ArcGISTileLayer.fromLayer = function (layer) {
 KMap.ArcGISTileLayer.prototype.getType = function () {
     return KMap.Layer.Type.ArcGISTileLayer;
 };
+
 ﻿goog.provide('KMap.BaiduLayer');
 
 goog.require('KMap');
@@ -83951,7 +83959,8 @@ KMap.BaiduLayer.prototype.createLayer = function (options) {
     var baidu_source = new ol.source.TileImage({
         projection: projection,
         tileGrid: tilegrid,
-        url: options["url"]
+        url: options["url"],
+        crossOrigin: 'anonymous'
     });
 
     var baidu_layer = new ol.layer.Tile({
@@ -83978,6 +83987,7 @@ KMap.BaiduLayer.fromLayer = function (layer) {
 KMap.BaiduLayer.prototype.getType = function () {
     return KMap.Layer.Type.BaiduLayer;
 };
+
 goog.provide('KMap.SimpleMarkerSymbol');
 
 goog.require('KMap.Symbol');
@@ -84459,6 +84469,7 @@ KMap.WMSLayer.prototype.getFeatureInfoUrl = function (coordinate, resolution, pr
     var source = /** @type {ol.source.ImageWMS} */ (layer.getSource());
     return source.getGetFeatureInfoUrl(coordinate, resolution, projection, params);
 };
+
 ﻿goog.provide('KMap.WMTSLayer');
 
 goog.require('KMap');
@@ -88222,7 +88233,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-8-ged6baef';
+ol.VERSION = '0.1-9-gbd519e4';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

@@ -497,7 +497,11 @@ MapX.ArcGISTileLayerOptions.prototype.dataType;
  * @api
  */
 MapX.ArcGISTileLayerOptions.prototype.projection;
-
+/**
+ * @type {string}
+ * @api
+ */
+MapX.ArcGISTileLayerOptions.prototype.crossOragin;
 /**
  * @typedef {{
  * url: (ol.FeatureUrlFunction|string),
