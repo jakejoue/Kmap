@@ -29,6 +29,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
         var tile_options = /**@type {olx.source.TileArcGISRestOptions} */ ({
             "projection": options["projection"],
             "url": options["url"],
+            "crossOrigin": options["crossOrigin"],
             "params": {
                 "layers": options["layers"] || ""
             }
@@ -43,6 +44,7 @@ KMap.ArcGISRestLayer.prototype.createLayer = function (options) {
             "projection": options["projection"],
             "url": options["url"],
             "ratio": options["ratio"],
+            "crossOrigin": options["crossOrigin"],
             "params": {
                 "layers": options["layers"] || ""
             }

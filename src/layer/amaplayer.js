@@ -23,7 +23,8 @@ ol.inherits(KMap.AMapLayer, KMap.Layer);
 KMap.AMapLayer.prototype.createLayer = function (options) {
     var projection = ol.proj.get("EPSG:3857");
     var amap_source = new ol.source.XYZ({
-        url: options["url"]
+        url: options["url"],
+        crossOrigin: "anonymous"
     })
 
     var amap_layer = new ol.layer.Tile({

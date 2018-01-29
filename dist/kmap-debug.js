@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-7-ga5cbfc9
+// Version: 0.1-8-ged6baef
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79743,7 +79743,7 @@ KMap.Action.MeasureLength.prototype.createMeasureTooltip = function () {
   this.measureTooltipElement_.className = 'tooltip tooltip-measure';
   this.measureTooltip_ = new ol.Overlay({
     element: this.measureTooltipElement_,
-    offset: [0, -30],
+    offset: [0, -15],
     positioning: 'bottom-center'
   });
 
@@ -88222,7 +88222,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-7-ga5cbfc9';
+ol.VERSION = '0.1-8-ged6baef';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

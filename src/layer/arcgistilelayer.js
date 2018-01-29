@@ -24,8 +24,10 @@ ol.inherits(KMap.ArcGISTileLayer, KMap.Layer);
  */
 KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
     var tile_options = /** @type {MapX.ArcGISTileLayerOptions} */ (ol.obj.assign({}, options));
+    var proxy = tile_options.proxy;
     var url = tile_options.url;
-    var projection = options.projection;
+    var projection = tile_options.projection;
+    var crossOragin = tile_options.crossOragin;
     var tile_layer = new ol.layer.Tile();
 
     /** @type {function(MapX.ArcGISTileLayerInfo)} */
@@ -50,7 +52,8 @@ KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
         var tile_source = new ol.source.TileImage({
             projection: projection,
             tileGrid: tilegrid,
-            url: url + '/tile/{z}/{y}/{x}'
+            url: proxy + url + '/tile/{z}/{y}/{x}',
+            crossOrigin: crossOragin
         });
         tile_layer.setSource(tile_source);
     };

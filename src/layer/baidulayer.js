@@ -37,7 +37,8 @@ KMap.BaiduLayer.prototype.createLayer = function (options) {
     var baidu_source = new ol.source.TileImage({
         projection: projection,
         tileGrid: tilegrid,
-        url: options["url"]
+        url: options["url"],
+        crossOrigin: 'anonymous'
     });
 
     var baidu_layer = new ol.layer.Tile({
