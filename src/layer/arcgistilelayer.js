@@ -27,7 +27,7 @@ KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
     var proxy = tile_options.proxy;
     var url = tile_options.url;
     var projection = tile_options.projection;
-    var crossOragin = tile_options.crossOragin;
+    var crossOrigin = tile_options.crossOrigin;
     var tile_layer = new ol.layer.Tile();
 
     /** @type {function(MapX.ArcGISTileLayerInfo)} */
@@ -53,7 +53,7 @@ KMap.ArcGISTileLayer.prototype.createLayer = function (options) {
             projection: projection,
             tileGrid: tilegrid,
             url: proxy + url + '/tile/{z}/{y}/{x}',
-            crossOrigin: crossOragin
+            crossOrigin: crossOrigin
         });
         tile_layer.setSource(tile_source);
     };

@@ -15,58 +15,59 @@ goog.require('ol.interaction.Draw');
  * @api
  */
 KMap.DrawTool = function (options) {
-  this.target_ = options.target;
-  this.className_ = options.className || '';
-  /**
-   * @type {Array.<string>}
-   */
-  this.types_ = options.types ? options.types.filter(function (e) {
-    return KMap.DrawTool.TYPES.indexOf(e) == -1;
-  }) : KMap.DrawTool.TYPES;
+    this.target_ = options.target;
+    this.className_ = options.className || '';
+    /**
+     * @type {Array.<string>}
+     */
+    this.types_ = options.types ? options.types.filter(function (e) {
+        return KMap.DrawTool.TYPES.indexOf(e) == -1;
+    }) : KMap.DrawTool.TYPES;
 
-  /**
-   * @type {KMap.GraphicsLayer}
-   */
-  this.layer_ = options.layer || new KMap.GraphicsLayer('', {});
-  /**
-   * @type {Function | undefined}
-   */
-  this.symbol_ = options.symbol || undefined;
+    /**
+     * @type {KMap.GraphicsLayer}
+     */
+    this.layer_ = options.layer || new KMap.GraphicsLayer('', {});
+    /**
+     * @type {Function | undefined}
+     */
+    this.symbol_ = options.symbol || undefined;
 
-  this.dom_ = null;
-  /**
-   * @type {ol.interaction.Draw}
-   */
-  this.draw_ = null;
+    this.dom_ = null;
+    /**
+     * @type {ol.interaction.Draw}
+     */
+    this.draw_ = null;
 
-  /**
-   * @type {KMap.Map}
-   */
-  this.map_ = null;
+    /**
+     * @type {KMap.Map}
+     */
+    this.map_ = null;
 };
 
 /**
  * 渲染画图工具dom并绑定事件
  */
 KMap.DrawTool.prototype.renderDom = function () {
-  var self = this;
-  if (!this.dom_) {
-    var dom = document.createElement("ul");
-    dom.className = "drawtool " + this.className_;
-    this.types_.forEach(function (e) {
-      var li = document.createElement("li");
-      li.className = /** @type {string}*/ (e).toLowerCase();;
-      li.onclick = function () {
-        self.switch(e);
-      };
-      dom.appendChild(li);
-    });
-    this.dom_ = dom;
-    document.getElementById(this.target_).appendChild(this.dom_);
-  } else {
-    document.getElementById(this.target_).removeChild(this.dom_);
-    this.dom_ = null;
-  }
+    var self = this;
+    if (!this.dom_) {
+        var dom = document.createElement("ul");
+        dom.className = "drawtool " + this.className_;
+        this.types_.forEach(function (e) {
+            var li = document.createElement("li");
+            li.className = /** @type {string}*/ (e).toLowerCase();
+            li.title = KMap.DrawTool.TITLES[e];
+            li.onclick = function () {
+                self.switch(e);
+            };
+            dom.appendChild(li);
+        });
+        this.dom_ = dom;
+        document.getElementById(this.target_).appendChild(this.dom_);
+    } else {
+        document.getElementById(this.target_).removeChild(this.dom_);
+        this.dom_ = null;
+    }
 };
 
 /**
@@ -74,47 +75,57 @@ KMap.DrawTool.prototype.renderDom = function () {
  * @param {string | undefined} type
  */
 KMap.DrawTool.prototype.switch = function (type) {
-  var self = this;
-  this.map_.removeInteraction(this.draw_);
-  if (type) {
-    var type_ = type.split('Free')[0];
-    this.draw_ = new ol.interaction.Draw({
-      type: /** @type {ol.geom.GeometryType} */ (type_),
-      freehand: /** @type {boolean} */ (type.indexOf('Free') != -1)
-    });
-    this.draw_.on('drawend', function (e) {
-      var graphic = new KMap.Graphic(e.feature);
-      if (self.symbol_) {
-        graphic.setSymbol(self.symbol_(type_));
-      } else {
-        e.feature.setStyle(KMap.DrawTool.GETSYMBOL(type_))
-      }
-      self.layer_.add(graphic);
-      setTimeout(function () {
-        self.switch(undefined);
-      }, 1);
-    });
-    this.map_.addInteraction(this.draw_);
-  }
+    var self = this;
+    this.map_.removeInteraction(this.draw_);
+    if (type) {
+        var type_ = type.split('Free')[0];
+        this.draw_ = new ol.interaction.Draw({
+            type: /** @type {ol.geom.GeometryType} */ (type_),
+            freehand: /** @type {boolean} */ (type.indexOf('Free') != -1)
+        });
+        this.draw_.on('drawend', function (e) {
+            var graphic = new KMap.Graphic(e.feature);
+            if (self.symbol_) {
+                graphic.setSymbol(self.symbol_(type_));
+            } else {
+                e.feature.setStyle(KMap.DrawTool.GETSYMBOL(type_))
+            }
+            self.layer_.add(graphic);
+            setTimeout(function () {
+                self.switch(undefined);
+            }, 1);
+        });
+        this.map_.addInteraction(this.draw_);
+    }
 };
 
 /**
  * @param {KMap.Map} map
  */
 KMap.DrawTool.prototype.setMap = function (map) {
-  if (map) {
-    this.map_ = map;
-    this.renderDom();
-    map.addGraphicsLayer(this.layer_);
-  } else {
-    map = this.map_;
-    this.renderDom();
-    map.removeInteraction(this.draw_);
-    map.removeGraphicsLayer(this.layer_);
-  }
+    if (map) {
+        this.map_ = map;
+        this.renderDom();
+        map.removeGraphicsLayer(this.layer_);
+        map.addGraphicsLayer(this.layer_);
+    } else {
+        map = this.map_;
+        this.renderDom();
+        map.removeInteraction(this.draw_);
+        map.removeGraphicsLayer(this.layer_);
+    }
 };
 
 KMap.DrawTool.TYPES = ['Point', 'LineString', 'LineStringFree', 'Polygon', 'PolygonFree', 'Circle', 'CircleFree'];
+KMap.DrawTool.TITLES = {
+    'Point': '绘制点',
+    'LineString': '绘制线',
+    'LineStringFree': '绘制手绘线',
+    'Polygon': '绘制面',
+    'PolygonFree': '绘制手绘面',
+    'Circle': '绘制圆',
+    'CircleFree': '绘制手绘圆'
+};
 KMap.DrawTool.GETSYMBOL = function (type) {
-  return ol.style.Style.createDefaultEditing()[type];
+    return ol.style.Style.createDefaultEditing()[type];
 };

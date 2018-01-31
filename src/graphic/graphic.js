@@ -98,11 +98,12 @@ KMap.Graphic.prototype.setGeometryName = function (geometryName) {
  * @return {KMap.Symbol|null}
  */
 KMap.Graphic.prototype.getSymbol = function () {
-    var style = /** @type {ol.style.Style} */ (this.feature_.getStyle());
-    if (style) {
+    //var style = /** @type {ol.style.Style} */ (this.feature_.getStyle());
+    /*if (style) {
         return KMap.Symbol.fromStyle(style);
     }
-    return null;
+    return null;*/
+    return /** @type {KMap.Symbol} */ (this.feature_.get(KMap.Graphic.Property.SYMBOL));
 };
 
 /**
@@ -110,7 +111,19 @@ KMap.Graphic.prototype.getSymbol = function () {
  * @param {KMap.Symbol} symbol
  */
 KMap.Graphic.prototype.setSymbol = function (symbol) {
-    this.feature_.setStyle(symbol.getStyle());
+    /*if(symbol) {
+        var self = this;
+        var styleFunction = function(feature, resolution) {
+            if(self.getVisible()) {
+                return symbol.getStyle();
+            }
+            return null;
+        };
+        this.feature_.setStyle(styleFunction);
+    } else {
+        this.feature_.setStyle(null);
+    }*/
+    this.feature_.set(KMap.Graphic.Property.SYMBOL, symbol);
 };
 
 /**
@@ -250,12 +263,14 @@ KMap.Graphic.Property = {
     LAYER: 'GRAPHIC_LAYER',
     VISIBLE: 'GRAPHIC_VISIBLE',
     ATTRIBUTES: 'GRAPHIC_ATTRIBUTES',
-    INFOTEMPLATE: 'GRAPHIC_INFOTEMPLATE'
+    INFOTEMPLATE: 'GRAPHIC_INFOTEMPLATE',
+    SYMBOL: 'GRAPHIC_SYMBOL'
 };
 
 KMap.Graphic.Properties = [
     KMap.Graphic.Property.LAYER,
     KMap.Graphic.Property.VISIBLE,
     KMap.Graphic.Property.ATTRIBUTES,
-    KMap.Graphic.Property.INFOTEMPLATE
+    KMap.Graphic.Property.INFOTEMPLATE,
+    KMap.Graphic.Property.SYMBOL
 ];
