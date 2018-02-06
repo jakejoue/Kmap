@@ -761,6 +761,20 @@
       ]
     },
     {
+      "name": "KMap.MultiPolygon#getInteriorCoords",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\multipolygon.js",
+      "returns": {
+        "types": [
+          "Array.<ol.Coordinate>"
+        ]
+      },
+      "provides": [
+        "KMap.MultiPolygon"
+      ]
+    },
+    {
       "name": "KMap.Point",
       "kind": "class",
       "stability": "experimental",
@@ -3889,6 +3903,22 @@
       "returns": {
         "types": [
           "number",
+          "undefined"
+        ]
+      },
+      "provides": [
+        "KMap.Map"
+      ]
+    },
+    {
+      "name": "KMap.Map#getResolutionRange",
+      "kind": "function",
+      "description": "返回地图像素密度区间",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\map.js",
+      "returns": {
+        "types": [
+          "Array.<number>",
           "undefined"
         ]
       },

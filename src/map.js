@@ -339,6 +339,16 @@ KMap.Map.prototype.getResolution = function () {
 };
 
 /**
+ * 返回地图像素密度区间
+ * @return {Array.<number> | undefined}
+ * @api
+ */
+KMap.Map.prototype.getResolutionRange = function () {
+    var view = this.map_.getView();
+    return [view.getMinResolution(), view.getMaxResolution()];
+};
+
+/**
  * @api
  * @param {ol.Coordinate|KMap.Point} center
  * @param {number} zoom

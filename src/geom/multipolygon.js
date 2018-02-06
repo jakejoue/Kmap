@@ -19,3 +19,11 @@ KMap.MultiPolygon = function (coordinates) {
     KMap.Geometry.call(this, geometry);
 }
 ol.inherits(KMap.MultiPolygon, KMap.Geometry);
+
+/**
+ * @api
+ * @return {Array.<ol.Coordinate>}
+ */
+KMap.MultiPolygon.prototype.getInteriorCoords = function () {
+    return /** @type {ol.geom.MultiPolygon}*/ (this.geometry_).getInteriorPoints().getCoordinates();
+}

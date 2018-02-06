@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-10-g7b0e3bc
+// Version: 0.1-11-gc4fbe2e
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -80249,6 +80249,16 @@ KMap.Map.prototype.getResolution = function () {
 };
 
 /**
+ * 返回地图像素密度区间
+ * @return {Array.<number> | undefined}
+ * @api
+ */
+KMap.Map.prototype.getResolutionRange = function () {
+    var view = this.map_.getView();
+    return [view.getMinResolution(), view.getMaxResolution()];
+};
+
+/**
  * @api
  * @param {ol.Coordinate|KMap.Point} center
  * @param {number} zoom
@@ -81928,6 +81938,14 @@ KMap.MultiPolygon = function (coordinates) {
     KMap.Geometry.call(this, geometry);
 }
 ol.inherits(KMap.MultiPolygon, KMap.Geometry);
+
+/**
+ * @api
+ * @return {Array.<ol.Coordinate>}
+ */
+KMap.MultiPolygon.prototype.getInteriorCoords = function () {
+    return /** @type {ol.geom.MultiPolygon}*/ (this.geometry_).getInteriorPoints().getCoordinates();
+}
 goog.provide('KMap.Polygon');
 
 goog.require('KMap');
@@ -81940,13 +81958,13 @@ goog.require('ol.geom.Polygon');
  * @api
  */
 KMap.Polygon = function (coordinates) {
-  var geometry;
-  if (coordinates instanceof ol.geom.Polygon) {
-    geometry = /**@type {ol.geom.Polygon} */ (coordinates);
-  } else {
-    geometry = new ol.geom.Polygon(coordinates);
-  }
-  KMap.Geometry.call(this, geometry);
+    var geometry;
+    if (coordinates instanceof ol.geom.Polygon) {
+        geometry = /**@type {ol.geom.Polygon} */ (coordinates);
+    } else {
+        geometry = new ol.geom.Polygon(coordinates);
+    }
+    KMap.Geometry.call(this, geometry);
 }
 ol.inherits(KMap.Polygon, KMap.Geometry);
 
@@ -81955,10 +81973,7 @@ ol.inherits(KMap.Polygon, KMap.Geometry);
  * @return {ol.Coordinate}
  */
 KMap.Polygon.prototype.getInteriorCoord = function () {
-  if (this.geometry_ instanceof ol.geom.Polygon) {
-    return this.geometry_.getInteriorPoint().getCoordinates();
-  }
-  return null;
+    return /** @type {ol.geom.Polygon}*/ (this.geometry_).getInteriorPoint().getCoordinates();
 }
 
 goog.provide('KMap.Transform');
@@ -85785,6 +85800,11 @@ goog.exportSymbol(
     KMap.MultiPolygon,
     OPENLAYERS);
 
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
+    'getInteriorCoords',
+    KMap.MultiPolygon.prototype.getInteriorCoords);
+
 goog.exportSymbol(
     'KMap.Point',
     KMap.Point,
@@ -86694,6 +86714,11 @@ goog.exportProperty(
     KMap.Map.prototype,
     'getResolution',
     KMap.Map.prototype.getResolution);
+
+goog.exportProperty(
+    KMap.Map.prototype,
+    'getResolutionRange',
+    KMap.Map.prototype.getResolutionRange);
 
 goog.exportProperty(
     KMap.Map.prototype,
@@ -88259,7 +88284,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-10-g7b0e3bc';
+ol.VERSION = '0.1-11-gc4fbe2e';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

@@ -10,13 +10,13 @@ goog.require('ol.geom.Polygon');
  * @api
  */
 KMap.Polygon = function (coordinates) {
-  var geometry;
-  if (coordinates instanceof ol.geom.Polygon) {
-    geometry = /**@type {ol.geom.Polygon} */ (coordinates);
-  } else {
-    geometry = new ol.geom.Polygon(coordinates);
-  }
-  KMap.Geometry.call(this, geometry);
+    var geometry;
+    if (coordinates instanceof ol.geom.Polygon) {
+        geometry = /**@type {ol.geom.Polygon} */ (coordinates);
+    } else {
+        geometry = new ol.geom.Polygon(coordinates);
+    }
+    KMap.Geometry.call(this, geometry);
 }
 ol.inherits(KMap.Polygon, KMap.Geometry);
 
@@ -25,8 +25,5 @@ ol.inherits(KMap.Polygon, KMap.Geometry);
  * @return {ol.Coordinate}
  */
 KMap.Polygon.prototype.getInteriorCoord = function () {
-  if (this.geometry_ instanceof ol.geom.Polygon) {
-    return this.geometry_.getInteriorPoint().getCoordinates();
-  }
-  return null;
+    return /** @type {ol.geom.Polygon}*/ (this.geometry_).getInteriorPoint().getCoordinates();
 }
