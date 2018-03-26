@@ -209,7 +209,8 @@ KMap.Layer.Type = {
   TileWMSLayer: 'TileWMSLayer',
   WMSLayer: 'WMSLayer',
   WMTSLayer: 'WMTSLayer',
-  AMapLayer: 'AMapLayer'
+  AMapLayer: 'AMapLayer',
+  TdtLayer: 'TdtLayer'
 };
 
 /**

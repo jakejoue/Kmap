@@ -3307,6 +3307,68 @@
       ]
     },
     {
+      "name": "KMap.TdtLayer",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tdtlayer.js",
+      "extends": "KMap.Layer",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "types": [
+            "Object",
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.TdtLayer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer.fromLayer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tdtlayer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.TdtLayer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getType",
+      "kind": "function",
+      "description": "返回图层的类型",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\tdtlayer.js",
+      "returns": {
+        "types": [
+          "KMap.Layer.Type"
+        ]
+      },
+      "provides": [
+        "KMap.TdtLayer"
+      ]
+    },
+    {
       "name": "KMap.TileWMSLayer",
       "kind": "class",
       "stability": "experimental",
@@ -8117,6 +8179,211 @@
     },
     {
       "name": "KMap.GroupLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getExtent",
+      "kind": "function",
+      "description": "返回图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.Extent",
+          "null",
+          "undefined"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.TdtLayer#setMinResolution",
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",

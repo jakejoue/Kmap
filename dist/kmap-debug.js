@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-11-gc4fbe2e
+// Version: 0.1-14-g892852c
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79008,7 +79008,8 @@ KMap.Layer.Type = {
   TileWMSLayer: 'TileWMSLayer',
   WMSLayer: 'WMSLayer',
   WMTSLayer: 'WMTSLayer',
-  AMapLayer: 'AMapLayer'
+  AMapLayer: 'AMapLayer',
+  TdtLayer: 'TdtLayer'
 };
 
 /**
@@ -84308,6 +84309,77 @@ KMap.FeatureLayer.fromLayer = function (layer) {
 KMap.FeatureLayer.prototype.getType = function () {
     return KMap.Layer.Type.FeatureLayer;
 };
+goog.provide('KMap.TdtLayer');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('ol.proj');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.Layer}
+ * @param {string} id id.
+ * @param {Object|ol.layer.Base} options options.
+ */
+KMap.TdtLayer = function(id, options) {
+    KMap.Layer.call(this, id, options);
+
+};
+ol.inherits(KMap.TdtLayer, KMap.Layer);
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.TdtLayer.prototype.createLayer = function(options) {
+    var projection = ol.proj.get("EPSG:4326");
+    var projectionExtent = projection.getExtent();
+    var size = ol.extent.getWidth(projectionExtent) / 256;
+
+    var resolutions = [];
+    var matrixIds = [];
+    for (var z = 0; z < 21; ++z) {
+        resolutions[z] = size / Math.pow(2, z);
+        matrixIds[z] = z;
+    }
+    var tileGrid = new ol.tilegrid.WMTS({
+        origin: ol.extent.getTopLeft(projectionExtent),
+        resolutions: resolutions,
+        matrixIds: matrixIds
+    });
+    var opts = {
+        tileGrid: tileGrid,
+        projection: projection,
+        style: options.style || 'default',
+        matrixSet: options.matrixSet,
+        url: options.url,
+        format: options.format || 'tiles',
+        layer: options.layer
+    };
+    return new ol.layer.Tile({
+        source: new ol.source.WMTS( /** @type {!olx.source.WMTSOptions} */ (opts))
+    });
+};
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.TdtLayer.fromLayer = function(layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.TdtLayer(layerId, layer);
+};
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.TdtLayer.prototype.getType = function() {
+    return KMap.Layer.Type.TdtLayer;
+};
 ﻿goog.provide('KMap.TileWMSLayer');
 
 goog.require('KMap');
@@ -85592,6 +85664,7 @@ goog.require('KMap.SimpleMarkerSymbol');
 goog.require('KMap.SimpleRenderer');
 goog.require('KMap.SimpleTextSymbol');
 goog.require('KMap.Symbol');
+goog.require('KMap.TdtLayer');
 goog.require('KMap.TileWMSLayer');
 goog.require('KMap.Transform');
 goog.require('KMap.UniqueValueRenderer');
@@ -86569,6 +86642,21 @@ goog.exportProperty(
     KMap.Layer.prototype,
     'getType',
     KMap.Layer.prototype.getType);
+
+goog.exportSymbol(
+    'KMap.TdtLayer',
+    KMap.TdtLayer,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.TdtLayer.fromLayer',
+    KMap.TdtLayer.fromLayer,
+    OPENLAYERS);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getType',
+    KMap.TdtLayer.prototype.getType);
 
 goog.exportSymbol(
     'KMap.TileWMSLayer',
@@ -88071,6 +88159,66 @@ goog.exportProperty(
     KMap.GroupLayer.prototype.setMinResolution);
 
 goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getId',
+    KMap.TdtLayer.prototype.getId);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setId',
+    KMap.TdtLayer.prototype.setId);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getLayer',
+    KMap.TdtLayer.prototype.getLayer);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setLayer',
+    KMap.TdtLayer.prototype.setLayer);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getVisible',
+    KMap.TdtLayer.prototype.getVisible);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setVisible',
+    KMap.TdtLayer.prototype.setVisible);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getExtent',
+    KMap.TdtLayer.prototype.getExtent);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setExtent',
+    KMap.TdtLayer.prototype.setExtent);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getMaxResolution',
+    KMap.TdtLayer.prototype.getMaxResolution);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setMaxResolution',
+    KMap.TdtLayer.prototype.setMaxResolution);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'getMinResolution',
+    KMap.TdtLayer.prototype.getMinResolution);
+
+goog.exportProperty(
+    KMap.TdtLayer.prototype,
+    'setMinResolution',
+    KMap.TdtLayer.prototype.setMinResolution);
+
+goog.exportProperty(
     KMap.TileWMSLayer.prototype,
     'getId',
     KMap.TileWMSLayer.prototype.getId);
@@ -88284,7 +88432,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-11-gc4fbe2e';
+ol.VERSION = '0.1-14-g892852c';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
