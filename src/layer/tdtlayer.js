@@ -44,7 +44,8 @@ KMap.TdtLayer.prototype.createLayer = function(options) {
         matrixSet: options.matrixSet,
         url: options.url,
         format: options.format || 'tiles',
-        layer: options.layer
+        layer: options.layer,
+        crossOrigin: 'anonymous'
     };
     return new ol.layer.Tile({
         source: new ol.source.WMTS( /** @type {!olx.source.WMTSOptions} */ (opts))

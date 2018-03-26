@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-14-g892852c
+// Version: 0.1-15-g0881ef6
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -84355,7 +84355,8 @@ KMap.TdtLayer.prototype.createLayer = function(options) {
         matrixSet: options.matrixSet,
         url: options.url,
         format: options.format || 'tiles',
-        layer: options.layer
+        layer: options.layer,
+        crossOrigin: 'anonymous'
     };
     return new ol.layer.Tile({
         source: new ol.source.WMTS( /** @type {!olx.source.WMTSOptions} */ (opts))
@@ -88432,7 +88433,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-14-g892852c';
+ol.VERSION = '0.1-15-g0881ef6';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
