@@ -2029,6 +2029,59 @@
       ]
     },
     {
+      "name": "KMap.Interaction.MapTip",
+      "kind": "class",
+      "description": "带tip框的坐标拾取器",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "extends": "ol.interaction.Interaction",
+      "provides": [
+        "KMap.Interaction.MapTip",
+        "KMap.Interaction.MapTip.Event"
+      ]
+    },
+    {
+      "name": "KMap.Interaction.MapTip#setMessage",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "provides": [
+        "KMap.Interaction.MapTip",
+        "KMap.Interaction.MapTip.Event"
+      ]
+    },
+    {
+      "name": "KMap.Interaction.MapTip#getLocation",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "provides": [
+        "KMap.Interaction.MapTip",
+        "KMap.Interaction.MapTip.Event"
+      ]
+    },
+    {
+      "name": "KMap.Interaction.MapTip.Event",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "extends": "ol.events.Event",
+      "provides": [
+        "KMap.Interaction.MapTip",
+        "KMap.Interaction.MapTip.Event"
+      ]
+    },
+    {
+      "name": "KMap.Interaction.MapTip.Event#coordinate",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "provides": [
+        "KMap.Interaction.MapTip",
+        "KMap.Interaction.MapTip.Event"
+      ]
+    },
+    {
       "name": "KMap.Interaction.Modify",
       "kind": "class",
       "description": "编辑",
