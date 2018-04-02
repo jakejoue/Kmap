@@ -65,6 +65,22 @@ KMap.Geometry.prototype.getType = function () {
 };
 
 /**
+ * @param {ol.Coordinate|KMap.Point} point
+ * @return {boolean}
+ * @api
+ */
+KMap.Geometry.prototype.contains = function(point) {
+    var coordinate;
+    if(point instanceof KMap.Point) {
+        var pt = /**@type {KMap.Point} */ (point);
+        coordinate = /**@type {ol.Coordinate} */ (pt.getCoordinates());
+    } else {
+        coordinate = /**@type {ol.Coordinate} */ (point);
+    }
+    return this.geometry_.intersectsCoordinate(coordinate);
+};
+
+/**
  * @param {ol.Extent} extent
  * @return {KMap.Geometry} 
  * @api

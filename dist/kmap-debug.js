@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-17-g8a8b0d1
+// Version: 0.1-18-ge37b53e
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -80768,6 +80768,22 @@ KMap.Geometry.prototype.getType = function () {
 };
 
 /**
+ * @param {ol.Coordinate|KMap.Point} point
+ * @return {boolean}
+ * @api
+ */
+KMap.Geometry.prototype.contains = function(point) {
+    var coordinate;
+    if(point instanceof KMap.Point) {
+        var pt = /**@type {KMap.Point} */ (point);
+        coordinate = /**@type {ol.Coordinate} */ (pt.getCoordinates());
+    } else {
+        coordinate = /**@type {ol.Coordinate} */ (point);
+    }
+    return this.geometry_.intersectsCoordinate(coordinate);
+};
+
+/**
  * @param {ol.Extent} extent
  * @return {KMap.Geometry} 
  * @api
@@ -81882,21 +81898,6 @@ KMap.Circle = function (options, radius) {
 }
 ol.inherits(KMap.Circle, KMap.Geometry);
 
-/**
- * @param {ol.Coordinate|KMap.Point} point
- * @return {boolean}
- * @api
- */
-KMap.Circle.prototype.contains = function(point) {
-    var coordinate;
-    if(point instanceof KMap.Point) {
-        var pt = /**@type {KMap.Point} */ (point);
-        coordinate = /**@type {ol.Coordinate} */ (pt.getCoordinates());
-    } else {
-        coordinate = /**@type {ol.Coordinate} */ (point);
-    }
-    return this.geometry_.intersectsCoordinate(coordinate);
-};
 goog.provide('KMap.MultiPoint');
 
 goog.require('KMap');
@@ -85897,11 +85898,6 @@ goog.exportSymbol(
     KMap.Circle,
     OPENLAYERS);
 
-goog.exportProperty(
-    KMap.Circle.prototype,
-    'contains',
-    KMap.Circle.prototype.contains);
-
 goog.exportSymbol(
     'KMap.Geometry',
     KMap.Geometry,
@@ -85926,6 +85922,11 @@ goog.exportProperty(
     KMap.Geometry.prototype,
     'getType',
     KMap.Geometry.prototype.getType);
+
+goog.exportProperty(
+    KMap.Geometry.prototype,
+    'contains',
+    KMap.Geometry.prototype.contains);
 
 goog.exportSymbol(
     'KMap.Geometry.fromExtent',
@@ -87689,6 +87690,11 @@ goog.exportProperty(
 
 goog.exportProperty(
     KMap.Circle.prototype,
+    'contains',
+    KMap.Circle.prototype.contains);
+
+goog.exportProperty(
+    KMap.Circle.prototype,
     'getCoordinates',
     KMap.Circle.prototype.getCoordinates);
 
@@ -87711,6 +87717,11 @@ goog.exportProperty(
     KMap.MultiPoint.prototype,
     'getType',
     KMap.MultiPoint.prototype.getType);
+
+goog.exportProperty(
+    KMap.MultiPoint.prototype,
+    'contains',
+    KMap.MultiPoint.prototype.contains);
 
 goog.exportProperty(
     KMap.MultiPoint.prototype,
@@ -87739,6 +87750,11 @@ goog.exportProperty(
 
 goog.exportProperty(
     KMap.MultiPolygon.prototype,
+    'contains',
+    KMap.MultiPolygon.prototype.contains);
+
+goog.exportProperty(
+    KMap.MultiPolygon.prototype,
     'getCoordinates',
     KMap.MultiPolygon.prototype.getCoordinates);
 
@@ -87761,6 +87777,11 @@ goog.exportProperty(
     KMap.Point.prototype,
     'getType',
     KMap.Point.prototype.getType);
+
+goog.exportProperty(
+    KMap.Point.prototype,
+    'contains',
+    KMap.Point.prototype.contains);
 
 goog.exportProperty(
     KMap.Point.prototype,
@@ -87789,6 +87810,11 @@ goog.exportProperty(
 
 goog.exportProperty(
     KMap.Polygon.prototype,
+    'contains',
+    KMap.Polygon.prototype.contains);
+
+goog.exportProperty(
+    KMap.Polygon.prototype,
     'getCoordinates',
     KMap.Polygon.prototype.getCoordinates);
 
@@ -87811,6 +87837,11 @@ goog.exportProperty(
     KMap.Polyline.prototype,
     'getType',
     KMap.Polyline.prototype.getType);
+
+goog.exportProperty(
+    KMap.Polyline.prototype,
+    'contains',
+    KMap.Polyline.prototype.contains);
 
 goog.exportProperty(
     KMap.Polyline.prototype,
@@ -88566,7 +88597,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-17-g8a8b0d1';
+ol.VERSION = '0.1-18-ge37b53e';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

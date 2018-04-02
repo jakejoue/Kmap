@@ -26,19 +26,3 @@ KMap.Circle = function (options, radius) {
     KMap.Geometry.call(this, geometry);
 }
 ol.inherits(KMap.Circle, KMap.Geometry);
-
-/**
- * @param {ol.Coordinate|KMap.Point} point
- * @return {boolean}
- * @api
- */
-KMap.Circle.prototype.contains = function(point) {
-    var coordinate;
-    if(point instanceof KMap.Point) {
-        var pt = /**@type {KMap.Point} */ (point);
-        coordinate = /**@type {ol.Coordinate} */ (pt.getCoordinates());
-    } else {
-        coordinate = /**@type {ol.Coordinate} */ (point);
-    }
-    return this.geometry_.intersectsCoordinate(coordinate);
-};

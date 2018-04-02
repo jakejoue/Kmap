@@ -431,29 +431,6 @@
       ]
     },
     {
-      "name": "KMap.Circle#contains",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\geom\\circle.js",
-      "params": [
-        {
-          "name": "point",
-          "types": [
-            "ol.Coordinate",
-            "KMap.Point"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "boolean"
-        ]
-      },
-      "provides": [
-        "KMap.Circle"
-      ]
-    },
-    {
       "name": "KMap.Geometry",
       "kind": "class",
       "stability": "experimental",
@@ -524,6 +501,29 @@
       "returns": {
         "types": [
           "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.Geometry#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
         ]
       },
       "provides": [
@@ -6249,6 +6249,29 @@
       ]
     },
     {
+      "name": "KMap.Circle#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
       "name": "KMap.Circle#getCoordinates",
       "kind": "function",
       "stability": "experimental",
@@ -6317,6 +6340,29 @@
       "returns": {
         "types": [
           "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.MultiPoint#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
         ]
       },
       "provides": [
@@ -6399,6 +6445,29 @@
       ]
     },
     {
+      "name": "KMap.MultiPolygon#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
       "name": "KMap.MultiPolygon#getCoordinates",
       "kind": "function",
       "stability": "experimental",
@@ -6467,6 +6536,29 @@
       "returns": {
         "types": [
           "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.Point#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
         ]
       },
       "provides": [
@@ -6549,6 +6641,29 @@
       ]
     },
     {
+      "name": "KMap.Polygon#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
       "name": "KMap.Polygon#getCoordinates",
       "kind": "function",
       "stability": "experimental",
@@ -6617,6 +6732,29 @@
       "returns": {
         "types": [
           "string"
+        ]
+      },
+      "provides": [
+        "KMap.Geometry"
+      ]
+    },
+    {
+      "name": "KMap.Polyline#contains",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\geom\\geometry.js",
+      "params": [
+        {
+          "name": "point",
+          "types": [
+            "ol.Coordinate",
+            "KMap.Point"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "boolean"
         ]
       },
       "provides": [
