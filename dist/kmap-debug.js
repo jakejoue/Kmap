@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-18-ge37b53e
+// Version: 0.1-19-gfd2f95a
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -83151,6 +83151,7 @@ KMap.InfoTemplate = function (opt_tile, opt_content) {
      * @api
      */
     this.content = opt_content;
+    this.offset = [0, 0];
 };
 
 /**
@@ -83191,6 +83192,22 @@ KMap.InfoTemplate.prototype.setTitle = function (title) {
  */
 KMap.InfoTemplate.prototype.getTitle = function () {
     return this.tile;
+};
+
+/**
+ * @api
+ * @param {Array.<number>} offset
+ */
+KMap.InfoTemplate.prototype.setOffset = function (offset) {
+    this.offset = offset;
+};
+
+/**
+ * @api
+ * @return {Array.<number>}
+ */
+KMap.InfoTemplate.prototype.getOffset = function () {
+    return this.offset;
 };
 
 /**
@@ -85049,10 +85066,13 @@ KMap.Popup.prototype.show = function (coord) {
 
         var title = /**@type {string} */(this.selectedFeature_.getTitle());
         var content = /**@type {string} */(this.selectedFeature_.getContent());
+        var infoTemplate = this.selectedFeature_.getInfoTemplate();
+        if (infoTemplate) {
+            this.setOffset(infoTemplate.getOffset());
+        }
 
         this.title.innerHTML = title;
         this.content.innerHTML = content;
-
         this.dispatchEvent(new KMap.Popup.Event('show'));
 
         this.setPosition(coord);
@@ -86347,6 +86367,16 @@ goog.exportProperty(
     KMap.InfoTemplate.prototype,
     'getTitle',
     KMap.InfoTemplate.prototype.getTitle);
+
+goog.exportProperty(
+    KMap.InfoTemplate.prototype,
+    'setOffset',
+    KMap.InfoTemplate.prototype.setOffset);
+
+goog.exportProperty(
+    KMap.InfoTemplate.prototype,
+    'getOffset',
+    KMap.InfoTemplate.prototype.getOffset);
 
 goog.exportSymbol(
     'KMap.Interaction.Draw',
@@ -88597,7 +88627,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-18-ge37b53e';
+ol.VERSION = '0.1-19-gfd2f95a';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

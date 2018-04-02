@@ -1950,6 +1950,37 @@
       ]
     },
     {
+      "name": "KMap.InfoTemplate#setOffset",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
+      "params": [
+        {
+          "name": "offset",
+          "types": [
+            "Array.<number>"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.InfoTemplate"
+      ]
+    },
+    {
+      "name": "KMap.InfoTemplate#getOffset",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\infotemplate.js",
+      "returns": {
+        "types": [
+          "Array.<number>"
+        ]
+      },
+      "provides": [
+        "KMap.InfoTemplate"
+      ]
+    },
+    {
       "name": "KMap.Interaction.Draw",
       "kind": "class",
       "description": "绘图",

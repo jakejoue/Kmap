@@ -20,6 +20,7 @@ KMap.InfoTemplate = function (opt_tile, opt_content) {
      * @api
      */
     this.content = opt_content;
+    this.offset = [0, 0];
 };
 
 /**
@@ -60,6 +61,22 @@ KMap.InfoTemplate.prototype.setTitle = function (title) {
  */
 KMap.InfoTemplate.prototype.getTitle = function () {
     return this.tile;
+};
+
+/**
+ * @api
+ * @param {Array.<number>} offset
+ */
+KMap.InfoTemplate.prototype.setOffset = function (offset) {
+    this.offset = offset;
+};
+
+/**
+ * @api
+ * @return {Array.<number>}
+ */
+KMap.InfoTemplate.prototype.getOffset = function () {
+    return this.offset;
 };
 
 /**

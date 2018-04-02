@@ -59,10 +59,13 @@ KMap.Popup.prototype.show = function (coord) {
 
         var title = /**@type {string} */(this.selectedFeature_.getTitle());
         var content = /**@type {string} */(this.selectedFeature_.getContent());
+        var infoTemplate = this.selectedFeature_.getInfoTemplate();
+        if (infoTemplate) {
+            this.setOffset(infoTemplate.getOffset());
+        }
 
         this.title.innerHTML = title;
         this.content.innerHTML = content;
-
         this.dispatchEvent(new KMap.Popup.Event('show'));
 
         this.setPosition(coord);
