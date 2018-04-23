@@ -2397,6 +2397,32 @@
       ]
     },
     {
+      "name": "KMap.ArcGISQueryLayer",
+      "kind": "class",
+      "description": "ArcGisQuery 图层",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\arcgisquerylayer.js",
+      "extends": "KMap.FeatureLayer",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "types": [
+            "MapX.FeatureLayerOptions",
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.ArcGISQueryLayer"
+      ]
+    },
+    {
       "name": "KMap.ArcGISRestLayer",
       "kind": "class",
       "description": "ArcGIS REST 图层",
@@ -2703,6 +2729,42 @@
           "KMap.Layer.Type"
         ]
       },
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#add",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#remove",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#clear",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#addAll",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
       "provides": [
         "KMap.FeatureLayer"
       ]
@@ -5073,6 +5135,52 @@
       ]
     },
     {
+      "name": "KMap.DynamicRenderer",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\dynamicrenderer.js",
+      "extends": "KMap.Renderer",
+      "params": [
+        {
+          "name": "getSymbol",
+          "types": [
+            "Function"
+          ]
+        },
+        {
+          "name": "defaultSymbol",
+          "types": [
+            "KMap.Symbol"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.DynamicRenderer"
+      ]
+    },
+    {
+      "name": "KMap.DynamicRenderer#getSymbol",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\renderer\\dynamicrenderer.js",
+      "params": [
+        {
+          "name": "graphic",
+          "types": [
+            "KMap.Graphic"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Symbol"
+        ]
+      },
+      "provides": [
+        "KMap.DynamicRenderer"
+      ]
+    },
+    {
       "name": "KMap.Renderer",
       "kind": "class",
       "stability": "experimental",
@@ -7014,6 +7122,941 @@
       ]
     },
     {
+      "name": "KMap.GraphicsLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.GraphicsLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getSource",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.source.Vector"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getExtent",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.Extent"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#get",
+      "kind": "function",
+      "description": "添加多个图形到图层",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Graphic"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getLength",
+      "kind": "function",
+      "description": "返回图形的总数",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#forEach",
+      "kind": "function",
+      "description": "遍历图层所有图形",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "callback",
+          "types": [
+            "Function"
+          ]
+        },
+        {
+          "name": "opt_this",
+          "types": [
+            "T"
+          ],
+          "optional": true
+        }
+      ],
+      "returns": {
+        "types": [
+          "S",
+          "undefined"
+        ]
+      },
+      "template": "T,S",
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "renderer",
+          "types": [
+            "KMap.Renderer"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.Renderer"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "infoTemplate",
+          "types": [
+            "KMap.InfoTemplate"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.InfoTemplate"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.FeatureLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getType",
+      "kind": "function",
+      "description": "返回图层的类型",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "returns": {
+        "types": [
+          "KMap.Layer.Type"
+        ]
+      },
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#add",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#remove",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#clear",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#addAll",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\featurelayer.js",
+      "provides": [
+        "KMap.FeatureLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getSource",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.source.Vector"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getExtent",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.Extent"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#get",
+      "kind": "function",
+      "description": "添加多个图形到图层",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Graphic"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getLength",
+      "kind": "function",
+      "description": "返回图形的总数",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#forEach",
+      "kind": "function",
+      "description": "遍历图层所有图形",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "callback",
+          "types": [
+            "Function"
+          ]
+        },
+        {
+          "name": "opt_this",
+          "types": [
+            "T"
+          ],
+          "optional": true
+        }
+      ],
+      "returns": {
+        "types": [
+          "S",
+          "undefined"
+        ]
+      },
+      "template": "T,S",
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "renderer",
+          "types": [
+            "KMap.Renderer"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.Renderer"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "infoTemplate",
+          "types": [
+            "KMap.InfoTemplate"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.InfoTemplate"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ArcGISQueryLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
       "name": "KMap.ArcGISRestLayer#getId",
       "kind": "function",
       "description": "返回图层的ID",
@@ -7607,595 +8650,6 @@
     },
     {
       "name": "KMap.BaiduLayer#setMinResolution",
-      "kind": "function",
-      "description": "设置图层的最小显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "minResolution",
-          "types": [
-            "number"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "KMap.Layer"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#getId",
-      "kind": "function",
-      "description": "返回图层的ID",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "string"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setId",
-      "kind": "function",
-      "description": "设置图层的ID",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "id",
-          "types": [
-            "string"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#getLayer",
-      "kind": "function",
-      "description": "反回图层的内部对象",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "ol.layer.Base"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setLayer",
-      "kind": "function",
-      "description": "设置图层的内部对象",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "layer",
-          "types": [
-            "ol.layer.Base"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#getVisible",
-      "kind": "function",
-      "description": "返回图层是否可以显示",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "boolean"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setVisible",
-      "kind": "function",
-      "description": "修改图层是否可以显示",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "visible",
-          "types": [
-            "boolean"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setExtent",
-      "kind": "function",
-      "description": "设置图层的边界范围",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "extent",
-          "types": [
-            "ol.Extent"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#getMaxResolution",
-      "kind": "function",
-      "description": "返回图层的最大显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "number"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setMaxResolution",
-      "kind": "function",
-      "description": "设置图层的最大显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "maxResolution",
-          "types": [
-            "number"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "KMap.Layer"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#getMinResolution",
-      "kind": "function",
-      "description": "返回图层的最小显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.GraphicsLayer#setMinResolution",
-      "kind": "function",
-      "description": "设置图层的最小显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "minResolution",
-          "types": [
-            "number"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "KMap.Layer"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getSource",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "returns": {
-        "types": [
-          "ol.source.Vector"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getExtent",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "returns": {
-        "types": [
-          "ol.Extent"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#add",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "graphic",
-          "types": [
-            "KMap.Graphic"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#remove",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#clear",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#addAll",
-      "kind": "function",
-      "description": "添加多个图形到图层",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "graphicArray",
-          "types": [
-            "Array.<KMap.Graphic>"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#get",
-      "kind": "function",
-      "description": "添加多个图形到图层",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "id",
-          "types": [
-            "string"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "KMap.Graphic"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getLength",
-      "kind": "function",
-      "description": "返回图形的总数",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "returns": {
-        "types": [
-          "number"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#forEach",
-      "kind": "function",
-      "description": "遍历图层所有图形",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "callback",
-          "types": [
-            "Function"
-          ]
-        },
-        {
-          "name": "opt_this",
-          "types": [
-            "T"
-          ],
-          "optional": true
-        }
-      ],
-      "returns": {
-        "types": [
-          "S",
-          "undefined"
-        ]
-      },
-      "template": "T,S",
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setRenderer",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "renderer",
-          "types": [
-            "KMap.Renderer"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getRenderer",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "returns": {
-        "types": [
-          "KMap.Renderer"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setInfoTemplate",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "params": [
-        {
-          "name": "infoTemplate",
-          "types": [
-            "KMap.InfoTemplate"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getInfoTemplate",
-      "kind": "function",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
-      "returns": {
-        "types": [
-          "KMap.InfoTemplate"
-        ]
-      },
-      "provides": [
-        "KMap.GraphicsLayer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getId",
-      "kind": "function",
-      "description": "返回图层的ID",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "string"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setId",
-      "kind": "function",
-      "description": "设置图层的ID",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "id",
-          "types": [
-            "string"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getLayer",
-      "kind": "function",
-      "description": "反回图层的内部对象",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "ol.layer.Base"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setLayer",
-      "kind": "function",
-      "description": "设置图层的内部对象",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "layer",
-          "types": [
-            "ol.layer.Base"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getVisible",
-      "kind": "function",
-      "description": "返回图层是否可以显示",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "boolean"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setVisible",
-      "kind": "function",
-      "description": "修改图层是否可以显示",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "visible",
-          "types": [
-            "boolean"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setExtent",
-      "kind": "function",
-      "description": "设置图层的边界范围",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "extent",
-          "types": [
-            "ol.Extent"
-          ]
-        }
-      ],
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getMaxResolution",
-      "kind": "function",
-      "description": "返回图层的最大显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "returns": {
-        "types": [
-          "number"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setMaxResolution",
-      "kind": "function",
-      "description": "设置图层的最大显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "params": [
-        {
-          "name": "maxResolution",
-          "types": [
-            "number"
-          ]
-        }
-      ],
-      "returns": {
-        "types": [
-          "KMap.Layer"
-        ]
-      },
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#getMinResolution",
-      "kind": "function",
-      "description": "返回图层的最小显示密度",
-      "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
-      "provides": [
-        "KMap.Layer"
-      ]
-    },
-    {
-      "name": "KMap.FeatureLayer#setMinResolution",
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",

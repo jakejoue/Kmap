@@ -14,7 +14,7 @@ goog.require('ol.loadingstrategy');
  * @param {string} id
  * @param {MapX.FeatureLayerOptions|ol.layer.Base} options
  */
-KMap.FeatureLayer = function (id, options) {
+KMap.FeatureLayer = function(id, options) {
     KMap.GraphicsLayer.call(this, id, options);
 };
 ol.inherits(KMap.FeatureLayer, KMap.GraphicsLayer);
@@ -23,7 +23,7 @@ ol.inherits(KMap.FeatureLayer, KMap.GraphicsLayer);
  * @param {Object} options 
  * @returns {ol.layer.Base}
  */
-KMap.FeatureLayer.prototype.createLayer = function (options) {
+KMap.FeatureLayer.prototype.createLayer = function(options) {
     var featureOptions = /** @type {MapX.FeatureLayerOptions} */ (ol.obj.assign({}, options));
     var format = null;
     switch (featureOptions.format) {
@@ -50,23 +50,23 @@ KMap.FeatureLayer.prototype.createLayer = function (options) {
         url: featureOptions.url,
         loader: featureOptions.loader,
         format: format,
-        strategy: ol.loadingstrategy.bbox
+        strategy: featureOptions.strategy || ol.loadingstrategy.bbox
     });
     /**
      * 添加要素和图层之间的关系
      */
-    source.on("addfeature", function (e) {
+    source.on("addfeature", function(e) {
         var graphic = new KMap.Graphic(e.feature);
         graphic.setLayer(self);
     });
-    source.on("removefeature", function (e) {
+    source.on("removefeature", function(e) {
         var graphic = new KMap.Graphic(e.feature);
         graphic.setLayer(null);
     });
 
     var vector_layer = new ol.layer.Vector({
         source: source,
-        style: function (feature) {
+        style: function(feature) {
             var style = null;
             var graphic = new KMap.Graphic(feature);
             var symbol = graphic.getSymbol();
@@ -90,7 +90,7 @@ KMap.FeatureLayer.prototype.createLayer = function (options) {
  * @param {ol.layer.Base} layer 
  * @returns {KMap.Layer}
  */
-KMap.FeatureLayer.fromLayer = function (layer) {
+KMap.FeatureLayer.fromLayer = function(layer) {
     var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
     return new KMap.FeatureLayer(layerId, layer);
 };
@@ -100,6 +100,27 @@ KMap.FeatureLayer.fromLayer = function (layer) {
  * @return {KMap.Layer.Type}
  * @api
  */
-KMap.FeatureLayer.prototype.getType = function () {
+KMap.FeatureLayer.prototype.getType = function() {
     return KMap.Layer.Type.FeatureLayer;
 };
+
+/**
+ * @api
+ */
+KMap.FeatureLayer.prototype.add = KMap.FeatureLayer.NOTALLOW;
+/**
+ * @api
+ */
+KMap.FeatureLayer.prototype.remove = KMap.FeatureLayer.NOTALLOW;
+/**
+ * @api
+ */
+KMap.FeatureLayer.prototype.clear = KMap.FeatureLayer.NOTALLOW;
+/**
+ * @api
+ */
+KMap.FeatureLayer.prototype.addAll = KMap.FeatureLayer.NOTALLOW;
+
+KMap.FeatureLayer.NOTALLOW = function() {
+    throw 'Layer is not allowed to opearte';
+}
