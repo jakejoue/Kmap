@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-20-g7301cf1
+// Version: 0.1-21-gced45b6
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -81276,6 +81276,38 @@ KMap.Graphic.Properties = [
     KMap.Graphic.Property.INFOTEMPLATE,
     KMap.Graphic.Property.SYMBOL
 ];
+
+/**
+ * 读取graphics
+ * @api
+ * @param {string} type 
+ * @param {Document | Node | Object | string} source 
+ * @return {Array.<KMap.Graphic>}
+ */
+KMap.Graphic.readFeatures = function (source, type) {
+    var format;
+    switch (type) {
+        case 'esrijson':
+            format = new ol.format.EsriJSON();
+            break;
+        case 'geojson':
+            format = new ol.format.GeoJSON();
+            break;
+        case 'kml':
+            format = new ol.format.KML();
+            break;
+        case 'wkt':
+            format = new ol.format.WKT();
+            break;
+        default:
+            format = new ol.format.GML();
+            break;
+    }
+    var features = format.readFeatures(source);
+    return features.map(function (feature) {
+        return new KMap.Graphic(feature);
+    });
+}
 goog.provide('KMap.Renderer');
 
 goog.require('KMap.Symbol');
@@ -86407,6 +86439,11 @@ goog.exportProperty(
     KMap.Graphic.prototype.getTitle);
 
 goog.exportSymbol(
+    'KMap.Graphic.readFeatures',
+    KMap.Graphic.readFeatures,
+    OPENLAYERS);
+
+goog.exportSymbol(
     'KMap.Graphics.fromGeoJSON',
     KMap.Graphics.fromGeoJSON,
     OPENLAYERS);
@@ -88870,7 +88907,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-20-g7301cf1';
+ol.VERSION = '0.1-21-gced45b6';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

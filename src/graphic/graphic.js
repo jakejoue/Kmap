@@ -274,3 +274,35 @@ KMap.Graphic.Properties = [
     KMap.Graphic.Property.INFOTEMPLATE,
     KMap.Graphic.Property.SYMBOL
 ];
+
+/**
+ * 读取graphics
+ * @api
+ * @param {string} type 
+ * @param {Document | Node | Object | string} source 
+ * @return {Array.<KMap.Graphic>}
+ */
+KMap.Graphic.readFeatures = function (source, type) {
+    var format;
+    switch (type) {
+        case 'esrijson':
+            format = new ol.format.EsriJSON();
+            break;
+        case 'geojson':
+            format = new ol.format.GeoJSON();
+            break;
+        case 'kml':
+            format = new ol.format.KML();
+            break;
+        case 'wkt':
+            format = new ol.format.WKT();
+            break;
+        default:
+            format = new ol.format.GML();
+            break;
+    }
+    var features = format.readFeatures(source);
+    return features.map(function (feature) {
+        return new KMap.Graphic(feature);
+    });
+}

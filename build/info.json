@@ -1702,6 +1702,38 @@
       ]
     },
     {
+      "name": "KMap.Graphic.readFeatures",
+      "kind": "function",
+      "description": "读取graphics",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "params": [
+        {
+          "name": "type",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "source",
+          "types": [
+            "Document",
+            "Node",
+            "Object",
+            "string"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "Array.<KMap.Graphic>"
+        ]
+      },
+      "provides": [
+        "KMap.Graphic"
+      ]
+    },
+    {
       "name": "KMap.Graphics.fromGeoJSON",
       "kind": "function",
       "stability": "experimental",
