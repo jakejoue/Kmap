@@ -282,7 +282,7 @@ KMap.Graphic.Properties = [
  * @param {Document | Node | Object | string} source 
  * @return {Array.<KMap.Graphic>}
  */
-KMap.Graphic.readFeatures = function (source, type) {
+KMap.Graphic.readGraphics = function (source, type) {
     var format;
     switch (type) {
         case 'esrijson':
