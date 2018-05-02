@@ -16,5 +16,5 @@ ol.source.Source中的projection确认了数据源的坐标系，tile的切割�
 ```
 view控制地图整体的形状，进行切片的请求事件派发，请求方法是每个source自己的方法
 
-view和source坐标系最好统一，存在坐标偏移的时候用(如epsg：3857（大地两千） 和 bd09（百度坐标）) ol.proj.addCoordinateTransforms 添加相应的偏移转换方法
+view和source坐标系最好统一，同一坐标存在偏移的时候用(如epsg：4490（大地2000） 和 bd09（百度坐标）) ol.proj.addCoordinateTransforms 添加相应的偏移转换方法(内部调用重新地图extent和相关坐标,不会重新计算瓦片)
 ```
