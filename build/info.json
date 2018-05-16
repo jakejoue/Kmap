@@ -1702,7 +1702,7 @@
       ]
     },
     {
-      "name": "KMap.Graphic.readFeatures",
+      "name": "KMap.Graphic.readGraphics",
       "kind": "function",
       "description": "读取graphics",
       "stability": "experimental",
@@ -1722,11 +1722,54 @@
             "Object",
             "string"
           ]
+        },
+        {
+          "name": "opt_options",
+          "types": [
+            "olx.format.ReadOptions"
+          ],
+          "optional": true
         }
       ],
       "returns": {
         "types": [
           "Array.<KMap.Graphic>"
+        ]
+      },
+      "provides": [
+        "KMap.Graphic"
+      ]
+    },
+    {
+      "name": "KMap.Graphic.writeGraphics",
+      "kind": "function",
+      "description": "graphics转目标格式字符串",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\graphic\\graphic.js",
+      "params": [
+        {
+          "name": "type",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "graphics",
+          "types": [
+            "Array.<KMap.Graphic>"
+          ]
+        },
+        {
+          "name": "opt_options",
+          "types": [
+            "olx.format.ReadOptions"
+          ],
+          "optional": true
+        }
+      ],
+      "returns": {
+        "types": [
+          "string"
         ]
       },
       "provides": [

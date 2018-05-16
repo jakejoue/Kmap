@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-21-gced45b6
+// Version: 0.1-25-g0353573
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -81282,9 +81282,10 @@ KMap.Graphic.Properties = [
  * @api
  * @param {string} type 
  * @param {Document | Node | Object | string} source 
+ * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<KMap.Graphic>}
  */
-KMap.Graphic.readFeatures = function (source, type) {
+KMap.Graphic.readGraphics = function (type, source, opt_options) {
     var format;
     switch (type) {
         case 'esrijson':
@@ -81299,14 +81300,65 @@ KMap.Graphic.readFeatures = function (source, type) {
         case 'wkt':
             format = new ol.format.WKT();
             break;
-        default:
+        case 'gml':
             format = new ol.format.GML();
             break;
+        case 'gml2':
+            format = new ol.format.GML2();
+            break;
+        case 'gml3':
+            format = new ol.format.GML3();
+            break;
+        default:
+            throw "暂未支持的类型";
     }
-    var features = format.readFeatures(source);
+    var features = format.readFeatures(source, opt_options);
     return features.map(function (feature) {
         return new KMap.Graphic(feature);
     });
+}
+
+/**
+ * graphics转目标格式字符串
+ * @api
+ * @param {string} type 
+ * @param {Array.<KMap.Graphic>} graphics 
+ * @param {olx.format.ReadOptions=} opt_options
+ * @return {string}
+ */
+KMap.Graphic.writeGraphics = function (type, graphics, opt_options) {
+    var format;
+    switch (type) {
+        case 'esrijson':
+            format = new ol.format.EsriJSON();
+            break;
+        case 'geojson':
+            format = new ol.format.GeoJSON();
+            break;
+        case 'kml':
+            format = new ol.format.KML();
+            break;
+        case 'wkt':
+            format = new ol.format.WKT();
+            break;
+        case 'gml':
+            format = new ol.format.GML();
+            break;
+        case 'gml2':
+            format = new ol.format.GML2();
+            break;
+        case 'gml3':
+            format = new ol.format.GML3();
+            break;
+        default:
+            throw "暂未支持的类型";
+    }
+    var features = graphics.map(function (g) {
+        var feature = new ol.Feature(g.feature_.getGeometry());
+        feature.setProperties(g.getAttributes());
+        return feature;
+    });
+    return format.writeFeatures(features, opt_options);
 }
 goog.provide('KMap.Renderer');
 
@@ -86439,8 +86491,13 @@ goog.exportProperty(
     KMap.Graphic.prototype.getTitle);
 
 goog.exportSymbol(
-    'KMap.Graphic.readFeatures',
-    KMap.Graphic.readFeatures,
+    'KMap.Graphic.readGraphics',
+    KMap.Graphic.readGraphics,
+    OPENLAYERS);
+
+goog.exportSymbol(
+    'KMap.Graphic.writeGraphics',
+    KMap.Graphic.writeGraphics,
     OPENLAYERS);
 
 goog.exportSymbol(
@@ -88907,7 +88964,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-21-gced45b6';
+ol.VERSION = '0.1-25-g0353573';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;
