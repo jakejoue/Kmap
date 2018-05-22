@@ -2139,7 +2139,7 @@
       "kind": "class",
       "description": "带tip框的坐标拾取器",
       "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTip.js",
       "extends": "ol.interaction.Interaction",
       "provides": [
         "KMap.Interaction.MapTip",
@@ -2150,7 +2150,7 @@
       "name": "KMap.Interaction.MapTip#setMessage",
       "kind": "function",
       "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTip.js",
       "provides": [
         "KMap.Interaction.MapTip",
         "KMap.Interaction.MapTip.Event"
@@ -2160,7 +2160,7 @@
       "name": "KMap.Interaction.MapTip#getLocation",
       "kind": "function",
       "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTip.js",
       "provides": [
         "KMap.Interaction.MapTip",
         "KMap.Interaction.MapTip.Event"
@@ -2170,7 +2170,7 @@
       "name": "KMap.Interaction.MapTip.Event",
       "kind": "class",
       "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTip.js",
       "extends": "ol.events.Event",
       "provides": [
         "KMap.Interaction.MapTip",
@@ -2181,7 +2181,7 @@
       "name": "KMap.Interaction.MapTip.Event#coordinate",
       "kind": "member",
       "stability": "experimental",
-      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTipInterface.js",
+      "path": "E:\\VScode\\kmap\\src\\interaction\\mapTip.js",
       "provides": [
         "KMap.Interaction.MapTip",
         "KMap.Interaction.MapTip.Event"
