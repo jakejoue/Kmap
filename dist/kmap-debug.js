@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-27-ge1d10fc
+// Version: 0.1-28-g1b00632
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -79009,7 +79009,8 @@ KMap.Layer.Type = {
   WMSLayer: 'WMSLayer',
   WMTSLayer: 'WMTSLayer',
   AMapLayer: 'AMapLayer',
-  TdtLayer: 'TdtLayer'
+  TdtLayer: 'TdtLayer',
+  ClusterLayer: 'ClusterLayer'
 };
 
 /**
@@ -82273,7 +82274,7 @@ KMap.Transform.prototype.gcj_decrypt_exact = function (gcjLat, gcjLon) {
 };
 /**
  * GCJ-02 to BD-09
- * 
+ * @api
  * @param {number} gcjLat 
  * @param {number} gcjLon 
  * @returns {Object}
@@ -82288,7 +82289,7 @@ KMap.Transform.prototype.bd_encrypt = function (gcjLat, gcjLon) {
 };
 /**
  * BD-09 to GCJ-02
- * 
+ * @api
  * @param {number} bdLat 
  * @param {number} bdLon 
  * @returns {Object}
@@ -82303,7 +82304,7 @@ KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
 };
 /**
  * BD-09 to BD-MC
- * 
+ * @api
  * @param {number} bdLat 
  * @param {number} bdLon 
  * @returns {Object}
@@ -82314,7 +82315,7 @@ KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
 };
 /**
  * BD-MC to BD-09
- * 
+ * @api
  * @param {number} mcLat 
  * @param {number} mcLon 
  * @returns {Object}
@@ -84581,6 +84582,172 @@ KMap.BaiduLayer.prototype.getType = function () {
     return KMap.Layer.Type.BaiduLayer;
 };
 
+goog.provide('KMap.ClusterLayer');
+
+goog.require('KMap');
+goog.require('KMap.Layer');
+goog.require('KMap.Graphic');
+goog.require('KMap.GraphicsLayer');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.GraphicsLayer}
+ * @param {string} id id.
+ * @param {Object|ol.layer.Base} options options.
+ */
+KMap.ClusterLayer = function(id, options) {
+    this.features = new ol.Collection();
+    /**
+     * @type {ol.source.Cluster}
+     */
+    this.source = null;
+
+    KMap.GraphicsLayer.call(this, id, options);
+};
+ol.inherits(KMap.ClusterLayer, KMap.GraphicsLayer);
+
+/**
+ * @param {Object} options 
+ * @returns {ol.layer.Base}
+ */
+KMap.ClusterLayer.prototype.createLayer = function(options) {
+    options = options || {};
+    
+    var self = this;
+
+    var source = new ol.source.Vector({
+        features: this.features
+    });
+    /**
+     * 添加要素和图层之间的关系
+     */
+    source.on("addfeature", function(e) {
+        var graphic = new KMap.Graphic(e.feature);
+        graphic.setLayer(self);
+    });
+    source.on("removefeature", function(e) {
+        var graphic = new KMap.Graphic(e.feature);
+        graphic.setLayer(null);
+    });
+    this.source = new ol.source.Cluster({
+        distance: options.distance || 0,
+        source: source
+    });
+
+    var clusterLayer = new ol.layer.Vector({
+        source: this.source,
+        style: function(feature) {
+            var style = null;
+
+            var graphics = /**@type {Array.<ol.Feature>}*/ (feature.get("features")).map(function(feature) {
+                return new KMap.Graphic(feature);
+            });
+            var graphic = new KMap.Graphic(feature);
+            graphic.setAttribute("graphics", graphics);
+
+            var renderer = self.getRenderer();
+            if (renderer) {
+                var symbol = renderer.getSymbol(graphic);
+                style = symbol.getStyle();
+            }
+            return style;
+        }
+    });
+    return clusterLayer;
+};
+
+
+/**
+ * 返回图层的类型
+ * @return {KMap.Layer.Type}
+ * @api
+ */
+KMap.ClusterLayer.prototype.getType = function() {
+    return KMap.Layer.Type.ClusterLayer;
+};
+
+
+/**
+ * @api
+ * @param {KMap.Graphic} graphic
+ */
+KMap.ClusterLayer.prototype.add = function(graphic) {
+    this.features.push(graphic.getFeature());
+};
+
+/**
+ * @api
+ */
+KMap.ClusterLayer.prototype.remove = function(graphic) {
+    this.features.remove(graphic.getFeature());
+};
+
+/**
+ * @api
+ */
+KMap.ClusterLayer.prototype.clear = function() {
+    this.features.clear();
+};
+
+/**
+ * 添加多个图形到图层
+ * @api
+ * @param {Array.<KMap.Graphic>} graphicArray
+ */
+KMap.ClusterLayer.prototype.addAll = function(graphicArray) {
+    for (var i = 0; i < graphicArray.length; i++) {
+        this.features.push(graphicArray[i].getFeature());
+    }
+};
+
+/**
+ * 添加多个图形到图层
+ * @api
+ * @param {string} id
+ * @return {KMap.Graphic}
+ */
+KMap.ClusterLayer.prototype.get = function(id) {
+    return null;
+};
+
+/**
+ * 返回图形的总数
+ * @api
+ * @return {number} 图形的总数
+ */
+KMap.ClusterLayer.prototype.getLength = function() {
+    return this.features.getLength();
+};
+
+/**
+ * 遍历图层所有图形
+ * @api
+ * @param {function(this: T, KMap.Graphic): S} callback 
+ * @param {T=} opt_this The object to use as `this` in the callback
+ * @return {S|undefined} The return value from the last call to the callback. 
+ * @template T,S 
+ */
+KMap.ClusterLayer.prototype.forEach = function(callback, opt_this) {
+    return this.features.forEach(function(feature) {
+        return callback.call(opt_this, new KMap.Graphic(feature))
+    });
+};
+
+/**
+ * @api
+ */
+KMap.ClusterLayer.prototype.getDistance = function() {
+    return this.source.getDistance();
+}
+
+/**
+ * @api
+ * @param {number} distance 
+ */
+KMap.ClusterLayer.prototype.setDistance = function(distance) {
+    return this.source.setDistance(distance);
+}
 goog.provide('KMap.TdtLayer');
 
 goog.require('KMap');
@@ -85944,6 +86111,7 @@ goog.require('KMap.BaiduLayer');
 goog.require('KMap.Basemap');
 goog.require('KMap.BasemapGallery');
 goog.require('KMap.Circle');
+goog.require('KMap.ClusterLayer');
 goog.require('KMap.Collection');
 goog.require('KMap.Contrail');
 goog.require('KMap.DrawTool');
@@ -86803,6 +86971,61 @@ goog.exportProperty(
     KMap.BaiduLayer.prototype.getType);
 
 goog.exportSymbol(
+    'KMap.ClusterLayer',
+    KMap.ClusterLayer,
+    OPENLAYERS);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getType',
+    KMap.ClusterLayer.prototype.getType);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'add',
+    KMap.ClusterLayer.prototype.add);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'remove',
+    KMap.ClusterLayer.prototype.remove);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'clear',
+    KMap.ClusterLayer.prototype.clear);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'addAll',
+    KMap.ClusterLayer.prototype.addAll);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'get',
+    KMap.ClusterLayer.prototype.get);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getLength',
+    KMap.ClusterLayer.prototype.getLength);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'forEach',
+    KMap.ClusterLayer.prototype.forEach);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getDistance',
+    KMap.ClusterLayer.prototype.getDistance);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setDistance',
+    KMap.ClusterLayer.prototype.setDistance);
+
+goog.exportSymbol(
     'KMap.FeatureLayer',
     KMap.FeatureLayer,
     OPENLAYERS);
@@ -87531,6 +87754,26 @@ goog.exportProperty(
     KMap.Transform.prototype,
     'gcj_decrypt_exact',
     KMap.Transform.prototype.gcj_decrypt_exact);
+
+goog.exportProperty(
+    KMap.Transform.prototype,
+    'bd_encrypt',
+    KMap.Transform.prototype.bd_encrypt);
+
+goog.exportProperty(
+    KMap.Transform.prototype,
+    'bd_decrypt',
+    KMap.Transform.prototype.bd_decrypt);
+
+goog.exportProperty(
+    KMap.Transform.prototype,
+    'bdmc_encrypt',
+    KMap.Transform.prototype.bdmc_encrypt);
+
+goog.exportProperty(
+    KMap.Transform.prototype,
+    'bdmc_decrypt',
+    KMap.Transform.prototype.bdmc_decrypt);
 
 goog.exportProperty(
     KMap.Transform.prototype,
@@ -88633,6 +88876,91 @@ goog.exportProperty(
     KMap.BaiduLayer.prototype.setMinResolution);
 
 goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getSource',
+    KMap.ClusterLayer.prototype.getSource);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getExtent',
+    KMap.ClusterLayer.prototype.getExtent);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setRenderer',
+    KMap.ClusterLayer.prototype.setRenderer);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getRenderer',
+    KMap.ClusterLayer.prototype.getRenderer);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setInfoTemplate',
+    KMap.ClusterLayer.prototype.setInfoTemplate);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getInfoTemplate',
+    KMap.ClusterLayer.prototype.getInfoTemplate);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getId',
+    KMap.ClusterLayer.prototype.getId);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setId',
+    KMap.ClusterLayer.prototype.setId);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getLayer',
+    KMap.ClusterLayer.prototype.getLayer);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setLayer',
+    KMap.ClusterLayer.prototype.setLayer);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getVisible',
+    KMap.ClusterLayer.prototype.getVisible);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setVisible',
+    KMap.ClusterLayer.prototype.setVisible);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setExtent',
+    KMap.ClusterLayer.prototype.setExtent);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getMaxResolution',
+    KMap.ClusterLayer.prototype.getMaxResolution);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setMaxResolution',
+    KMap.ClusterLayer.prototype.setMaxResolution);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'getMinResolution',
+    KMap.ClusterLayer.prototype.getMinResolution);
+
+goog.exportProperty(
+    KMap.ClusterLayer.prototype,
+    'setMinResolution',
+    KMap.ClusterLayer.prototype.setMinResolution);
+
+goog.exportProperty(
     KMap.GroupLayer.prototype,
     'getId',
     KMap.GroupLayer.prototype.getId);
@@ -88966,7 +89294,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-27-ge1d10fc';
+ol.VERSION = '0.1-28-g1b00632';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

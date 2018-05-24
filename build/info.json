@@ -2747,6 +2747,195 @@
       ]
     },
     {
+      "name": "KMap.ClusterLayer",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "extends": "KMap.GraphicsLayer",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "types": [
+            "Object",
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getType",
+      "kind": "function",
+      "description": "返回图层的类型",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "returns": {
+        "types": [
+          "KMap.Layer.Type"
+        ]
+      },
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#add",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "graphic",
+          "types": [
+            "KMap.Graphic"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#remove",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#clear",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#addAll",
+      "kind": "function",
+      "description": "添加多个图形到图层",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "graphicArray",
+          "types": [
+            "Array.<KMap.Graphic>"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#get",
+      "kind": "function",
+      "description": "添加多个图形到图层",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Graphic"
+        ]
+      },
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getLength",
+      "kind": "function",
+      "description": "返回图形的总数",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#forEach",
+      "kind": "function",
+      "description": "遍历图层所有图形",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "callback",
+          "types": [
+            "Function"
+          ]
+        },
+        {
+          "name": "opt_this",
+          "types": [
+            "T"
+          ],
+          "optional": true
+        }
+      ],
+      "returns": {
+        "types": [
+          "S",
+          "undefined"
+        ]
+      },
+      "template": "T,S",
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getDistance",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setDistance",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "distance",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
       "name": "KMap.FeatureLayer",
       "kind": "class",
       "stability": "experimental",
@@ -5185,6 +5374,122 @@
         },
         {
           "name": "gcjLon",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "Object"
+        ]
+      },
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
+      "name": "KMap.Transform#bd_encrypt",
+      "kind": "function",
+      "description": "GCJ-02 to BD-09",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "params": [
+        {
+          "name": "gcjLat",
+          "types": [
+            "number"
+          ]
+        },
+        {
+          "name": "gcjLon",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "Object"
+        ]
+      },
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
+      "name": "KMap.Transform#bd_decrypt",
+      "kind": "function",
+      "description": "BD-09 to GCJ-02",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "params": [
+        {
+          "name": "bdLat",
+          "types": [
+            "number"
+          ]
+        },
+        {
+          "name": "bdLon",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "Object"
+        ]
+      },
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
+      "name": "KMap.Transform#bdmc_encrypt",
+      "kind": "function",
+      "description": "BD-09 to BD-MC",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "params": [
+        {
+          "name": "bdLat",
+          "types": [
+            "number"
+          ]
+        },
+        {
+          "name": "bdLon",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "Object"
+        ]
+      },
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
+      "name": "KMap.Transform#bdmc_decrypt",
+      "kind": "function",
+      "description": "BD-MC to BD-09",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "params": [
+        {
+          "name": "mcLat",
+          "types": [
+            "number"
+          ]
+        },
+        {
+          "name": "mcLon",
           "types": [
             "number"
           ]
@@ -8725,6 +9030,284 @@
     },
     {
       "name": "KMap.BaiduLayer#setMinResolution",
+      "kind": "function",
+      "description": "设置图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "minResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getSource",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.source.Vector"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getExtent",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "ol.Extent"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "renderer",
+          "types": [
+            "KMap.Renderer"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getRenderer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.Renderer"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "params": [
+        {
+          "name": "infoTemplate",
+          "types": [
+            "KMap.InfoTemplate"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getInfoTemplate",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\graphicslayer.js",
+      "returns": {
+        "types": [
+          "KMap.InfoTemplate"
+        ]
+      },
+      "provides": [
+        "KMap.GraphicsLayer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getId",
+      "kind": "function",
+      "description": "返回图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "string"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setId",
+      "kind": "function",
+      "description": "设置图层的ID",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "id",
+          "types": [
+            "string"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getLayer",
+      "kind": "function",
+      "description": "反回图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "ol.layer.Base"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setLayer",
+      "kind": "function",
+      "description": "设置图层的内部对象",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getVisible",
+      "kind": "function",
+      "description": "返回图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "boolean"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setVisible",
+      "kind": "function",
+      "description": "修改图层是否可以显示",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "visible",
+          "types": [
+            "boolean"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setExtent",
+      "kind": "function",
+      "description": "设置图层的边界范围",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "extent",
+          "types": [
+            "ol.Extent"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getMaxResolution",
+      "kind": "function",
+      "description": "返回图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "returns": {
+        "types": [
+          "number"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setMaxResolution",
+      "kind": "function",
+      "description": "设置图层的最大显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "params": [
+        {
+          "name": "maxResolution",
+          "types": [
+            "number"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#getMinResolution",
+      "kind": "function",
+      "description": "返回图层的最小显示密度",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\layer.js",
+      "provides": [
+        "KMap.Layer"
+      ]
+    },
+    {
+      "name": "KMap.ClusterLayer#setMinResolution",
       "kind": "function",
       "description": "设置图层的最小显示密度",
       "stability": "experimental",

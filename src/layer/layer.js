@@ -210,7 +210,8 @@ KMap.Layer.Type = {
   WMSLayer: 'WMSLayer',
   WMTSLayer: 'WMTSLayer',
   AMapLayer: 'AMapLayer',
-  TdtLayer: 'TdtLayer'
+  TdtLayer: 'TdtLayer',
+  ClusterLayer: 'ClusterLayer'
 };
 
 /**

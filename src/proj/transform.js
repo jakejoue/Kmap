@@ -209,7 +209,7 @@ KMap.Transform.prototype.gcj_decrypt_exact = function (gcjLat, gcjLon) {
 };
 /**
  * GCJ-02 to BD-09
- * 
+ * @api
  * @param {number} gcjLat 
  * @param {number} gcjLon 
  * @returns {Object}
@@ -224,7 +224,7 @@ KMap.Transform.prototype.bd_encrypt = function (gcjLat, gcjLon) {
 };
 /**
  * BD-09 to GCJ-02
- * 
+ * @api
  * @param {number} bdLat 
  * @param {number} bdLon 
  * @returns {Object}
@@ -239,7 +239,7 @@ KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
 };
 /**
  * BD-09 to BD-MC
- * 
+ * @api
  * @param {number} bdLat 
  * @param {number} bdLon 
  * @returns {Object}
@@ -250,7 +250,7 @@ KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
 };
 /**
  * BD-MC to BD-09
- * 
+ * @api
  * @param {number} mcLat 
  * @param {number} mcLon 
  * @returns {Object}
