@@ -164,3 +164,13 @@ KMap.ClusterLayer.prototype.getDistance = function() {
 KMap.ClusterLayer.prototype.setDistance = function(distance) {
     return this.source.setDistance(distance);
 }
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.ClusterLayer.fromLayer = function(layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.ClusterLayer(layerId, layer);
+};

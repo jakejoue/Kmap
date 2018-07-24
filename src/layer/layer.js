@@ -182,6 +182,8 @@ KMap.Layer.fromLayer = function (layer) {
       return KMap.WMTSLayer.fromLayer(layer);
     case KMap.Layer.Type.AMapLayer:
       return KMap.AMapLayer.fromLayer(layer);
+    case KMap.Layer.Type.ClusterLayer:
+      return KMap.ClusterLayer.fromLayer(layer);
   };
   throw 'invalid layer type';
 };

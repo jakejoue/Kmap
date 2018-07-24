@@ -1,6 +1,6 @@
 // OpenLayers. See https://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/openlayers/master/LICENSE.md
-// Version: 0.1-28-g1b00632
+// Version: 0.1-29-gf0e72c2
 ;(function (root, factory) {
   if (typeof exports === "object") {
     module.exports = factory();
@@ -78981,6 +78981,8 @@ KMap.Layer.fromLayer = function (layer) {
       return KMap.WMTSLayer.fromLayer(layer);
     case KMap.Layer.Type.AMapLayer:
       return KMap.AMapLayer.fromLayer(layer);
+    case KMap.Layer.Type.ClusterLayer:
+      return KMap.ClusterLayer.fromLayer(layer);
   };
   throw 'invalid layer type';
 };
@@ -80999,7 +81001,8 @@ KMap.Symbol.Type = {
     SimpleMarkerSymbol: 'SimpleMarkerSymbol',
     SimpleLineSymbol: 'SimpleLineSymbol',
     SimpleFillSymbol: 'SimpleFillSymbol',
-    SimpleTextSymbol: 'SimpleTextSymbol'
+    SimpleTextSymbol: 'SimpleTextSymbol',
+    MultiSymbol: 'MultiSymbol'
 };
 goog.provide('KMap.Graphic');
 
@@ -82091,74 +82094,74 @@ KMap.Transform = function () {
             if (!cQ) {
                 return 0;
             }
-            cM = this.toRadians(cQ.lng);
-            cP = this.toRadians(cQ.lat);
+            cM = this.toRadians(cQ["lng"]);
+            cP = this.toRadians(cQ["lat"]);
             cO = this.convertMC2LL(cO);
             if (!cO) {
                 return 0;
             }
-            T = this.toRadians(cO.lng);
-            cN = this.toRadians(cO.lat);
+            T = this.toRadians(cO["lng"]);
+            cN = this.toRadians(cO["lat"]);
             return this.getDistance(cM, T, cP, cN);
         },
         getDistanceByLL: function (cQ, cO) {
             if (!cQ || !cO) {
                 return 0;
             }
-            cQ.lng = this.getLoop(cQ.lng, -180, 180);
-            cQ.lat = this.getRange(cQ.lat, -74, 74);
-            cO.lng = this.getLoop(cO.lng, -180, 180);
-            cO.lat = this.getRange(cO.lat, -74, 74);
+            cQ["lng"] = this.getLoop(cQ["lng"], -180, 180);
+            cQ["lat"] = this.getRange(cQ["lat"], -74, 74);
+            cO["lng"] = this.getLoop(cO["lng"], -180, 180);
+            cO["lat"] = this.getRange(cO["lat"], -74, 74);
             var cM, T, cP, cN;
-            cM = this.toRadians(cQ.lng);
-            cP = this.toRadians(cQ.lat);
-            T = this.toRadians(cO.lng);
-            cN = this.toRadians(cO.lat);
+            cM = this.toRadians(cQ["lng"]);
+            cP = this.toRadians(cQ["lat"]);
+            T = this.toRadians(cO["lng"]);
+            cN = this.toRadians(cO["lat"]);
             return this.getDistance(cM, T, cP, cN);
         },
         convertMC2LL: function (cM) {
             var cN, cP;
-            cN = new ce(Math.abs(cM.lng), Math.abs(cM.lat));
+            cN = new ce(Math.abs(cM["lng"]), Math.abs(cM["lat"]));
             for (var cO = 0; cO < this.MCBAND.length; cO++) {
-                if (cN.lat >= this.MCBAND[cO]) {
+                if (cN["lat"] >= this.MCBAND[cO]) {
                     cP = this.MC2LL[cO];
                     break;
                 }
             }
             var T = this.convertor(cM, cP);
-            cM = new ce(T.lng/*.toFixed(6)*/, T.lat/*.toFixed(6)*/);
+            cM = new ce(T["lng"]/*.toFixed(6)*/, T["lat"]/*.toFixed(6)*/);
             return cM;
         },
         convertLL2MC: function (T) {
             var cM, cO;
-            T.lng = this.getLoop(T.lng, -180, 180);
-            T.lat = this.getRange(T.lat, -74, 74);
-            cM = new ce(T.lng, T.lat);
+            T["lng"] = this.getLoop(T["lng"], -180, 180);
+            T["lat"] = this.getRange(T["lat"], -74, 74);
+            cM = new ce(T["lng"], T["lat"]);
             for (var cN = 0; cN < this.LLBAND.length; cN++) {
-                if (cM.lat >= this.LLBAND[cN]) {
+                if (cM["lat"] >= this.LLBAND[cN]) {
                     cO = this.LL2MC[cN];
                     break;
                 }
             }
             if (!cO) {
                 for (var cN = this.LLBAND.length - 1; cN >= 0; cN--) {
-                    if (cM.lat <= -this.LLBAND[cN]) {
+                    if (cM["lat"] <= -this.LLBAND[cN]) {
                         cO = this.LL2MC[cN];
                         break;
                     }
                 }
             }
             var cP = this.convertor(T, cO);
-            T = new ce(cP.lng/*.toFixed(2)*/, cP.lat/*.toFixed(2)*/);
+            T = new ce(cP["lng"]/*.toFixed(2)*/, cP["lat"]/*.toFixed(2)*/);
             return T;
         },
         convertor: function (cN, cO) {
             if (!cN || !cO) {
                 return;
             }
-            var T = cO[0] + cO[1] * Math.abs(cN.lng);
-            var cM = Math.abs(cN.lat) / cO[9];
-            var cP = cO[2] + cO[3] * cM + cO[4] * cM * cM + cO[5] * cM * cM * cM + cO[6] * cM * cM * cM * cM + cO[7] * cM * cM * cM * cM * cM + cO[8] * cM * cM * cM * cM * cM * cM; T *= (cN.lng < 0 ? -1 : 1); cP *= (cN.lat < 0 ? -1 : 1);
+            var T = cO[0] + cO[1] * Math.abs(cN["lng"]);
+            var cM = Math.abs(cN["lat"]) / cO[9];
+            var cP = cO[2] + cO[3] * cM + cO[4] * cM * cM + cO[5] * cM * cM * cM + cO[6] * cM * cM * cM * cM + cO[7] * cM * cM * cM * cM * cM + cO[8] * cM * cM * cM * cM * cM * cM; T *= (cN["lng"] < 0 ? -1 : 1); cP *= (cN["lat"] < 0 ? -1 : 1);
             return new ce(T, cP);
         },
         getDistance: function (cM, T, cO, cN) {
@@ -82223,7 +82226,7 @@ KMap.Transform.prototype.gcj_encrypt = function (wgsLat, wgsLon) {
         return { 'lat': wgsLat, 'lon': wgsLon };
 
     var d = this.delta(wgsLat, wgsLon);
-    return { 'lat': wgsLat + d.lat, 'lon': wgsLon + d.lon };
+    return { 'lat': wgsLat + d["lat"], 'lon': wgsLon + d["lon"] };
 };
 /**
  * GCJ-02 to WGS-84
@@ -82238,7 +82241,7 @@ KMap.Transform.prototype.gcj_decrypt = function (gcjLat, gcjLon) {
         return { 'lat': gcjLat, 'lon': gcjLon };
 
     var d = this.delta(gcjLat, gcjLon);
-    return { 'lat': gcjLat - d.lat, 'lon': gcjLon - d.lon };
+    return { 'lat': gcjLat - d["lat"], 'lon': gcjLon - d["lon"] };
 };
 /**
  * GCJ-02 to WGS-84 exactly
@@ -82259,8 +82262,8 @@ KMap.Transform.prototype.gcj_decrypt_exact = function (gcjLat, gcjLon) {
         wgsLat = (mLat + pLat) / 2;
         wgsLon = (mLon + pLon) / 2;
         var tmp = this.gcj_encrypt(wgsLat, wgsLon)
-        dLat = tmp.lat - gcjLat;
-        dLon = tmp.lon - gcjLon;
+        dLat = tmp["lat"] - gcjLat;
+        dLon = tmp["lon"] - gcjLon;
         if ((Math.abs(dLat) < threshold) && (Math.abs(dLon) < threshold))
             break;
 
@@ -82311,7 +82314,7 @@ KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
  */
 KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
     var mc = this.BDMC.convertLL2MC(new ce(bdLon, bdLat));
-    return { 'lat': mc.lat, 'lon': mc.lng };
+    return { 'lat': mc["lat"], 'lon': mc["lng"] };
 };
 /**
  * BD-MC to BD-09
@@ -82322,7 +82325,7 @@ KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
  */
 KMap.Transform.prototype.bdmc_decrypt = function (mcLat, mcLon) {
     var bd = this.BDMC.convertMC2LL(new ce(mcLon, mcLat));
-    return { 'lat': bd.lat, 'lon': bd.lng };
+    return { 'lat': bd["lat"], 'lon': bd["lng"] };
 };
 /**
  * WGS-84 to Web mercator
@@ -82405,7 +82408,13 @@ function ce(lng, lat) {
         lat = parseFloat(lat)
     }
 
+    /**
+     * @api
+     */
     this.lng = lng;
+    /**
+     * @api
+     */
     this.lat = lat;
 }
 ce.bW = function (cO) {
@@ -82443,10 +82452,10 @@ ce.b4 = function (T) {
     return typeof T == "string";
 };
 ce.isInRange = function (T) {
-    return T && T.lng <= 180 && T.lng >= -180 && T.lat <= 74 && T.lat >= -74;
+    return T && T["lng"] <= 180 && T["lng"] >= -180 && T["lat"] <= 74 && T["lat"] >= -74;
 };
 ce.prototype.equals = function (T) {
-    return T && this.lat == T.lat && this.lng == T.lng;
+    return T && this["lat"] == T["lat"] && this["lng"] == T["lng"];
 };
 goog.provide('KMap.Polyline');
 
@@ -84748,6 +84757,16 @@ KMap.ClusterLayer.prototype.getDistance = function() {
 KMap.ClusterLayer.prototype.setDistance = function(distance) {
     return this.source.setDistance(distance);
 }
+
+/**
+ * @api
+ * @param {ol.layer.Base} layer 
+ * @returns {KMap.Layer}
+ */
+KMap.ClusterLayer.fromLayer = function(layer) {
+    var layerId = /**@type {string}*/ (layer.get(KMap.Layer.Property.ID));
+    return new KMap.ClusterLayer(layerId, layer);
+};
 goog.provide('KMap.TdtLayer');
 
 goog.require('KMap');
@@ -85731,6 +85750,49 @@ KMap.UniqueValueRenderer.prototype.removeValue = function (value) {
         delete this.symbols_[value];
     }
 };
+goog.provide('KMap.MultiSymbol');
+
+goog.require('KMap.Symbol');
+goog.require('ol.style.Fill');
+goog.require('ol.style.Stroke');
+goog.require('ol.style.Text');
+
+/**
+ * @api
+ * @constructor
+ * @extends {KMap.Symbol}
+ * @param {Object|ol.style.Style} options
+ */
+KMap.MultiSymbol = function(options) {
+    KMap.Symbol.call(this, options);
+};
+ol.inherits(KMap.MultiSymbol, KMap.Symbol);
+
+/**
+ * @param {ol.style.Style} style
+ * @param {Object} options
+ */
+KMap.MultiSymbol.prototype.init = function(style, options) {
+    if (options.Fill) {
+        style.setFill(options.Fill.getStyle().getFill());
+    }
+    if (options.Image) {
+        style.setImage(options.Image.getStyle().getImage());
+    }
+    if (options.Stroke) {
+        style.setFill(options.Stroke.getStyle().getStroke());
+    }
+    if (options.Text) {
+        style.setText(options.Text.getStyle().getText());
+    }
+};
+
+/**
+ * @api
+ */
+KMap.MultiSymbol.prototype.getType = function() {
+    return KMap.Symbol.Type.MultiSymbol;
+}
 goog.provide('KMap.PictureMarkerSymbol');
 
 goog.require('KMap.Symbol');
@@ -86136,6 +86198,7 @@ goog.require('KMap.Layer');
 goog.require('KMap.Map');
 goog.require('KMap.MultiPoint');
 goog.require('KMap.MultiPolygon');
+goog.require('KMap.MultiSymbol');
 goog.require('KMap.OverViewMap');
 goog.require('KMap.Overlay');
 goog.require('KMap.PictureMarkerSymbol');
@@ -87026,6 +87089,11 @@ goog.exportProperty(
     KMap.ClusterLayer.prototype.setDistance);
 
 goog.exportSymbol(
+    'KMap.ClusterLayer.fromLayer',
+    KMap.ClusterLayer.fromLayer,
+    OPENLAYERS);
+
+goog.exportSymbol(
     'KMap.FeatureLayer',
     KMap.FeatureLayer,
     OPENLAYERS);
@@ -87780,6 +87848,16 @@ goog.exportProperty(
     'distance',
     KMap.Transform.prototype.distance);
 
+goog.exportProperty(
+    ce.prototype,
+    'lng',
+    ce.prototype.lng);
+
+goog.exportProperty(
+    ce.prototype,
+    'lat',
+    ce.prototype.lat);
+
 goog.exportSymbol(
     'KMap.DynamicRenderer',
     KMap.DynamicRenderer,
@@ -87829,6 +87907,16 @@ goog.exportProperty(
     KMap.UniqueValueRenderer.prototype,
     'removeValue',
     KMap.UniqueValueRenderer.prototype.removeValue);
+
+goog.exportSymbol(
+    'KMap.MultiSymbol',
+    KMap.MultiSymbol,
+    OPENLAYERS);
+
+goog.exportProperty(
+    KMap.MultiSymbol.prototype,
+    'getType',
+    KMap.MultiSymbol.prototype.getType);
 
 goog.exportSymbol(
     'KMap.PictureMarkerSymbol',
@@ -89271,6 +89359,11 @@ goog.exportProperty(
     KMap.Popup.prototype.setElement);
 
 goog.exportProperty(
+    KMap.MultiSymbol.prototype,
+    'getStyle',
+    KMap.MultiSymbol.prototype.getStyle);
+
+goog.exportProperty(
     KMap.PictureMarkerSymbol.prototype,
     'getStyle',
     KMap.PictureMarkerSymbol.prototype.getStyle);
@@ -89294,7 +89387,7 @@ goog.exportProperty(
     KMap.SimpleTextSymbol.prototype,
     'getStyle',
     KMap.SimpleTextSymbol.prototype.getStyle);
-ol.VERSION = '0.1-28-g1b00632';
+ol.VERSION = '0.1-29-gf0e72c2';
 OPENLAYERS.ol = ol;
 
   return OPENLAYERS;

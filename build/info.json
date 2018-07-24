@@ -2936,6 +2936,28 @@
       ]
     },
     {
+      "name": "KMap.ClusterLayer.fromLayer",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\layer\\clusterLayer.js",
+      "params": [
+        {
+          "name": "layer",
+          "types": [
+            "ol.layer.Base"
+          ]
+        }
+      ],
+      "returns": {
+        "types": [
+          "KMap.Layer"
+        ]
+      },
+      "provides": [
+        "KMap.ClusterLayer"
+      ]
+    },
+    {
       "name": "KMap.FeatureLayer",
       "kind": "class",
       "stability": "experimental",
@@ -5515,6 +5537,24 @@
       ]
     },
     {
+      "name": "ce#lng",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
+      "name": "ce#lat",
+      "kind": "member",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\proj\\transform.js",
+      "provides": [
+        "KMap.Transform"
+      ]
+    },
+    {
       "name": "KMap.DynamicRenderer",
       "kind": "class",
       "stability": "experimental",
@@ -5715,6 +5755,34 @@
       ],
       "provides": [
         "KMap.UniqueValueRenderer"
+      ]
+    },
+    {
+      "name": "KMap.MultiSymbol",
+      "kind": "class",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\multisymbol.js",
+      "extends": "KMap.Symbol",
+      "params": [
+        {
+          "name": "options",
+          "types": [
+            "Object",
+            "ol.style.Style"
+          ]
+        }
+      ],
+      "provides": [
+        "KMap.MultiSymbol"
+      ]
+    },
+    {
+      "name": "KMap.MultiSymbol#getType",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\multisymbol.js",
+      "provides": [
+        "KMap.MultiSymbol"
       ]
     },
     {
@@ -10370,6 +10438,20 @@
       "path": "E:\\VScode\\kmap\\src\\overlay.js",
       "provides": [
         "KMap.Overlay"
+      ]
+    },
+    {
+      "name": "KMap.MultiSymbol#getStyle",
+      "kind": "function",
+      "stability": "experimental",
+      "path": "E:\\VScode\\kmap\\src\\symbol\\symbol.js",
+      "returns": {
+        "types": [
+          "ol.style.Style"
+        ]
+      },
+      "provides": [
+        "KMap.Symbol"
       ]
     },
     {

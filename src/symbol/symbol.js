@@ -80,5 +80,6 @@ KMap.Symbol.Type = {
     SimpleMarkerSymbol: 'SimpleMarkerSymbol',
     SimpleLineSymbol: 'SimpleLineSymbol',
     SimpleFillSymbol: 'SimpleFillSymbol',
-    SimpleTextSymbol: 'SimpleTextSymbol'
+    SimpleTextSymbol: 'SimpleTextSymbol',
+    MultiSymbol: 'MultiSymbol'
 };

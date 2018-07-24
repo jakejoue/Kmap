@@ -26,74 +26,74 @@ KMap.Transform = function () {
             if (!cQ) {
                 return 0;
             }
-            cM = this.toRadians(cQ.lng);
-            cP = this.toRadians(cQ.lat);
+            cM = this.toRadians(cQ["lng"]);
+            cP = this.toRadians(cQ["lat"]);
             cO = this.convertMC2LL(cO);
             if (!cO) {
                 return 0;
             }
-            T = this.toRadians(cO.lng);
-            cN = this.toRadians(cO.lat);
+            T = this.toRadians(cO["lng"]);
+            cN = this.toRadians(cO["lat"]);
             return this.getDistance(cM, T, cP, cN);
         },
         getDistanceByLL: function (cQ, cO) {
             if (!cQ || !cO) {
                 return 0;
             }
-            cQ.lng = this.getLoop(cQ.lng, -180, 180);
-            cQ.lat = this.getRange(cQ.lat, -74, 74);
-            cO.lng = this.getLoop(cO.lng, -180, 180);
-            cO.lat = this.getRange(cO.lat, -74, 74);
+            cQ["lng"] = this.getLoop(cQ["lng"], -180, 180);
+            cQ["lat"] = this.getRange(cQ["lat"], -74, 74);
+            cO["lng"] = this.getLoop(cO["lng"], -180, 180);
+            cO["lat"] = this.getRange(cO["lat"], -74, 74);
             var cM, T, cP, cN;
-            cM = this.toRadians(cQ.lng);
-            cP = this.toRadians(cQ.lat);
-            T = this.toRadians(cO.lng);
-            cN = this.toRadians(cO.lat);
+            cM = this.toRadians(cQ["lng"]);
+            cP = this.toRadians(cQ["lat"]);
+            T = this.toRadians(cO["lng"]);
+            cN = this.toRadians(cO["lat"]);
             return this.getDistance(cM, T, cP, cN);
         },
         convertMC2LL: function (cM) {
             var cN, cP;
-            cN = new ce(Math.abs(cM.lng), Math.abs(cM.lat));
+            cN = new ce(Math.abs(cM["lng"]), Math.abs(cM["lat"]));
             for (var cO = 0; cO < this.MCBAND.length; cO++) {
-                if (cN.lat >= this.MCBAND[cO]) {
+                if (cN["lat"] >= this.MCBAND[cO]) {
                     cP = this.MC2LL[cO];
                     break;
                 }
             }
             var T = this.convertor(cM, cP);
-            cM = new ce(T.lng/*.toFixed(6)*/, T.lat/*.toFixed(6)*/);
+            cM = new ce(T["lng"]/*.toFixed(6)*/, T["lat"]/*.toFixed(6)*/);
             return cM;
         },
         convertLL2MC: function (T) {
             var cM, cO;
-            T.lng = this.getLoop(T.lng, -180, 180);
-            T.lat = this.getRange(T.lat, -74, 74);
-            cM = new ce(T.lng, T.lat);
+            T["lng"] = this.getLoop(T["lng"], -180, 180);
+            T["lat"] = this.getRange(T["lat"], -74, 74);
+            cM = new ce(T["lng"], T["lat"]);
             for (var cN = 0; cN < this.LLBAND.length; cN++) {
-                if (cM.lat >= this.LLBAND[cN]) {
+                if (cM["lat"] >= this.LLBAND[cN]) {
                     cO = this.LL2MC[cN];
                     break;
                 }
             }
             if (!cO) {
                 for (var cN = this.LLBAND.length - 1; cN >= 0; cN--) {
-                    if (cM.lat <= -this.LLBAND[cN]) {
+                    if (cM["lat"] <= -this.LLBAND[cN]) {
                         cO = this.LL2MC[cN];
                         break;
                     }
                 }
             }
             var cP = this.convertor(T, cO);
-            T = new ce(cP.lng/*.toFixed(2)*/, cP.lat/*.toFixed(2)*/);
+            T = new ce(cP["lng"]/*.toFixed(2)*/, cP["lat"]/*.toFixed(2)*/);
             return T;
         },
         convertor: function (cN, cO) {
             if (!cN || !cO) {
                 return;
             }
-            var T = cO[0] + cO[1] * Math.abs(cN.lng);
-            var cM = Math.abs(cN.lat) / cO[9];
-            var cP = cO[2] + cO[3] * cM + cO[4] * cM * cM + cO[5] * cM * cM * cM + cO[6] * cM * cM * cM * cM + cO[7] * cM * cM * cM * cM * cM + cO[8] * cM * cM * cM * cM * cM * cM; T *= (cN.lng < 0 ? -1 : 1); cP *= (cN.lat < 0 ? -1 : 1);
+            var T = cO[0] + cO[1] * Math.abs(cN["lng"]);
+            var cM = Math.abs(cN["lat"]) / cO[9];
+            var cP = cO[2] + cO[3] * cM + cO[4] * cM * cM + cO[5] * cM * cM * cM + cO[6] * cM * cM * cM * cM + cO[7] * cM * cM * cM * cM * cM + cO[8] * cM * cM * cM * cM * cM * cM; T *= (cN["lng"] < 0 ? -1 : 1); cP *= (cN["lat"] < 0 ? -1 : 1);
             return new ce(T, cP);
         },
         getDistance: function (cM, T, cO, cN) {
@@ -158,7 +158,7 @@ KMap.Transform.prototype.gcj_encrypt = function (wgsLat, wgsLon) {
         return { 'lat': wgsLat, 'lon': wgsLon };
 
     var d = this.delta(wgsLat, wgsLon);
-    return { 'lat': wgsLat + d.lat, 'lon': wgsLon + d.lon };
+    return { 'lat': wgsLat + d["lat"], 'lon': wgsLon + d["lon"] };
 };
 /**
  * GCJ-02 to WGS-84
@@ -173,7 +173,7 @@ KMap.Transform.prototype.gcj_decrypt = function (gcjLat, gcjLon) {
         return { 'lat': gcjLat, 'lon': gcjLon };
 
     var d = this.delta(gcjLat, gcjLon);
-    return { 'lat': gcjLat - d.lat, 'lon': gcjLon - d.lon };
+    return { 'lat': gcjLat - d["lat"], 'lon': gcjLon - d["lon"] };
 };
 /**
  * GCJ-02 to WGS-84 exactly
@@ -194,8 +194,8 @@ KMap.Transform.prototype.gcj_decrypt_exact = function (gcjLat, gcjLon) {
         wgsLat = (mLat + pLat) / 2;
         wgsLon = (mLon + pLon) / 2;
         var tmp = this.gcj_encrypt(wgsLat, wgsLon)
-        dLat = tmp.lat - gcjLat;
-        dLon = tmp.lon - gcjLon;
+        dLat = tmp["lat"] - gcjLat;
+        dLon = tmp["lon"] - gcjLon;
         if ((Math.abs(dLat) < threshold) && (Math.abs(dLon) < threshold))
             break;
 
@@ -246,7 +246,7 @@ KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
  */
 KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
     var mc = this.BDMC.convertLL2MC(new ce(bdLon, bdLat));
-    return { 'lat': mc.lat, 'lon': mc.lng };
+    return { 'lat': mc["lat"], 'lon': mc["lng"] };
 };
 /**
  * BD-MC to BD-09
@@ -257,7 +257,7 @@ KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
  */
 KMap.Transform.prototype.bdmc_decrypt = function (mcLat, mcLon) {
     var bd = this.BDMC.convertMC2LL(new ce(mcLon, mcLat));
-    return { 'lat': bd.lat, 'lon': bd.lng };
+    return { 'lat': bd["lat"], 'lon': bd["lng"] };
 };
 /**
  * WGS-84 to Web mercator
@@ -340,7 +340,13 @@ function ce(lng, lat) {
         lat = parseFloat(lat)
     }
 
+    /**
+     * @api
+     */
     this.lng = lng;
+    /**
+     * @api
+     */
     this.lat = lat;
 }
 ce.bW = function (cO) {
@@ -378,8 +384,8 @@ ce.b4 = function (T) {
     return typeof T == "string";
 };
 ce.isInRange = function (T) {
-    return T && T.lng <= 180 && T.lng >= -180 && T.lat <= 74 && T.lat >= -74;
+    return T && T["lng"] <= 180 && T["lng"] >= -180 && T["lat"] <= 74 && T["lat"] >= -74;
 };
 ce.prototype.equals = function (T) {
-    return T && this.lat == T.lat && this.lng == T.lng;
+    return T && this["lat"] == T["lat"] && this["lng"] == T["lng"];
 };
