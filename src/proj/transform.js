@@ -147,9 +147,9 @@ KMap.Transform.prototype.delta = function (lat, lon) {
 
 /**
  * WGS-84 to GCJ-02
- * 
- * @param {number} wgsLat 
- * @param {number} wgsLon 
+ *
+ * @param {number} wgsLat
+ * @param {number} wgsLon
  * @returns {Object}
  * @api
  */
@@ -162,9 +162,9 @@ KMap.Transform.prototype.gcj_encrypt = function (wgsLat, wgsLon) {
 };
 /**
  * GCJ-02 to WGS-84
- * 
- * @param {number} gcjLat 
- * @param {number} gcjLon 
+ *
+ * @param {number} gcjLat
+ * @param {number} gcjLon
  * @returns {Object}
  * @api
  */
@@ -177,9 +177,9 @@ KMap.Transform.prototype.gcj_decrypt = function (gcjLat, gcjLon) {
 };
 /**
  * GCJ-02 to WGS-84 exactly
- * 
- * @param {number} gcjLat 
- * @param {number} gcjLon 
+ *
+ * @param {number} gcjLat
+ * @param {number} gcjLon
  * @returns {Object}
  * @api
  */
@@ -210,8 +210,8 @@ KMap.Transform.prototype.gcj_decrypt_exact = function (gcjLat, gcjLon) {
 /**
  * GCJ-02 to BD-09
  * @api
- * @param {number} gcjLat 
- * @param {number} gcjLon 
+ * @param {number} gcjLat
+ * @param {number} gcjLon
  * @returns {Object}
  */
 KMap.Transform.prototype.bd_encrypt = function (gcjLat, gcjLon) {
@@ -225,8 +225,8 @@ KMap.Transform.prototype.bd_encrypt = function (gcjLat, gcjLon) {
 /**
  * BD-09 to GCJ-02
  * @api
- * @param {number} bdLat 
- * @param {number} bdLon 
+ * @param {number} bdLat
+ * @param {number} bdLon
  * @returns {Object}
  */
 KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
@@ -240,8 +240,8 @@ KMap.Transform.prototype.bd_decrypt = function (bdLat, bdLon) {
 /**
  * BD-09 to BD-MC
  * @api
- * @param {number} bdLat 
- * @param {number} bdLon 
+ * @param {number} bdLat
+ * @param {number} bdLon
  * @returns {Object}
  */
 KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
@@ -251,8 +251,8 @@ KMap.Transform.prototype.bdmc_encrypt = function (bdLat, bdLon) {
 /**
  * BD-MC to BD-09
  * @api
- * @param {number} mcLat 
- * @param {number} mcLon 
+ * @param {number} mcLat
+ * @param {number} mcLon
  * @returns {Object}
  */
 KMap.Transform.prototype.bdmc_decrypt = function (mcLat, mcLon) {
@@ -262,8 +262,8 @@ KMap.Transform.prototype.bdmc_decrypt = function (mcLat, mcLon) {
 /**
  * WGS-84 to Web mercator
  * mercatorLat -> y mercatorLon -> x
- * @param {number} wgsLat 
- * @param {number} wgsLon 
+ * @param {number} wgsLat
+ * @param {number} wgsLon
  * @returns {Object}
  */
 KMap.Transform.prototype.mercator_encrypt = function (wgsLat, wgsLon) {
@@ -275,8 +275,8 @@ KMap.Transform.prototype.mercator_encrypt = function (wgsLat, wgsLon) {
 /**
  * Web mercator to WGS-84
  * mercatorLat -> y mercatorLon -> x
- * @param {number} mercatorLat 
- * @param {number} mercatorLon 
+ * @param {number} mercatorLat
+ * @param {number} mercatorLon
  * @returns {Object}
  */
 KMap.Transform.prototype.mercator_decrypt = function (mercatorLat, mercatorLon) {
@@ -340,14 +340,8 @@ function ce(lng, lat) {
         lat = parseFloat(lat)
     }
 
-    /**
-     * @api
-     */
-    this.lng = lng;
-    /**
-     * @api
-     */
-    this.lat = lat;
+    this["lng"] = lng;
+    this["lat"] = lat;
 }
 ce.bW = function (cO) {
     var cM = "";

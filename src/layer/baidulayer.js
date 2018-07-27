@@ -31,21 +31,21 @@ KMap.BaiduLayer = function (id, options) {
             function (coordinate) {
                 coordinate = ol.proj.toLonLat(coordinate);
                 var ll = transform.bdmc_encrypt(coordinate[1], coordinate[0] );
-                return [ll.lon, ll.lat];
+                return [ll["lon"], ll["lat"]];
             },
             function (coordinate) {
                 var ll = transform.bdmc_decrypt(coordinate[1], coordinate[0]);
-                return ol.proj.transform([ll.lon, ll.lat], "EPSG:4326", "EPSG:3857");
+                return ol.proj.transform([ll["lon"], ll["lat"]], "EPSG:4326", "EPSG:3857");
             }
         );
         ol.proj.addCoordinateTransforms("EPSG:4326", proj_bdmc,
             function (coordinate) {
                 var ll = transform.bdmc_encrypt(coordinate[1], coordinate[0]);
-                return [ll.lon, ll.lat];
+                return [ll["lon"], ll["lat"]];
             },
             function (coordinate) {
                 var ll = transform.bdmc_decrypt(coordinate[1], coordinate[0]);
-                return [ll.lon, ll.lat];
+                return [ll["lon"], ll["lat"]];
             }
         );
         ol.proj.addProjection(proj_bdmc);
