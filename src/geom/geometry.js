@@ -24,7 +24,7 @@ KMap.Geometry = function (geometry) {
 };
 
 /**
- * @return {ol.geom.Geometry} 
+ * @return {ol.geom.Geometry}
  * @api
  */
 KMap.Geometry.prototype.getGeometry = function () {
@@ -40,7 +40,7 @@ KMap.Geometry.prototype.setGeometry = function (geometry) {
 };
 
 /**
- * @return {ol.Extent} 
+ * @return {ol.Extent}
  * @api
  */
 KMap.Geometry.prototype.getExtent = function () {
@@ -82,7 +82,7 @@ KMap.Geometry.prototype.contains = function(point) {
 
 /**
  * @param {ol.Extent} extent
- * @return {KMap.Geometry} 
+ * @return {KMap.Geometry}
  * @api
  */
 KMap.Geometry.fromExtent = function (extent) {
@@ -92,74 +92,74 @@ KMap.Geometry.fromExtent = function (extent) {
 
 /**
  * @param {string} json
- * @return {KMap.Geometry} 
+ * @return {KMap.Geometry}
  * @api
  */
-KMap.Geometry.fromGeoJson = function (json) {
+KMap.Geometry.fromGeoJson = function (json, opt_options) {
     var format = new ol.format.GeoJSON();
-    var geometry = format.readGeometry(json);
+    var geometry = format.readGeometry(json, opt_options);
     return KMap.Geometry.fromGeometry(geometry);
 };
 
 /**
  * @param {KMap.Geometry} geometry
- * @return {string} 
+ * @return {string}
  * @api
  */
-KMap.Geometry.toGeoJson = function (geometry) {
+KMap.Geometry.toGeoJson = function (geometry, opt_options) {
     var geom = geometry.getGeometry();
     var format = new ol.format.GeoJSON();
-    return format.writeGeometry(geom);
+    return format.writeGeometry(geom, opt_options);
 };
 
 /**
  * @param {string} json
- * @return {KMap.Geometry} 
+ * @return {KMap.Geometry}
  * @api
  */
-KMap.Geometry.fromEsriJson = function (json) {
+KMap.Geometry.fromEsriJson = function (json, opt_options) {
     var format = new ol.format.EsriJSON();
-    var geometry = format.readGeometry(json);
+    var geometry = format.readGeometry(json, opt_options);
     return KMap.Geometry.fromGeometry(geometry);
 };
 
 /**
  * @param {KMap.Geometry} geometry
- * @return {string} 
+ * @return {string}
  * @api
  */
-KMap.Geometry.toEsriJson = function (geometry) {
+KMap.Geometry.toEsriJson = function (geometry, opt_options) {
     var geom = geometry.getGeometry();
     var format = new ol.format.EsriJSON();
-    return format.writeGeometry(geom);
+    return format.writeGeometry(geom, opt_options);
 };
 
 /**
  * @param {string} wkt
- * @return {KMap.Geometry} 
+ * @return {KMap.Geometry}
  * @api
  */
-KMap.Geometry.fromWKT = function (wkt) {
+KMap.Geometry.fromWKT = function (wkt, opt_options) {
     var format = new ol.format.WKT();
-    var geometry = format.readGeometry(wkt);
+    var geometry = format.readGeometry(wkt, opt_options);
 
     return KMap.Geometry.fromGeometry(geometry);
 };
 
 /**
  * @param {KMap.Geometry} geometry
- * @return {string} 
+ * @return {string}
  * @api
  */
-KMap.Geometry.toWKT = function (geometry) {
+KMap.Geometry.toWKT = function (geometry, opt_options) {
     var geom = geometry.getGeometry();
     var format = new ol.format.WKT();
-    return format.writeGeometry(geom);
+    return format.writeGeometry(geom, opt_options);
 };
 
 /**
  * @param {ol.geom.Geometry} geometry
- * @return {KMap.Geometry} 
+ * @return {KMap.Geometry}
  * @api
  */
 KMap.Geometry.fromGeometry = function (geometry) {
@@ -213,3 +213,23 @@ KMap.Geometry.prototype.getCoordinates = function () {
     }
     return null;
 };
+
+/**
+ * Transform each coordinate of the geometry from one coordinate reference
+ * system to another. The geometry is modified in place.
+ * For example, a line will be transformed to a line and a circle to a circle.
+ * If you do not want the geometry modified in place, first `clone()` it and
+ * then use this function on the clone.
+ *
+ * @param {ol.ProjectionLike} source The current projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @param {ol.ProjectionLike} destination The desired projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @return {KMap.Geometry} This geometry.  Note that original geometry is
+ *     modified in place.
+ * @api
+ */
+KMap.Geometry.prototype.transform = function (source, destination) {
+    var geom = this.geometry_.transform(source, destination);
+    return KMap.Geometry.fromGeometry(geom);
+}
