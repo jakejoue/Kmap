@@ -154,3 +154,36 @@ KMap.Projection.initBDMCProj = function () {
         }
     );
 };
+
+/**
+ * @api
+ * 初始化gcj02坐标和坐标间转换
+ */
+KMap.Projection.initGCJ02MCProj = function () {
+    var transform = new KMap.Transform();
+
+    var porj_3857 = new KMap.Projection("EPSG:3857");
+    porj_3857.addEquivalentProjections(["EPSG:GCJ02MC"]);
+
+    ol.proj.addCoordinateTransforms("EPSG:4326", "EPSG:GCJ02MC",
+        function (coordinate) {
+            var ll = transform.gcj_encrypt(coordinate[1], coordinate[0]);
+            return ol.proj.transform([ll["lon"], ll["lat"]], "EPSG:4326", "EPSG:3857");
+        },
+        function (coordinate) {
+            coordinate = ol.proj.toLonLat(coordinate);
+            var ll = transform.gcj_decrypt(coordinate[1], coordinate[0]);
+            return [ll["lon"], ll["lat"]];
+        }
+    );
+    ol.proj.addCoordinateTransforms("EPSG:3857", "EPSG:GCJ02MC",
+        function (coordinate) {
+            coordinate = ol.proj.toLonLat(coordinate);
+            return ol.proj.transform(coordinate, "EPSG:4326", "EPSG:GCJ02MC");
+        },
+        function (coordinate) {
+            coordinate = ol.proj.transform(coordinate, "EPSG:GCJ02MC", "EPSG:4326");
+            return ol.proj.transform(coordinate, "EPSG:4326", "EPSG:3857");
+        }
+    );
+};

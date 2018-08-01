@@ -17,15 +17,15 @@ KMap.AMapLayer = function (id, options) {
 ol.inherits(KMap.AMapLayer, KMap.Layer);
 
 /**
- * @param {Object} options 
+ * @param {Object} options
  * @returns {ol.layer.Base}
  */
 KMap.AMapLayer.prototype.createLayer = function (options) {
-    var projection = ol.proj.get("EPSG:3857");
     var amap_source = new ol.source.XYZ({
         url: options["url"],
-        crossOrigin: "anonymous"
-    })
+        crossOrigin: "anonymous",
+        projection: ol.proj.get("EPSG:GCJ02MC") || "EPSG:3857"
+    });
 
     var amap_layer = new ol.layer.Tile({
         source: amap_source
@@ -35,7 +35,7 @@ KMap.AMapLayer.prototype.createLayer = function (options) {
 
 /**
  * @api
- * @param {ol.layer.Base} layer 
+ * @param {ol.layer.Base} layer
  * @returns {KMap.Layer}
  */
 KMap.AMapLayer.fromLayer = function (layer) {
