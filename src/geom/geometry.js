@@ -230,6 +230,6 @@ KMap.Geometry.prototype.getCoordinates = function () {
  * @api
  */
 KMap.Geometry.prototype.transform = function (source, destination) {
-    var geom = this.geometry_.transform(source, destination);
+    var geom = this.geometry_.clone().transform(source, destination);
     return KMap.Geometry.fromGeometry(geom);
 }
