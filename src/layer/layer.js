@@ -147,7 +147,7 @@ KMap.Layer.prototype.setMinResolution = function (minResolution) {
 };
 
 /**
- * @param {Object} options 
+ * @param {Object} options
  * @returns {ol.layer.Base}
  */
 KMap.Layer.prototype.createLayer = function (options) {
@@ -156,7 +156,7 @@ KMap.Layer.prototype.createLayer = function (options) {
 
 /**
  * @api
- * @param {ol.layer.Base} layer 
+ * @param {ol.layer.Base} layer
  * @returns {KMap.Layer}
  */
 KMap.Layer.fromLayer = function (layer) {
@@ -184,6 +184,8 @@ KMap.Layer.fromLayer = function (layer) {
       return KMap.AMapLayer.fromLayer(layer);
     case KMap.Layer.Type.ClusterLayer:
       return KMap.ClusterLayer.fromLayer(layer);
+    case KMap.Layer.Type.TileImageLayer:
+      return KMap.TileImageLayer.fromLayer(layer);
   };
   throw 'invalid layer type';
 };
@@ -213,7 +215,8 @@ KMap.Layer.Type = {
   WMTSLayer: 'WMTSLayer',
   AMapLayer: 'AMapLayer',
   TdtLayer: 'TdtLayer',
-  ClusterLayer: 'ClusterLayer'
+  ClusterLayer: 'ClusterLayer',
+  TileImageLayer: 'TileImageLayer'
 };
 
 /**
